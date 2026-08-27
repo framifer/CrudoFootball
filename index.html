@@ -598,8 +598,10 @@
     function dist2(a, b) { const dx = a.x - b.x, dy = a.y - b.y; return dx * dx + dy * dy; }
     function ballOwner() { return (ball.owner >= 0) ? players[ball.owner] : null; }
 
-    const PLAYER_SPEED = 3.2;
+    const PLAYER_SPEED = 3.7;
     const AI_SPEED = 3.0;
+    const MY_AI_MULT = 1.18;
+    const OPP_AI_MULT = 0.82;
     const BALL_FRICTION = 0.972;
     const CATCH_RADIUS = 12;
     const PASS_POWER = 10.5;
@@ -738,15 +740,12 @@
     function passBall(team) {
       const from = ballOwner();
       if (!from) return;
-      const dir = attackDir(team);
-      let best = -1, bestScore = -Infinity;
+      let best = -1, bestD = Infinity;
       for (let i = 0; i < players.length; i++) {
         const p = players[i];
         if (p.team !== team || i === ball.owner || p.role === "gk") continue;
-        const rx = p.x - from.x, ry = p.y - from.y;
-        const d = Math.hypot(rx, ry) || 1;
-        const score = -d + (ry * dir) * 0.15;
-        if (score > bestScore) { bestScore = score; best = i; }
+        const d = Math.hypot(p.x - from.x, p.y - from.y);
+        if (d < bestD) { bestD = d; best = i; }
       }
       if (best < 0) return;
       const target = players[best];
@@ -815,7 +814,7 @@
         if (i === controlledIdx && p.team === 0) continue;
         if (p.role === "gk") { updateGoalkeeper(p); continue; }
         const aggressive = (p.team === 1);
-        const spd = AI_SPEED * (aggressive ? 1.12 : 1.0);
+        const spd = AI_SPEED * (p.team === 0 ? MY_AI_MULT : OPP_AI_MULT);
         const myTeamHasBall = owner && owner.team === p.team;
         const iAmNearest = (nearestToBall(p.team) === i);
         let tx, ty;
@@ -827,10 +826,10 @@
           moveToward(p, tx, ty, spd);
           ball.x = p.x; ball.y = p.y + dir * 7;
           const distGoal = Math.abs(goalY - p.y);
-          const shootRange = aggressive ? FIELD_H * 0.38 : FIELD_H * 0.28;
-          const shootChance = aggressive ? 0.06 : 0.03;
-          const passChance = aggressive ? 0.02 : 0.015;
-          if (distGoal < shootRange && rng() < shootChance) { shootBall(p.team, aggressive ? 0.9 : 0.7); }
+          const shootRange = aggressive ? FIELD_H * 0.20 : FIELD_H * 0.34;
+          const shootChance = aggressive ? 0.05 : 0.05;
+          const passChance = aggressive ? 0.02 : 0.02;
+          if (distGoal < shootRange && rng() < shootChance) { shootBall(p.team, aggressive ? 0.8 : 0.8); }
           else if (rng() < passChance) { passBall(p.team); }
           continue;
         }
@@ -838,10 +837,10 @@
           const carrier = owner;
           const distCarrier = Math.hypot(carrier.x - p.x, carrier.y - p.y);
           const rank = closenessRank(p.team, i, carrier);
-          const isChaser = rank <= 2;
-          const tackleRange = aggressive ? CATCH_RADIUS + 3 : CATCH_RADIUS + 4;
-          const tackleChance = aggressive ? 0.16 : 0.22;
-          const chaserSpeed = aggressive ? spd * 1.0 : spd * 1.12;
+          const isChaser = (p.team === 0) ? (rank <= 2) : (rank <= 1);
+          const tackleRange = aggressive ? CATCH_RADIUS + 2 : CATCH_RADIUS + 4;
+          const tackleChance = aggressive ? 0.09 : 0.24;
+          const chaserSpeed = spd;
           if (isChaser && distCarrier < tackleRange && p.kickCooldown === 0 && rng() < tackleChance) {
             ball.owner = i;
             ball.vx = 0; ball.vy = 0;
@@ -882,15 +881,27 @@
             tx = homeX(p.team, p.fy);
             let baseY = homeY(p.team, p.fx) + dir * 60;
             if (p.role === "att" || p.role === "mid") {
-              const pushFactor = (p.role === "att") ? 0.85 : 0.55;
-              const supportY = ball.y + dir * (p.role === "att" ? 40 : 90);
-              baseY = baseY * (1 - pushFactor * advance) + supportY * (pushFactor * advance);
+              if (p.team === 0) {
+                const attackPush = (p.role === "att") ? 0.34 : 0.22;
+                const targetLine = targetGoalY(p.team) + dir * (FIELD_H * attackPush);
+                tx = homeX(p.team, p.fy) + (ball.x - homeX(p.team, p.fy)) * 0.35;
+                ty = targetLine;
+              } else {
+                const pushFactor = (p.role === "att") ? 0.85 : 0.55;
+                const supportY = ball.y + dir * (p.role === "att" ? 40 : 90);
+                baseY = baseY * (1 - pushFactor * advance) + supportY * (pushFactor * advance);
+                ty = baseY;
+              }
+            } else {
+              ty = baseY;
             }
-            ty = baseY;
           }
         } else {
-          if (iAmNearest) { tx = ball.x; ty = ball.y; }
-          else {
+          const rankToBall = closenessRank(p.team, i, ball);
+          const chasersWanted = (p.team === 0) ? 2 : 1;
+          if (rankToBall <= chasersWanted) {
+            tx = ball.x; ty = ball.y;
+          } else {
             tx = homeX(p.team, p.fy) + (ball.x - FIELD_W / 2) * 0.15;
             ty = homeY(p.team, p.fx) + (ball.y - FIELD_H / 2) * 0.15;
           }
