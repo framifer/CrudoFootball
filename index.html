@@ -60,36 +60,42 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 <script>
 "use strict";
 const canvas=document.getElementById("gameCanvas"),ctx=canvas.getContext("2d");
-const LANG_KEY="crudoFootballLang";
+const LANG_KEY="crudoFootballLang", SAVE_KEY="crudoFootballCareer_v2";
 const TEAM_SIZE=11,HALF_MS=60*1000,FIELD_W=720,FIELD_H=1560,GOAL_W=180;
 let lang="en"; try{lang=localStorage.getItem(LANG_KEY)||"en";}catch(e){}
 const I18N={
-it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",chooseTeam:"SCEGLI LA SQUADRA",championship:"TORNEO",singleMatch:"PARTITA SINGOLA",league:"CAMPIONATO",leagueTable:"CLASSIFICA CAMPIONATO",colPlayed:"G",colPts:"Pti",colGf:"GF",colGs:"GS",colTeam:"Squadra",firstLeg:"ANDATA",secondLeg:"RITORNO",leagueDone:"CAMPIONATO FINITO",leagueChamp:"VINCITORE",playNext:"A = GIOCA LA TUA PARTITA",simNext:"A = SIMULA GIORNATA",matchDay:"Giornata",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",chooseOpponent:"SCEGLI AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",podiumWin:"CAMPIONE!",podiumWinMsg:"COMPLIMENTI, HAI VINTO IL TORNEO!"},
-en:{title:"CRUDO FOOTBALL",pressStart:"Press START",chooseTeam:"CHOOSE TEAM",championship:"TOURNAMENT",singleMatch:"SINGLE MATCH",league:"LEAGUE",leagueTable:"LEAGUE TABLE",colPlayed:"P",colPts:"Pts",colGf:"GF",colGs:"GA",colTeam:"Team",firstLeg:"FIRST LEG",secondLeg:"SECOND LEG",leagueDone:"LEAGUE FINISHED",leagueChamp:"WINNER",playNext:"A = PLAY YOUR MATCH",simNext:"A = SIMULATE ROUND",matchDay:"Matchday",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",chooseOpponent:"CHOOSE OPPONENT",chooseFormation:"CHOOSE FORMATION",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",podiumWin:"CHAMPION!",podiumWinMsg:"CONGRATULATIONS, YOU WON THE TOURNAMENT!"}
+it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"N",colLost:"P",colGf:"GF",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!"},
+en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!"}
 };
 function t(k){return (I18N[lang]&&I18N[lang][k])||I18N.en[k]||k;}
 function toggleLang(){lang=(lang==="en")?"it":"en";try{localStorage.setItem(LANG_KEY,lang);}catch(e){}}
-function kit(pattern,c1,c2,short,sock){return {pattern:pattern,c1:c1,c2:c2||c1,short:short||"#ffffff",sock:sock||c1};}
-const NATIONAL_TEAMS=[
-{it:"ARGENTINA",en:"ARGENTINA",kit:kit("vstripe","#7ec6ea","#ffffff","#111111","#7ec6ea")},
-{it:"AUSTRALIA",en:"AUSTRALIA",kit:kit("solid","#4fbf6a","#4fbf6a","#ffffff","#4fbf6a")},
-{it:"BELGIO",en:"BELGIUM",kit:kit("hstripe","#c4141c","#111111","#111111","#c4141c")},
-{it:"BRASILE",en:"BRAZIL",kit:kit("solid","#f7d117","#f7d117","#0b57a4","#f7d117")},
-{it:"CROAZIA",en:"CROATIA",kit:kit("checker","#ffffff","#d81e2c","#1a2a6b","#ffffff")},
-{it:"FRANCIA",en:"FRANCE",kit:kit("solid","#141a4a","#141a4a","#ffffff","#141a4a")},
-{it:"GERMANIA",en:"GERMANY",kit:kit("hstripe","#f2f2f2","#111111","#111111","#f2f2f2")},
-{it:"GIAPPONE",en:"JAPAN",kit:kit("vthin","#1b5fb0","#ffffff","#0f2f60","#1b5fb0")},
-{it:"INGHILTERRA",en:"ENGLAND",kit:kit("solid","#f4f4f4","#f4f4f4","#0b2a6b","#f4f4f4")},
-{it:"ITALIA",en:"ITALY",kit:kit("solid","#1b6ec2","#1b6ec2","#ffffff","#1b6ec2")},
-{it:"MAROCCO",en:"MOROCCO",kit:kit("solid","#7a4a24","#7a4a24","#5a3418","#7a4a24")},
-{it:"MESSICO",en:"MEXICO",kit:kit("solid","#0f6b32","#0f6b32","#ffffff","#0f6b32")},
-{it:"PAESI BASSI",en:"NETHERLANDS",kit:kit("solid","#f07a1a","#f07a1a","#111111","#f07a1a")},
-{it:"PORTOGALLO",en:"PORTUGAL",kit:kit("vstripe","#c4141c","#0f6b32","#0f6b32","#c4141c")},
-{it:"SPAGNA",en:"SPAIN",kit:kit("solid","#d81e2c","#d81e2c","#0b3d91","#111111")},
-{it:"USA",en:"USA",kit:kit("hstripe","#ffffff","#c4141c","#1a2a6b","#ffffff")}
+const KIT_COLORS=[
+{id:"red",it:"ROSSO",en:"RED",c:"#d81e2c"},
+{id:"blue",it:"BLU",en:"BLUE",c:"#1b6ec2"},
+{id:"green",it:"VERDE",en:"GREEN",c:"#2fa845"},
+{id:"yellow",it:"GIALLO",en:"YELLOW",c:"#f2c11e"},
+{id:"white",it:"BIANCO",en:"WHITE",c:"#f2f2f2"},
+{id:"black",it:"NERO",en:"BLACK",c:"#2a2a2a"},
+{id:"orange",it:"ARANCIONE",en:"ORANGE",c:"#f07a1a"},
+{id:"purple",it:"VIOLA",en:"PURPLE",c:"#7a3bd0"},
+{id:"cyan",it:"CELESTE",en:"CYAN",c:"#4fc3e0"},
+{id:"brown",it:"MARRONE",en:"BROWN",c:"#8a5a2b"}
 ];
-function teamName(team){return team[lang]||team.en;}
-const GK_KIT=kit("solid","#1fbf5a","#1fbf5a","#111111","#1fbf5a");
+function colorName(kc){return kc[lang]||kc.en;}
+function kitFromColor(colId){const kc=KIT_COLORS.find(function(k){return k.id===colId;})||KIT_COLORS[0];const c1=kc.c;const short=(kc.id==="white"||kc.id==="yellow")?"#1b1b1b":"#ffffff";return {pattern:"solid",c1:c1,c2:c1,short:short,sock:c1,colId:kc.id};}
+const GK_KIT={pattern:"solid",c1:"#1fbf5a",c2:"#1fbf5a",short:"#111111",sock:"#1fbf5a",colId:"gk"};
+const LEAGUE_DEFS=[
+{key:"league1",lvl:"lvlBase",teams:[
+["Hilltop Village","Villaggio della Collina"],["Green Valley","Valle Verde"],["Old Creek","Torrente Antico"],["Pine Forest","Bosco di Pini"],["Riverside Town","Citta del Lungofiume"],["Creek Town","Citta del Torrente"],["Stone Bridge","Ponte di Pietra"],["Oak Wood","Bosco delle Querce"],["West Suburbs","Periferia Ovest"],["South District","Quartiere Sud"],["North Heights","Alture del Nord"]
+]},
+{key:"league2",lvl:"lvlInter",teams:[
+["Industrial Zone","Zona Industriale"],["Harbor City","Citta del Porto"],["Great Plains","Grandi Pianure"],["Coastal County","Contea Costiera"],["Highland Union","Unione degli Altipiani"],["Lakeside Region","Regione del Lago"],["Crossroads FC","Bivio FC"],["Central Province","Provincia Centrale"],["Eastern Border","Confine Orientale"],["Southern Bay","Baia del Sud"],["Northern Peninsula","Penisola del Nord"]
+]},
+{key:"league3",lvl:"lvlElite",teams:[
+["North Town","Citta del Nord"],["South City","Metropoli del Sud"],["East Coast","Costa Orientale"],["West Region","Regione Occidentale"],["Central District","Distretto Centrale"],["Valley Division","Divisione della Valle"],["Mountain Village","Borgo di Montagna"],["Capital Academy","Accademia della Capitale"],["Metropolitan FC","Metropolitana FC"],["Lake District","Distretto dei Laghi"],["Forest Park","Parco Forestale"]
+]}
+];
+function teamName(team){if(!team)return "?";return (lang==="it"?team.it:team.en)||team.en;}
 const AudioCtxClass=window.AudioContext||window.webkitAudioContext;
 let audioCtx=null,crowdGain=null,crowdNoiseSrc=null,crowdLP=null,crowdRoarMs=0;
 function initAudio(){ if(!audioCtx){ audioCtx=new AudioCtxClass(); const bufSize=2*audioCtx.sampleRate; const buffer=audioCtx.createBuffer(1,bufSize,audioCtx.sampleRate); const data=buffer.getChannelData(0); for(let i=0;i<bufSize;i++) data[i]=Math.random()*2-1; crowdNoiseSrc=audioCtx.createBufferSource(); crowdNoiseSrc.buffer=buffer; crowdNoiseSrc.loop=true; crowdLP=audioCtx.createBiquadFilter(); crowdLP.type="lowpass"; crowdLP.frequency.setValueAtTime(700,audioCtx.currentTime); crowdGain=audioCtx.createGain(); crowdGain.gain.setValueAtTime(0.0,audioCtx.currentTime); crowdNoiseSrc.connect(crowdLP); crowdLP.connect(crowdGain); crowdGain.connect(audioCtx.destination); crowdNoiseSrc.start(); } if(audioCtx.state==="suspended"){audioCtx.resume();} }
@@ -100,23 +106,25 @@ function playWhistle(){ playSound(2100,"square",0.12); setTimeout(function(){pla
 function playGoalJingle(){ playSound(660,"triangle",0.12); setTimeout(function(){playSound(880,"triangle",0.12);},120); setTimeout(function(){playSound(1100,"triangle",0.2);},240); }
 function playKick(){ playSound(180,"square",0.05); }
 let state="SPLASH",menuIndex=0;
-let teamPool=NATIONAL_TEAMS,playerTeamIndex=0,playerTeam=NATIONAL_TEAMS[0];
+let career=null;
 let matchMode="single";
-let tournament=null;
-let league=null;
-const ROUND_NAMES={it:["OTTAVI","QUARTI","SEMIFINALI","FINALE"],en:["ROUND OF 16","QUARTER-FINALS","SEMI-FINALS","FINAL"]};
-function roundName(r){return (ROUND_NAMES[lang]||ROUND_NAMES.en)[r]||"";}
-let pk=null;
-let matchOpponentIndex=1,pendingOpp=1,pendingHome=true,formationIndex=0;
+let hasSave=false; try{hasSave=!!localStorage.getItem(SAVE_KEY);}catch(e){}
+let homeTeamObj=null, awayTeamObj=null;
+let playerKit=null, oppKit=null;
+let playerIsHome=true;
+let singleOppObj=null;
+let pendingOppObj=null, pendingHome=true, formationIndex=0;
 let matchElapsedMs=0,matchHalf=1,scoreHome=0,scoreAway=0,playerSide=0;
 let kickoffTeam=0,firstHalfKickoff=0;
 let awaitingKick=false,awaitKind="kickoff",awaitKicker=-1;
 let spAnnounce=false,spAnnounceMs=0;
 let oppSetPieceMs=0,oppSetPieceKicker=-1,oppSetPieceKind="";
 let passTarget=-1;
+let spNoOffside=false;
 let aiHoldMs=0,aiHoldOwner=-1;
 let countdownMs=0,showInfoOverlay=false,goalFlashMs=0,goalScorerTeam=0,goalFlashStart=0,halfBreakMs=0;
-let pauseIndex=0,splashTime=0,finalRank=1;
+let pauseIndex=0,splashTime=0;
+let promoOutcome="";
 const move={up:false,down:false,left:false,right:false};
 const keyHeld={a:false,b:false};
 let aPressedFrame=false,bPressedFrame=false,aHoldMs=0,bHoldMs=0;
@@ -134,6 +142,78 @@ const LINE_DEPTH={def:0.16,mid:0.31,att:0.45};
 function buildFormation(name){ const counts=FORMATIONS[name]||FORMATIONS["4-4-2"]; const arr=[{role:"gk",fx:0.04,fy:0.50}]; const lines=[{role:"def",n:counts[0]},{role:"mid",n:counts[1]},{role:"att",n:counts[2]}]; lines.forEach(function(line){const n=line.n; for(let i=0;i<n;i++){const fy=(n===1)?0.5:0.14+(0.72)*(i/(n-1)); arr.push({role:line.role,fx:LINE_DEPTH[line.role],fy:fy});}}); return arr; }
 let playerFormation="4-4-2",opponentFormation="4-4-2";
 function randomFormation(){return FORMATION_NAMES[rngInt(0,FORMATION_NAMES.length-1)]||"4-4-2";}
+function makeTeamObj(pair,uid){return {en:pair[0],it:pair[1],uid:uid};}
+function newTable(teams){const tb={};teams.forEach(function(tm){tb[tm.uid]={uid:tm.uid,pg:0,v:0,n:0,s:0,gf:0,gs:0,pts:0};});return tb;}
+function buildFixtures(teams){
+  const N=teams.length; const arr=teams.map(function(x){return x.uid;});
+  const list=arr.slice(); if(list.length%2===1)list.push(null);
+  const n=list.length,rounds=n-1,half=n/2,legs=[];
+  const rot=list.slice();
+  for(let r=0;r<rounds;r++){const round=[];for(let i=0;i<half;i++){const h=rot[i],a=rot[n-1-i];if(h!==null&&a!==null)round.push({h:h,a:a,hg:-1,ag:-1,played:false});}legs.push(round);const fixed=rot[0];const rest=rot.slice(1);rest.unshift(rest.pop());rot.splice(0,rot.length,fixed,...rest);}
+  const second=legs.map(function(rd){return rd.map(function(m){return {h:m.a,a:m.h,hg:-1,ag:-1,played:false};});});
+  return legs.concat(second);
+}
+function makeLeague(defIdx,teams){return {defIdx:defIdx,teams:teams,table:newTable(teams),fixtures:buildFixtures(teams),round:0};}
+function startNewCareer(playerLeagueIdx,playerTeamUid,kitColId){
+  const leagues=[];
+  for(let d=0;d<3;d++){const teams=LEAGUE_DEFS[d].teams.map(function(pair,i){return makeTeamObj(pair,"L"+d+"-"+i);});leagues.push(makeLeague(d,teams));}
+  career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitColId};
+  saveCareer();
+}
+function saveCareer(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(career));hasSave=true;}catch(e){}}
+function loadCareer(){try{const raw=localStorage.getItem(SAVE_KEY);if(!raw)return false;career=JSON.parse(raw);return !!career;}catch(e){return false;}}
+function deleteCareer(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}hasSave=false;}
+function curLeague(){return career?career.leagues[career.leagueLevel]:null;}
+function teamByUid(lg,uid){return lg.teams.find(function(x){return x.uid===uid;});}
+function playerTeamObj(){const lg=curLeague();return lg?teamByUid(lg,career.playerUid):null;}
+function leagueSortedTable(lg){
+  const arr=Object.values(lg.table);
+  arr.sort(function(x,y){if(y.pts!==x.pts)return y.pts-x.pts;const dx=x.gf-x.gs,dy=y.gf-y.gs;if(dy!==dx)return dy-dx;return y.gf-x.gf;});
+  return arr;
+}
+function leagueApply(lg,hUid,aUid,hg,ag){const th=lg.table[hUid],ta=lg.table[aUid];if(!th||!ta)return;th.pg++;ta.pg++;th.gf+=hg;th.gs+=ag;ta.gf+=ag;ta.gs+=hg;if(hg>ag){th.v++;th.pts+=3;ta.s++;}else if(hg<ag){ta.v++;ta.pts+=3;th.s++;}else{th.n++;ta.n++;th.pts+=1;ta.pts+=1;}}
+function leagueCurRound(lg){return lg.fixtures[lg.round]||null;}
+function playerFixture(){const lg=curLeague();const rd=leagueCurRound(lg);if(!rd)return null;for(const m of rd){if(!m.played&&(m.h===career.playerUid||m.a===career.playerUid))return m;}return null;}
+function leagueDone(lg){return lg.round>=lg.fixtures.length;}
+function simOthersInRound(lg){const rd=leagueCurRound(lg);if(!rd)return;for(const m of rd){if(m.played)continue;if(m.h===career.playerUid||m.a===career.playerUid)continue;const hg=rngInt(0,4),ag=rngInt(0,4);m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);}}
+function simEntireLeague(lg){while(!leagueDone(lg)){const rd=leagueCurRound(lg);for(const m of rd){if(m.played)continue;const hg=rngInt(0,4),ag=rngInt(0,4);m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);}lg.round++;}}
+function careerRecordResult(myGoals,oppGoals){
+  const lg=curLeague();const m=playerFixture();if(!m)return;
+  let hg,ag;if(m.h===career.playerUid){hg=myGoals;ag=oppGoals;}else{hg=oppGoals;ag=myGoals;}
+  m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);
+  simOthersInRound(lg);lg.round++;
+  saveCareer();
+}
+function finishSeason(){
+  const L=career.leagues; const lvl=career.leagueLevel;
+  for(let d=0;d<3;d++){ if(d!==lvl) simEntireLeague(L[d]); }
+  const order=[leagueSortedTable(L[0]),leagueSortedTable(L[1]),leagueSortedTable(L[2])];
+  const playerRank=order[lvl].findIndex(function(r){return r.uid===career.playerUid;});
+  let outcome="stayed";
+  if(lvl===2){ if(playerRank===0){outcome="won";} else if(playerRank>=order[2].length-3){outcome="relegated";} }
+  else if(lvl===0){ if(playerRank<3){outcome="promoted";} }
+  else { if(playerRank<3){outcome="promoted";} else if(playerRank>=order[1].length-3){outcome="relegated";} }
+  promoOutcome=outcome;
+  if(outcome==="won"){ saveCareer(); return; }
+  function topN(o,n){return o.slice(0,n).map(function(r){return r.uid;});}
+  function botN(o,n){return o.slice(o.length-n).map(function(r){return r.uid;});}
+  const up01=topN(order[0],3), down10=botN(order[1],3);
+  const up12=topN(order[1],3), down21=botN(order[2],3);
+  const allTeams={}; L.forEach(function(lg){lg.teams.forEach(function(tm){allTeams[tm.uid]=tm;});});
+  const l0uids=order[0].map(function(r){return r.uid;}).filter(function(u){return up01.indexOf(u)<0;}).concat(down10);
+  const l2uids=order[2].map(function(r){return r.uid;}).filter(function(u){return down21.indexOf(u)<0;}).concat(up12);
+  const l1uids=order[1].map(function(r){return r.uid;}).filter(function(u){return up12.indexOf(u)<0&&down10.indexOf(u)<0;}).concat(up01).concat(down21);
+  function rebuild(defIdx,uids){const teams=uids.map(function(u){return allTeams[u];});return makeLeague(defIdx,teams);}
+  career.leagues=[rebuild(0,l0uids),rebuild(1,l1uids),rebuild(2,l2uids)];
+  if(outcome==="promoted")career.leagueLevel=lvl+1;
+  else if(outcome==="relegated")career.leagueLevel=lvl-1;
+  career.season++;
+  saveCareer();
+}
+function randomOppKitColId(playerColId){
+  const pool=KIT_COLORS.filter(function(k){return k.id!==playerColId;});
+  return pool[rngInt(0,pool.length-1)].id;
+}
 function defendsBottom(team){ if(team===0) return (playerSide===0); return (playerSide!==0); }
 function attackDir(team){return defendsBottom(team)?-1:1;}
 function homeX(team,fy){return fy*FIELD_W;}
@@ -141,6 +221,8 @@ function homeY(team,fx){return defendsBottom(team)?(FIELD_H-fx*FIELD_H):(fx*FIEL
 function ownGoalY(team){return defendsBottom(team)?FIELD_H:0;}
 function targetGoalY(team){return defendsBottom(team)?0:FIELD_H;}
 function makePlayer(team,rd,num){return {team:team,role:rd.role,num:num,fx:rd.fx,fy:rd.fy,x:0,y:0,vx:0,vy:0,kickCooldown:0};}
+function teamKit(team){return team===0?playerKit:oppKit;}
+function leagueLevelForMatch(){ return matchMode==="career"?career.leagueLevel:2; }
 function resetFormation(kickTeam){
   players.forEach(function(p){p.x=homeX(p.team,p.fy);p.y=homeY(p.team,p.fx);p.vx=0;p.vy=0;p.kickCooldown=0;});
   ball.x=FIELD_W/2; ball.y=FIELD_H/2; ball.vx=0; ball.vy=0; ball.z=0; ball.vz=0; ball.high=false;
@@ -148,87 +230,28 @@ function resetFormation(kickTeam){
   for(let i=0;i<players.length;i++){ if(players[i].team!==kickTeam||players[i].role==="gk") continue; const d=Math.hypot(players[i].x-FIELD_W/2,players[i].y-FIELD_H/2); if(d<bestD){bestD=d;kicker=i;} }
   if(kicker>=0){ players[kicker].x=FIELD_W/2; players[kicker].y=FIELD_H/2+(defendsBottom(kickTeam)?6:-6); ball.owner=kicker; ball.lastTouch=kickTeam; beginSetPiece("kickoff",kicker,kickTeam); }
   else { ball.owner=-1; awaitingKick=false; awaitKicker=-1; }
-  slide.active=false; slide.ms=0; aHoldMs=0; bHoldMs=0; aPressedFrame=false; bPressedFrame=false; passTarget=-1; spAnnounce=false; spAnnounceMs=0; oppSetPieceMs=0; oppSetPieceKicker=-1; oppSetPieceKind=""; aiHoldMs=0; aiHoldOwner=-1;
+  slide.active=false; slide.ms=0; aHoldMs=0; bHoldMs=0; aPressedFrame=false; bPressedFrame=false; passTarget=-1; spNoOffside=false; spAnnounce=false; spAnnounceMs=0; oppSetPieceMs=0; oppSetPieceKicker=-1; oppSetPieceKind=""; aiHoldMs=0; aiHoldOwner=-1;
   camY=Math.max(VIEW_SPAN/2,Math.min(FIELD_H-VIEW_SPAN/2,ball.y));
 }
-function setupMatch(oppIndex,isHome){
-  matchOpponentIndex=oppIndex; scoreHome=0; scoreAway=0; matchHalf=1; matchElapsedMs=0; goalFlashMs=0; halfBreakMs=0; showInfoOverlay=false; playerSide=0; awaitingKick=false; awaitKicker=-1; aiHoldMs=0; aiHoldOwner=-1;
+function setupMatch(){
+  scoreHome=0; scoreAway=0; matchHalf=1; matchElapsedMs=0; goalFlashMs=0; halfBreakMs=0; showInfoOverlay=false; playerSide=0; awaitingKick=false; awaitKicker=-1; aiHoldMs=0; aiHoldOwner=-1;
   opponentFormation=randomFormation(); const myForm=buildFormation(playerFormation),oppForm=buildFormation(opponentFormation);
   players=[]; for(let i=0;i<TEAM_SIZE;i++){players.push(makePlayer(0,myForm[i],i+1));} for(let i=0;i<TEAM_SIZE;i++){players.push(makePlayer(1,oppForm[i],i+1));}
   kickoffTeam=(rng()<0.5)?0:1; firstHalfKickoff=kickoffTeam;
   ball={x:FIELD_W/2,y:FIELD_H/2,z:0,vx:0,vy:0,vz:0,owner:-1,high:false};
   resetFormation(kickoffTeam); controlledIdx=TEAM_SIZE-1; countdownMs=3200; state="COUNTDOWN";
 }
-function teamKit(team){return team===0?playerTeam.kit:teamPool[matchOpponentIndex].kit;}
 function nearestToBall(team){let best=-1,bestD=Infinity;for(let i=0;i<players.length;i++){if(players[i].team!==team||players[i].role==="gk")continue;const d=dist2(players[i],ball);if(d<bestD){bestD=d;best=i;}}return best;}
 function dist2(a,b){const dx=a.x-b.x,dy=a.y-b.y;return dx*dx+dy*dy;}
 function ballOwner(){return (ball.owner>=0)?players[ball.owner]:null;}
 const PLAYER_SPEED=3.2,AI_SPEED=2.7,MY_AI_MULT=1.15,OPP_AI_MULT=0.86;
 const BALL_FRICTION=0.975,CATCH_RADIUS=9,PASS_POWER=10.5,CROSS_POWER=15,SHOOT_POWER=16,SHOOT_POWER_HARD=21,GK_SPEED=2.7;
-function buildTournament(playerIdx){
-  const others=[]; for(let i=0;i<NATIONAL_TEAMS.length;i++){if(i!==playerIdx)others.push(i);}
-  for(let k=others.length-1;k>0;k--){const j=rngInt(0,k);const tmp=others[k];others[k]=others[j];others[j]=tmp;}
-  let teams=[playerIdx].concat(others).slice(0,16);
-  for(let k=teams.length-1;k>0;k--){const j=rngInt(0,k);const tmp=teams[k];teams[k]=teams[j];teams[j]=tmp;}
-  const r0=[]; for(let m=0;m<8;m++){r0.push({a:teams[m*2],b:teams[m*2+1],winner:-1});}
-  const rounds=[r0,[],[],[]];
-  for(let m=0;m<4;m++)rounds[1].push({a:-1,b:-1,winner:-1});
-  for(let m=0;m<2;m++)rounds[2].push({a:-1,b:-1,winner:-1});
-  rounds[3].push({a:-1,b:-1,winner:-1});
-  tournament={teams:teams,rounds:rounds,curRound:0,curMatch:0,champion:-1};
-}
-function tourCurrentMatch(){if(!tournament)return null;const r=tournament.rounds[tournament.curRound];return r?r[tournament.curMatch]:null;}
-function playerInMatch(m){return m&&(m.a===playerTeamIndex||m.b===playerTeamIndex);}
-function tourFindNextMatch(){
-  if(!tournament)return false; let round=tournament.curRound;
-  while(round<4){ const arr=tournament.rounds[round];
-    for(let m=0;m<arr.length;m++){ if(arr[m].winner<0&&arr[m].a>=0&&arr[m].b>=0&&(arr[m].a===playerTeamIndex||arr[m].b===playerTeamIndex)){tournament.curRound=round;tournament.curMatch=m;return true;} }
-    for(let m=0;m<arr.length;m++){ if(arr[m].winner<0&&arr[m].a>=0&&arr[m].b>=0){tournament.curRound=round;tournament.curMatch=m;return true;} }
-    if(round<3)propagateWinners(round); round++;
-  }
-  tournament.champion=tournament.rounds[3][0].winner; return false;
-}
-function propagateWinners(r){const cur=tournament.rounds[r],nxt=tournament.rounds[r+1];for(let m=0;m<nxt.length;m++){nxt[m].a=cur[m*2].winner;nxt[m].b=cur[m*2+1].winner;nxt[m].winner=-1;}}
-function simulateTourMatch(m){let ga=rngInt(0,4),gb=rngInt(0,4);if(ga===gb){(rng()<0.5)?ga++:gb++;}m.winner=(ga>gb)?m.a:m.b;}
-function tourRecordPlayerResult(myGoals,oppGoals,oppIdx){const m=tourCurrentMatch();if(!m)return;m.winner=(myGoals>oppGoals)?playerTeamIndex:oppIdx;}
-function tourAdvanceAfterPlayerMatch(){const arr=tournament.rounds[tournament.curRound];for(let m=0;m<arr.length;m++){if(arr[m].winner<0&&arr[m].a>=0&&arr[m].b>=0)simulateTourMatch(arr[m]);}tourFindNextMatch();}
-function buildLeague(playerIdx){
-  const N=8;const others=[];for(let i=0;i<NATIONAL_TEAMS.length;i++){if(i!==playerIdx)others.push(i);}
-  for(let k=others.length-1;k>0;k--){const j=rngInt(0,k);const tmp=others[k];others[k]=others[j];others[j]=tmp;}
-  const teams=[playerIdx].concat(others).slice(0,N);
-  const table={};for(const tIdx of teams)table[tIdx]={team:tIdx,pg:0,v:0,n:0,s:0,gf:0,gs:0,pts:0};
-  const rot=teams.slice();const half=N/2;const legs=[];
-  for(let r=0;r<N-1;r++){const round=[];for(let i=0;i<half;i++){const h=rot[i],a=rot[N-1-i];round.push({h:h,a:a,hg:-1,ag:-1,played:false});}legs.push(round);const fixed=rot[0];const rest=rot.slice(1);rest.unshift(rest.pop());rot.splice(0,rot.length,fixed,...rest);}
-  const secondLeg=legs.map(function(round){return round.map(function(m){return {h:m.a,a:m.h,hg:-1,ag:-1,played:false};});});
-  const fixtures=legs.concat(secondLeg);
-  league={teams:teams,table:table,fixtures:fixtures,round:0,N:N};
-}
-function leagueSortedTable(){const arr=Object.values(league.table);arr.sort(function(x,y){if(y.pts!==x.pts)return y.pts-x.pts;const dx=x.gf-x.gs,dy=y.gf-y.gs;if(dy!==dx)return dy-dx;return y.gf-x.gf;});return arr;}
-function leagueApplyResult(hIdx,aIdx,hg,ag){const th=league.table[hIdx],ta=league.table[aIdx];if(!th||!ta)return;th.pg++;ta.pg++;th.gf+=hg;th.gs+=ag;ta.gf+=ag;ta.gs+=hg;if(hg>ag){th.v++;th.pts+=3;ta.s++;}else if(hg<ag){ta.v++;ta.pts+=3;th.s++;}else{th.n++;ta.n++;th.pts+=1;ta.pts+=1;}}
-function leagueCurrentRound(){if(!league)return null;return league.fixtures[league.round]||null;}
-function leaguePlayerFixture(){const round=leagueCurrentRound();if(!round)return null;for(const m of round){if(!m.played&&(m.h===playerTeamIndex||m.a===playerTeamIndex))return m;}return null;}
-function leagueDone(){return league&&league.round>=league.fixtures.length;}
-function leagueSimulateOthers(){const round=leagueCurrentRound();if(!round)return;for(const m of round){if(m.played)continue;if(m.h===playerTeamIndex||m.a===playerTeamIndex)continue;let hg=rngInt(0,4),ag=rngInt(0,4);m.hg=hg;m.ag=ag;m.played=true;leagueApplyResult(m.h,m.a,hg,ag);}}
-function leagueRecordPlayerResult(myGoals,oppGoals){const m=leaguePlayerFixture();if(!m)return;let hg,ag;if(m.h===playerTeamIndex){hg=myGoals;ag=oppGoals;}else{hg=oppGoals;ag=myGoals;}m.hg=hg;m.ag=ag;m.played=true;leagueApplyResult(m.h,m.a,hg,ag);leagueSimulateOthers();league.round++;}
-function startPenaltyShootout(after){ pk={after:after,myScore:0,oppScore:0,round:1,turn:"player",phase:"aim",msg:"",gkSide:0,shotSide:0,scored:false,playerShots:0,oppShots:0}; state="PENALTY"; playWhistle(); }
-function penaltyInput(action){
-  if(!pk)return;
-  if(pk.phase==="result"){ if(action==="a"||action==="b"||action==="start")penaltyNext(); return; }
-  if(pk.phase!=="aim")return; if(action!=="a"&&action!=="b")return;
-  let side=0; if(move.left)side=-1; else if(move.right)side=1; else side=0;
-  if(pk.turn==="player"){ pk.shotSide=side; pk.gkSide=rngInt(-1,1); pk.scored=(pk.shotSide!==pk.gkSide); if(pk.scored)pk.myScore++; pk.playerShots++; pk.msg=pk.scored?(lang==="it"?"GOL!":"GOAL!"):(lang==="it"?"PARATO!":"SAVED!"); playSound(pk.scored?900:200,"triangle",0.2); }
-  else { pk.gkSide=side; pk.shotSide=rngInt(-1,1); pk.scored=(pk.shotSide!==pk.gkSide); if(pk.scored)pk.oppScore++; pk.oppShots++; pk.msg=pk.scored?(lang==="it"?"GOL SUBITO":"CONCEDED"):(lang==="it"?"PARATA!":"SAVE!"); playSound(pk.scored?300:1000,"triangle",0.2); }
-  pk.phase="result";
-}
-function penaltyNext(){ if(penaltyDecided()){penaltyFinish();return;} if(pk.turn==="player"){pk.turn="opp";} else {pk.turn="player";pk.round++;} pk.phase="aim"; pk.msg=""; }
-function penaltyDecided(){ const p=pk.playerShots,o=pk.oppShots; if(p<=5&&o<=5){const remP=5-p,remO=5-o; if(pk.myScore>pk.oppScore+remO)return true; if(pk.oppScore>pk.myScore+remP)return true; if(p>=5&&o>=5&&pk.myScore!==pk.oppScore)return true; return false;} if(p===o&&p>5&&pk.myScore!==pk.oppScore)return true; return false; }
-function penaltyFinish(){ const myWin=pk.myScore>pk.oppScore; const after=pk.after; if(after==="tournament"){ tourRecordPlayerResult(myWin?1:0,myWin?0:1,matchOpponentIndex); tourAdvanceAfterPlayerMatch(); pk=null; state="BRACKET"; } else { pk=null; backToMenu(); } }
 function updateMatch(dt){
   if(awaitingKick){ if(spAnnounce&&spAnnounceMs>0){spAnnounceMs-=dt;if(spAnnounceMs<0)spAnnounceMs=0;} if(awaitKicker>=0&&players[awaitKicker]){const b=players[awaitKicker];ball.owner=awaitKicker;ball.x=b.x;ball.y=b.y+attackDir(b.team)*7;ball.vx=0;ball.vy=0;ball.high=false;} return; }
   if(oppSetPieceMs>0){
     oppSetPieceMs-=dt;const k=oppSetPieceKicker;
     if(k>=0&&players[k]){const b=players[k];ball.owner=k;ball.x=b.x;ball.y=b.y+attackDir(b.team)*7;ball.vx=0;ball.vy=0;ball.high=false;}
-    if(oppSetPieceMs<=0){oppSetPieceMs=0;const k2=oppSetPieceKicker,kind=oppSetPieceKind;oppSetPieceKicker=-1;oppSetPieceKind="";if(k2>=0&&players[k2]){const team=players[k2].team;ball.owner=k2;if(kind==="penalty"){shootBall(team,0.95);}else if(kind==="goalkick"){if(rng()<0.6)crossBall(team,0.9);else passForward(team);}else if(kind==="corner"||kind==="freekick"){if(rng()<0.6)crossBall(team,0.85);else passForward(team);}else{passForward(team);}}aiHoldMs=0;aiHoldOwner=-1;}
+    if(oppSetPieceMs<=0){oppSetPieceMs=0;const k2=oppSetPieceKicker,kind=oppSetPieceKind;oppSetPieceKicker=-1;oppSetPieceKind="";if(k2>=0&&players[k2]){const team=players[k2].team;ball.owner=k2;spNoOffside=true;if(kind==="penalty"){shootBall(team,0.95);}else if(kind==="goalkick"){if(rng()<0.6)crossBall(team,0.9);else passForward(team);}else if(kind==="corner"||kind==="freekick"){if(rng()<0.6)crossBall(team,0.85);else passForward(team);}else{passForward(team);}}aiHoldMs=0;aiHoldOwner=-1;}
     return;
   }
   matchElapsedMs+=dt; const nearGoal=Math.min(ball.x,FIELD_W-ball.x)/(FIELD_W/2); updateCrowdSound(1-nearGoal);
@@ -276,8 +299,7 @@ function passBall(team,aim){
   if(target>=0&&isOffside(team,target,fromIdx)){callOffside(team,target);return;}
   const ang=Math.atan2(ty-from.y,tx-from.x);const targetDist=Math.hypot(tx-from.x,ty-from.y);const power=Math.max(PASS_POWER*0.8,Math.min(PASS_POWER*1.4,targetDist*0.06));
   ball.owner=-1;ball.lastTouch=team;ball.high=false;ball.vx=Math.cos(ang)*power;ball.vy=Math.sin(ang)*power;from.kickCooldown=15;
-  passTarget=(team===0&&target>=0)?target:-1;
-  playKick();
+  passTarget=(team===0&&target>=0)?target:-1;playKick();
 }
 function passForward(team){
   const from=ballOwner();if(!from)return;const dir=attackDir(team);let best=-1,bestScore=-Infinity;
@@ -327,6 +349,7 @@ function forceAiKickIfStalled(){
   else{passForward(team);}
 }
 function isOffside(team,receiverIdx,passerIdx){
+  if(spNoOffside)return false;
   if(receiverIdx<0||!players[receiverIdx])return false;const r=players[receiverIdx];if(r.role==="gk")return false;
   const dir=attackDir(team);const goalY=targetGoalY(team);const halfY=FIELD_H/2;
   const inAttackHalf=(dir<0)?(r.y<halfY):(r.y>halfY);if(!inAttackHalf)return false;
@@ -436,12 +459,7 @@ function restartFromOut(team,x,y,kind){
   if(best>=0){players[best].x=ball.x;players[best].y=ball.y;players[best].kickCooldown=0;ball.owner=best;ball.lastTouch=team;controlledIfMine(best,team);beginSetPiece(kind,best,team);}
   if(kind==="corner"){
     const goalY=targetGoalY(team);const dir=attackDir(team);const cornerX=ball.x,cornerY=ball.y;const towardCenter=(cornerX<FIELD_W/2)?1:-1;
-    const spots=[
-      {x:cornerX+towardCenter*(FIELD_W*0.10),y:cornerY-dir*(FIELD_H*0.02)},
-      {x:cornerX+towardCenter*(FIELD_W*0.18),y:cornerY-dir*(FIELD_H*0.05)},
-      {x:FIELD_W*0.42,y:goalY+dir*(FIELD_H*0.045)},
-      {x:FIELD_W*0.58,y:goalY+dir*(FIELD_H*0.045)}
-    ];
+    const spots=[{x:cornerX+towardCenter*(FIELD_W*0.10),y:cornerY-dir*(FIELD_H*0.02)},{x:cornerX+towardCenter*(FIELD_W*0.18),y:cornerY-dir*(FIELD_H*0.05)},{x:FIELD_W*0.42,y:goalY+dir*(FIELD_H*0.045)},{x:FIELD_W*0.58,y:goalY+dir*(FIELD_H*0.045)}];
     const cand=[];for(let i=0;i<players.length;i++){const p=players[i];if(p.team!==team||p.role==="gk"||i===best)continue;cand.push(i);}
     cand.sort(function(a,b){return Math.abs(players[a].y-goalY)-Math.abs(players[b].y-goalY);});
     for(let k=0;k<spots.length&&k<cand.length;k++){const p=players[cand[k]];p.x=Math.max(6,Math.min(FIELD_W-6,spots[k].x));p.y=Math.max(6,Math.min(FIELD_H-6,spots[k].y));p.vx=0;p.vy=0;p.kickCooldown=0;}
@@ -462,6 +480,7 @@ function beginSetPiece(kind,kickerIdx,team){
 }
 function executeSetPiece(action){
   awaitingKick=false;spAnnounce=false;spAnnounceMs=0;const kicker=awaitKicker;awaitKicker=-1;if(kicker<0||!players[kicker])return;ball.owner=kicker;
+  spNoOffside=true;
   const aim=(move.up||move.down||move.left||move.right)?{x:lastDir.x,y:lastDir.y}:null;
   if(awaitKind==="goalkick"){if(action==="a"){crossBall(players[kicker].team,1.0,aim);}else{passBall(players[kicker].team,aim);}}
   else if(awaitKind==="penalty"){shootBall(players[kicker].team,action==="a"?1.0:0.5,aim);}
@@ -482,7 +501,7 @@ function handleBallPossession(){
   if(ball.owner>=0)return;if(ball.z>6)return;
   let best=-1,bestScore=Infinity;
   for(let i=0;i<players.length;i++){const p=players[i];if(p.kickCooldown>0)continue;const isMineTeam=(p.team===0);const isMine=(i===controlledIdx&&p.team===0);const isPassTgt=(i===passTarget&&p.team===0);let R=CATCH_RADIUS;if(isMine||isPassTgt)R=CATCH_RADIUS+16;else if(isMineTeam)R=CATCH_RADIUS+9;const d=Math.hypot(p.x-ball.x,p.y-ball.y);if(d<R){let bonus=0;if(isMine||isPassTgt)bonus=10;else if(isMineTeam)bonus=5;const score=d-bonus;if(score<bestScore){bestScore=score;best=i;}}}
-  if(best>=0){ball.owner=best;passTarget=-1;ball.lastTouch=players[best].team;ball.vx=0;ball.vy=0;ball.z=0;ball.vz=0;ball.high=false;}
+  if(best>=0){ball.owner=best;passTarget=-1;spNoOffside=false;ball.lastTouch=players[best].team;ball.vx=0;ball.vy=0;ball.z=0;ball.vz=0;ball.high=false;}
 }
 function isInGoalMouth(x){return x>FIELD_W/2-GOAL_W/2&&x<FIELD_W/2+GOAL_W/2;}
 function checkGoal(){if(goalFlashMs>0)return;if(ball.y<=1&&isInGoalMouth(ball.x)){scoreGoal(scoringTeamForGoalY(0));}else if(ball.y>=FIELD_H-1&&isInGoalMouth(ball.x)){scoreGoal(scoringTeamForGoalY(FIELD_H));}}
@@ -492,24 +511,45 @@ function startHalfTime(){state="HALFTIME";halfBreakMs=3000;matchHalf=2;matchElap
 function resumeSecondHalf(){resetFormation(kickoffTeam);state="COUNTDOWN";countdownMs=2200;playSound(500,"square",0.1);}
 function finishMatch(){state="FULLTIME";updateCrowdSound(0);playWhistle();}
 function afterMatch(){
-  if(matchMode==="tournament"){
-    if(scoreHome===scoreAway){startPenaltyShootout("tournament");}
-    else{tourRecordPlayerResult(scoreHome,scoreAway,matchOpponentIndex);tourAdvanceAfterPlayerMatch();state="BRACKET";}
-  } else if(matchMode==="league"){
-    leagueRecordPlayerResult(scoreHome,scoreAway);state="LEAGUE";
+  if(matchMode==="career"){
+    careerRecordResult(playerIsHome?scoreHome:scoreAway, playerIsHome?scoreAway:scoreHome);
+    const lg=curLeague();
+    if(leagueDone(lg)){ finishSeason(); state="PROMO"; }
+    else { state="STANDINGS"; }
   } else {
     if(scoreHome===scoreAway){state="DRAWCHOICE";menuIndex=0;}else{backToMenu();}
   }
+}
+function prepMatchKits(){
+  playerKit=kitFromColor(matchMode==="career"?career.kitColId:(playerKit?playerKit.colId:"blue"));
+  const oppCol=randomOppKitColId(playerKit.colId);
+  oppKit=kitFromColor(oppCol);
+}
+function startCareerMatch(){
+  const lg=curLeague();
+  let guard=0;
+  while(!leagueDone(lg)&&!playerFixture()&&guard<30){ simOthersInRound(lg); lg.round++; guard++; }
+  saveCareer();
+  const m=playerFixture(); if(!m){ finishSeason(); state="PROMO"; return; }
+  playerIsHome=(m.h===career.playerUid);
+  const oppUid=(m.h===career.playerUid)?m.a:m.h;
+  homeTeamObj=teamByUid(lg,m.h); awayTeamObj=teamByUid(lg,m.a);
+  pendingOppObj=teamByUid(lg,oppUid);
+  prepMatchKits();
+  openFormationSelect();
 }
 function pressAction(action){
   switch(state){
     case "SPLASH": if(action==="start"||action==="a"){playSound(660,"square",0.1);state="MODE_SELECT";menuIndex=0;} break;
     case "MODE_SELECT": navModeSelect(action); break;
+    case "CAREER_START": navCareerStart(action); break;
     case "TEAM_SELECT": navTeam(action); break;
+    case "KIT_SELECT": navKit(action); break;
     case "OPPONENT_SELECT": navOpponent(action); break;
     case "FORMATION_SELECT": navFormation(action); break;
-    case "BRACKET": navBracket(action); break;
-    case "LEAGUE": navLeague(action); break;
+    case "STANDINGS": navStandings(action); break;
+    case "MANAGEMENT": navManagement(action); break;
+    case "PROMO": navPromo(action); break;
     case "PENALTY": penaltyInput(action); break;
     case "DRAWCHOICE": navDrawChoice(action); break;
     case "PLAYING":
@@ -523,7 +563,7 @@ function pressAction(action){
     case "PAUSE": navPause(action); break;
     case "HALFTIME": if(action==="a"||action==="start")resumeSecondHalf(); break;
     case "FULLTIME": if(action==="a"||action==="start")afterMatch(); break;
-    case "PODIUM": if(action==="a"||action==="start"){backToMenu();} break;
+    case "CAREERWIN": if(action==="a"||action==="start"){deleteCareer();backToMenu();} break;
   }
 }
 function keyToInput(key,isDown){
@@ -541,63 +581,96 @@ function keyToInput(key,isDown){
 window.addEventListener("keydown",function(e){initAudio();keyToInput(e.key,true);});
 window.addEventListener("keyup",function(e){keyToInput(e.key,false);});
 function maybeLangToggle(action){if(action==="select"&&state!=="PLAYING"&&state!=="SPLASH"){toggleLang();playSound(700,"square",0.06);return true;}return false;}
-function modeItems(){return ["league","championship","singleMatch"];}
+function modeItems(){return ["career","singleMatch"];}
 function navModeSelect(action){
   if(maybeLangToggle(action))return;const items=modeItems();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
-  else if(action==="a"){const c=items[(menuIndex+items.length)%items.length];matchMode=(c==="championship")?"tournament":(c==="league")?"league":"single";teamPool=NATIONAL_TEAMS;playSound(650,"square",0.08);state="TEAM_SELECT";menuIndex=0;}
+  else if(action==="a"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
+    if(c==="career"){matchMode="career";if(hasSave){state="CAREER_START";menuIndex=0;}else{startCareerFlow();}}
+    else{matchMode="single";state="TEAM_SELECT";menuIndex=0;}
+  }
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
+function careerStartItems(){return hasSave?["continueCareer","newCareer"]:["newCareer"];}
+function navCareerStart(action){
+  if(maybeLangToggle(action))return;const items=careerStartItems();
+  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="a"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
+    if(c==="continueCareer"){if(loadCareer()){goToManagement();}else{startCareerFlow();}}
+    else{startCareerFlow();}
+  } else if(action==="b"){state="MODE_SELECT";menuIndex=0;}
+  if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
+let pendingCareerTeamUid=null;
+function startCareerFlow(){ matchMode="career"; state="TEAM_SELECT"; menuIndex=0; }
+function teamSelectList(){
+  if(matchMode==="career"){
+    return LEAGUE_DEFS[0].teams.map(function(pair,i){return {en:pair[0],it:pair[1],uid:"L0-"+i};});
+  } else {
+    const out=[];LEAGUE_DEFS.forEach(function(def,d){def.teams.forEach(function(pair,i){out.push({en:pair[0],it:pair[1],uid:"L"+d+"-"+i});});});return out;
+  }
 }
 function navTeam(action){
-  if(maybeLangToggle(action))return;const cols=2,total=teamPool.length;
+  if(maybeLangToggle(action))return;const list=teamSelectList();const cols=2,total=list.length;
   if(action==="left"){menuIndex--;playSound(400,"square",0.04);}else if(action==="right"){menuIndex++;playSound(400,"square",0.04);}
   else if(action==="up"){menuIndex-=cols;playSound(400,"square",0.04);}else if(action==="down"){menuIndex+=cols;playSound(400,"square",0.04);}
-  else if(action==="a"){playerTeamIndex=menuIndex;playerTeam=teamPool[menuIndex];playSound(650,"square",0.08);if(matchMode==="tournament"){seedRng(Date.now()>>>0);buildTournament(playerTeamIndex);tourFindNextMatch();state="BRACKET";}else if(matchMode==="league"){seedRng(Date.now()>>>0);buildLeague(playerTeamIndex);state="LEAGUE";}else{state="OPPONENT_SELECT";menuIndex=0;}}
-  else if(action==="b"){state="MODE_SELECT";menuIndex=0;}
+  else if(action==="a"){playSound(650,"square",0.08);
+    if(matchMode==="career"){pendingCareerTeamUid="L0-"+(((menuIndex%total)+total)%total);state="KIT_SELECT";menuIndex=0;}
+    else{singleOppObj=null;homeTeamObj=list[(menuIndex+total)%total];state="KIT_SELECT";menuIndex=0;}
+  } else if(action==="b"){state="MODE_SELECT";menuIndex=0;}
   if(menuIndex<0)menuIndex+=total;if(menuIndex>=total)menuIndex-=total;
 }
-function navBracket(action){
-  if(maybeLangToggle(action))return;
-  if(action==="a"||action==="start"){
-    if(!tournament){state="MODE_SELECT";menuIndex=0;return;}
-    if(tournament.champion>=0){if(tournament.champion===playerTeamIndex){finalRank=1;splashTime=0;state="PODIUM";playSound(880,"triangle",0.2);}else{state="MODE_SELECT";menuIndex=0;matchMode="single";}return;}
-    const m=tourCurrentMatch();
-    if(playerInMatch(m)){const opp=(m.a===playerTeamIndex)?m.b:m.a;playSound(650,"square",0.08);pendingOpp=opp;pendingHome=(m.a===playerTeamIndex);openFormationSelect();}
-    else{tourAdvanceAfterPlayerMatch();playSound(500,"square",0.06);}
-  } else if(action==="b"){state="MODE_SELECT";menuIndex=0;matchMode="single";}
+function navKit(action){
+  if(maybeLangToggle(action))return;const cols=2,total=KIT_COLORS.length;
+  if(action==="left"){menuIndex--;playSound(400,"square",0.04);}else if(action==="right"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="up"){menuIndex-=cols;playSound(400,"square",0.04);}else if(action==="down"){menuIndex+=cols;playSound(400,"square",0.04);}
+  else if(action==="a"){const col=KIT_COLORS[(menuIndex+total)%total].id;playSound(650,"square",0.08);
+    if(matchMode==="career"){seedRng(Date.now()>>>0);startNewCareer(0,pendingCareerTeamUid,col);goToManagement();}
+    else{playerKit=kitFromColor(col);state="OPPONENT_SELECT";menuIndex=0;}
+  } else if(action==="b"){state="TEAM_SELECT";menuIndex=0;}
+  if(menuIndex<0)menuIndex+=total;if(menuIndex>=total)menuIndex-=total;
 }
-function navLeague(action){
-  if(maybeLangToggle(action))return;
-  if(action==="a"||action==="start"){
-    if(!league){state="MODE_SELECT";menuIndex=0;return;}
-    if(leagueDone()){playSound(880,"triangle",0.2);state="MODE_SELECT";menuIndex=0;matchMode="single";return;}
-    const m=leaguePlayerFixture();
-    if(m){const opp=(m.h===playerTeamIndex)?m.a:m.h;const home=(m.h===playerTeamIndex);playSound(650,"square",0.08);pendingOpp=opp;pendingHome=home;openFormationSelect();}
-    else{leagueSimulateOthers();league.round++;playSound(500,"square",0.06);}
-  } else if(action==="b"){state="MODE_SELECT";menuIndex=0;matchMode="single";}
-}
-function drawChoiceItems(){return ["penaltiesOpt","keepDraw"];}
-function navDrawChoice(action){
-  const items=drawChoiceItems();
-  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
-  else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];if(c==="penaltiesOpt"){startPenaltyShootout("single");}else{backToMenu();}}
-  if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
-}
-function opponentList(){const out=[];for(let i=0;i<teamPool.length;i++){if(i!==playerTeamIndex)out.push(i);}return out;}
+function singleOppList(){const out=[];LEAGUE_DEFS.forEach(function(def,d){def.teams.forEach(function(pair,i){const uid="L"+d+"-"+i;if(homeTeamObj&&uid===homeTeamObj.uid)return;out.push({en:pair[0],it:pair[1],uid:uid});});});return out;}
 function navOpponent(action){
-  if(maybeLangToggle(action))return;const list=opponentList();
+  if(maybeLangToggle(action))return;const list=singleOppList();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
-  else if(action==="a"){playSound(650,"square",0.08);seedRng(Date.now()>>>0);pendingOpp=list[(menuIndex+list.length)%list.length];pendingHome=true;openFormationSelect();}
-  else if(action==="b"){state="TEAM_SELECT";menuIndex=playerTeamIndex;}
+  else if(action==="a"){playSound(650,"square",0.08);seedRng(Date.now()>>>0);pendingOppObj=list[(menuIndex+list.length)%list.length];playerIsHome=true;const oppCol=randomOppKitColId(playerKit.colId);oppKit=kitFromColor(oppCol);openFormationSelect();}
+  else if(action==="b"){state="KIT_SELECT";menuIndex=0;}
   if(menuIndex<0)menuIndex=list.length-1;if(menuIndex>=list.length)menuIndex=0;
 }
 function openFormationSelect(){const idx=FORMATION_NAMES.indexOf(playerFormation);formationIndex=(idx>=0)?idx:0;state="FORMATION_SELECT";}
 function navFormation(action){
   if(maybeLangToggle(action))return;
   if(action==="up"){formationIndex--;playSound(400,"square",0.04);}else if(action==="down"){formationIndex++;playSound(400,"square",0.04);}
-  else if(action==="a"){playSound(650,"square",0.08);playerFormation=FORMATION_NAMES[(formationIndex+FORMATION_NAMES.length)%FORMATION_NAMES.length];setupMatch(pendingOpp,pendingHome);}
-  else if(action==="b"){if(matchMode==="tournament"){state="BRACKET";}else if(matchMode==="league"){state="LEAGUE";}else{state="OPPONENT_SELECT";}}
+  else if(action==="a"){playSound(650,"square",0.08);playerFormation=FORMATION_NAMES[(formationIndex+FORMATION_NAMES.length)%FORMATION_NAMES.length];
+    if(matchMode==="career"){ if(playerIsHome){homeTeamObj=playerTeamObj();awayTeamObj=pendingOppObj;}else{homeTeamObj=pendingOppObj;awayTeamObj=playerTeamObj();} }
+    else{ awayTeamObj=pendingOppObj; playerIsHome=true; }
+    setupMatch();
+  }
+  else if(action==="b"){if(matchMode==="career"){goToManagement();}else{state="OPPONENT_SELECT";}}
   if(formationIndex<0)formationIndex=FORMATION_NAMES.length-1;if(formationIndex>=FORMATION_NAMES.length)formationIndex=0;
+}
+function goToManagement(){state="MANAGEMENT";menuIndex=0;}
+function navManagement(action){
+  if(maybeLangToggle(action))return;
+  const items=["playMatch","standings","exitToMenu"];
+  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
+    if(c==="playMatch"){startCareerMatch();}
+    else if(c==="standings"){state="STANDINGS";}
+    else{backToMenu();}
+  }
+  if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
+function navStandings(action){
+  if(maybeLangToggle(action))return;
+  if(action==="a"||action==="start"||action==="b"){playSound(500,"square",0.06);goToManagement();}
+}
+function navPromo(action){
+  if(action==="a"||action==="start"){
+    if(promoOutcome==="won"){state="CAREERWIN";splashTime=0;playSound(880,"triangle",0.2);}
+    else{goToManagement();}
+  }
 }
 function openPause(){state="PAUSE";pauseIndex=0;playSound(300,"square",0.1);updateCrowdSound(0);}
 function pauseItems(){return ["resume","exitToMenu"];}
@@ -609,6 +682,27 @@ function navPause(action){
   if(pauseIndex<0)pauseIndex=items.length-1;if(pauseIndex>=items.length)pauseIndex=0;
 }
 function backToMenu(){playSound(250,"square",0.15);updateCrowdSound(0);state="MODE_SELECT";menuIndex=0;matchMode="single";}
+function startPenaltyShootout(after){pk={after:after,myScore:0,oppScore:0,round:1,turn:"player",phase:"aim",msg:"",gkSide:0,shotSide:0,scored:false,playerShots:0,oppShots:0};state="PENALTY";playWhistle();}
+let pk=null;
+function penaltyInput(action){
+  if(!pk)return;
+  if(pk.phase==="result"){ if(action==="a"||action==="b"||action==="start")penaltyNext(); return; }
+  if(pk.phase!=="aim")return; if(action!=="a"&&action!=="b")return;
+  let side=0; if(move.left)side=-1; else if(move.right)side=1; else side=0;
+  if(pk.turn==="player"){ pk.shotSide=side; pk.gkSide=rngInt(-1,1); pk.scored=(pk.shotSide!==pk.gkSide); if(pk.scored)pk.myScore++; pk.playerShots++; pk.msg=pk.scored?(lang==="it"?"GOL!":"GOAL!"):(lang==="it"?"PARATO!":"SAVED!"); playSound(pk.scored?900:200,"triangle",0.2); }
+  else { pk.gkSide=side; pk.shotSide=rngInt(-1,1); pk.scored=(pk.shotSide!==pk.gkSide); if(pk.scored)pk.oppScore++; pk.oppShots++; pk.msg=pk.scored?(lang==="it"?"GOL SUBITO":"CONCEDED"):(lang==="it"?"PARATA!":"SAVE!"); playSound(pk.scored?300:1000,"triangle",0.2); }
+  pk.phase="result";
+}
+function penaltyNext(){ if(penaltyDecided()){penaltyFinish();return;} if(pk.turn==="player"){pk.turn="opp";} else {pk.turn="player";pk.round++;} pk.phase="aim"; pk.msg=""; }
+function penaltyDecided(){ const p=pk.playerShots,o=pk.oppShots; if(p<=5&&o<=5){const remP=5-p,remO=5-o; if(pk.myScore>pk.oppScore+remO)return true; if(pk.oppScore>pk.myScore+remP)return true; if(p>=5&&o>=5&&pk.myScore!==pk.oppScore)return true; return false;} if(p===o&&p>5&&pk.myScore!==pk.oppScore)return true; return false; }
+function penaltyFinish(){ pk=null; backToMenu(); }
+function drawChoiceItems(){return ["penaltiesOpt","keepDraw"];}
+function navDrawChoice(action){
+  const items=drawChoiceItems();
+  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];if(c==="penaltiesOpt"){startPenaltyShootout("single");}else{backToMenu();}}
+  if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
 function bindButton(id,options){const btn=document.getElementById(id);if(!btn)return;const action=options.action;function onPress(e){if(e&&e.cancelable)e.preventDefault();initAudio();btn.classList.add("active");if(id==="btn-a"){keyHeld.a=true;aPressedFrame=true;}if(id==="btn-b"){keyHeld.b=true;bPressedFrame=true;}if(action)pressAction(action);}function onRelease(e){if(e&&e.cancelable)e.preventDefault();btn.classList.remove("active");if(id==="btn-a")keyHeld.a=false;if(id==="btn-b")keyHeld.b=false;}btn.addEventListener("touchstart",onPress,{passive:false});btn.addEventListener("touchend",onRelease,{passive:false});btn.addEventListener("touchcancel",onRelease,{passive:false});btn.addEventListener("mousedown",onPress);btn.addEventListener("mouseup",onRelease);btn.addEventListener("mouseleave",onRelease);}
 bindButton("btn-a",{action:"a"});bindButton("btn-b",{action:"b"});bindButton("btn-select",{action:"select"});bindButton("btn-start",{action:"start"});
 (function bindDpad(){
@@ -626,12 +720,12 @@ function fmtTime(ms){const s0=Math.floor(ms/1000);const m=Math.floor(s0/60),s=s0
 function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;r=Math.max(0,Math.min(255,r));g=Math.max(0,Math.min(255,g));b=Math.max(0,Math.min(255,b));return "#"+((r<<16)|(g<<8)|b).toString(16).padStart(6,"0");}
 function px(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(x,y,w,h);}
 function wrapText(text,x,y,maxWidth,lineHeight){const words=text.split(" ");let line="";const lines=[];for(let n=0;n<words.length;n++){const test=line+words[n]+" ";if(ctx.measureText(test).width>maxWidth&&line!==""){lines.push(line.trim());line=words[n]+" ";}else{line=test;}}lines.push(line.trim());for(let i=0;i<lines.length;i++){ctx.fillText(lines[i],x,y+i*lineHeight);}}
+function abbr(name){return name.length>8?name.slice(0,8):name;}
 function update(dt){
   if(crowdRoarMs>0){crowdRoarMs-=dt;if(crowdRoarMs<=0){crowdRoarMs=0;updateCrowdSound(0.3);}}
   if(state==="PLAYING"||state==="COUNTDOWN"||state==="HALFTIME"||state==="FULLTIME"){updateCamera(dt);}
-  if(state==="SPLASH"||state==="PODIUM"){splashTime+=dt;return;}
   if(state==="COUNTDOWN"){countdownMs-=dt;updateCrowdSound(0);if(countdownMs<=0){state="PLAYING";playWhistle();}aPressedFrame=false;bPressedFrame=false;return;}
-  if(state==="HALFTIME"){aPressedFrame=false;bPressedFrame=false;return;}
+  if(state==="HALFTIME"){aPressedFrame=false;bPressedFrame=false;splashTime+=dt;return;}
   if(state==="PLAYING"){if(goalFlashMs>0){goalFlashMs-=dt;if(goalFlashMs<=0){resetFormation(kickoffTeam);}aPressedFrame=false;bPressedFrame=false;return;}updateMatch(dt);aPressedFrame=false;bPressedFrame=false;return;}
   splashTime+=dt;updateCrowdSound(0);aPressedFrame=false;bPressedFrame=false;
 }
@@ -643,14 +737,17 @@ function draw(){
   switch(state){
     case "SPLASH": return drawSplash();
     case "MODE_SELECT": return drawModeSelect();
+    case "CAREER_START": return drawCareerStart();
     case "TEAM_SELECT": return drawTeamSelect();
+    case "KIT_SELECT": return drawKitSelect();
     case "OPPONENT_SELECT": return drawOpponentSelect();
     case "FORMATION_SELECT": return drawFormationSelect();
-    case "BRACKET": return drawBracket();
-    case "LEAGUE": return drawLeague();
+    case "STANDINGS": return drawStandings();
+    case "MANAGEMENT": return drawManagement();
+    case "PROMO": return drawPromo();
+    case "CAREERWIN": return drawCareerWin();
     case "PENALTY": return drawPenalty();
     case "DRAWCHOICE": return drawDrawChoice();
-    case "PODIUM": return drawPodium();
   }
   drawScene();
   if(state==="COUNTDOWN")drawCountdown();
@@ -662,70 +759,101 @@ function draw(){
   if(oppSetPieceMs>0&&state==="PLAYING")drawOppSetPieceWait();
   if(showInfoOverlay&&state==="PLAYING")drawInfoOverlay(false);
 }
-function drawOppSetPieceWait(){
-  ctx.fillStyle="rgba(0,0,0,0.5)";ctx.fillRect(40,250,240,44);ctx.textAlign="center";
-  const labels={corner:(lang==="it"?"ANGOLO AVVERSARIO":"OPPONENT CORNER"),freekick:(lang==="it"?"PUNIZIONE AVVERSARIA":"OPPONENT FREE KICK"),penalty:(lang==="it"?"RIGORE AVVERSARIO":"OPPONENT PENALTY"),goalkick:(lang==="it"?"RINVIO AVVERSARIO":"OPPONENT GOAL KICK"),throwin:(lang==="it"?"RIMESSA AVVERSARIA":"OPPONENT THROW-IN")};
-  ctx.fillStyle="#ff9a9a";ctx.font="bold 11px monospace";ctx.fillText(labels[oppSetPieceKind]||"",160,268);
-  ctx.fillStyle="#ffffff";ctx.font="bold 12px monospace";const secs=Math.ceil(oppSetPieceMs/1000);ctx.fillText((lang==="it"?"Batte tra ":"Kicks in ")+secs+"s",160,286);ctx.textAlign="left";
+function drawScene(){const lvl=leagueLevelForMatch();drawStands(lvl);drawPitch();drawSideStands(lvl);drawGoal(0);drawGoal(FIELD_H);const camTop=camY-VIEW_SPAN/2-40,camBot=camY+VIEW_SPAN/2+40;const ents=[];for(let i=0;i<players.length;i++){if(players[i].y<camTop||players[i].y>camBot)continue;ents.push({y:players[i].y,kind:"player",ref:players[i],idx:i});}ents.push({y:ball.y,kind:"ball",ref:ball});ents.sort(function(a,b){return a.y-b.y;});ents.forEach(function(e){if(e.kind==="player"){drawFootballer(e.ref,e.idx===controlledIdx&&e.ref.team===0);}else{drawBall(e.ref);}});drawHUD();}
+function drawStands(lvl){
+  const grad=ctx.createLinearGradient(0,0,0,VIEW.top);grad.addColorStop(0,"#6ab0e8");grad.addColorStop(1,"#b8dcf4");ctx.fillStyle=grad;ctx.fillRect(0,0,320,VIEW.top);
+  if(lvl>=2){px(0,VIEW.top-26,320,26,"#33323a");for(let i=0;i<160;i++){const sx=(i*79)%320,sy=VIEW.top-24+((i*37)%22);const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a"];px(sx,sy,2,2,cols[i%cols.length]);}px(0,VIEW.top-3,320,3,"#e8e8e8");}
+  else{px(0,VIEW.top-6,320,6,"#1f6f2c");px(0,VIEW.top-2,320,2,"#e8e8e8");const n=(lvl===1)?18:7;for(let i=0;i<n;i++){const sx=(i*(lvl===1?17:43)+8)%312;const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a","#e0902a"];px(sx,VIEW.top-9,2,4,cols[i%cols.length]);px(sx,VIEW.top-5,2,3,"#3a2a1a");}}
 }
-function drawSetPieceAnnounce(){
-  ctx.fillStyle="rgba(0,0,0,0.82)";ctx.fillRect(0,0,320,320);
-  const titles={corner:(lang==="it"?"CALCIO D'ANGOLO":"CORNER KICK"),freekick:(lang==="it"?"PUNIZIONE":"FREE KICK"),penalty:(lang==="it"?"RIGORE":"PENALTY")};
-  const subt={corner:(lang==="it"?"A tuo favore!":"Your kick!"),freekick:(lang==="it"?"A tuo favore!":"Your kick!"),penalty:(lang==="it"?"Dal dischetto!":"From the spot!")};
-  ctx.textAlign="center";ctx.strokeStyle="#f8d820";ctx.lineWidth=3;ctx.strokeRect(30,110,260,100);ctx.lineWidth=1;
-  const blink=Math.floor(splashTime/300)%2===0;ctx.fillStyle=blink?"#ffd84a":"#ffffff";ctx.font="bold 22px monospace";ctx.fillText(titles[awaitKind]||"",160,152);
-  ctx.fillStyle="#00e5ff";ctx.font="bold 12px monospace";ctx.fillText(subt[awaitKind]||"",160,178);
-  if(spAnnounceMs>0){const secs=Math.ceil(spAnnounceMs/1000);ctx.fillStyle="#ffffff";ctx.font="bold 12px monospace";ctx.fillText((lang==="it"?"Pronti tra ":"Ready in ")+secs+"s",160,244);}
-  else if(Math.floor(splashTime/400)%2===0){ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(lang==="it"?"Premi A per battere":"Press A to take it",160,244);}
-  ctx.textAlign="left";
+function drawSideStands(lvl){
+  const top=VIEW.top,bot=VIEW.bottom;const wob=Math.floor(splashTime/350)%2;
+  function s2w(sy){const df=(sy-top)/(bot-top);return (camY-VIEW_SPAN/2)+df*VIEW_SPAN;}
+  if(lvl>=2){const cols=["#d85a5a","#5a7ac8","#e8d85a","#f0f0f0","#5ac87a","#e0902a","#c060c0"];for(let side=0;side<2;side++){for(let sy=top;sy<bot;sy+=4){const wy=s2w(sy);const leftEdge=worldToScreen(0,wy).x,rightEdge=worldToScreen(FIELD_W,wy).x;let x0,x1;if(side===0){x1=leftEdge-16;x0=0;}else{x1=320;x0=rightEdge+16;}if(x1-x0<3)continue;const g=(Math.floor(sy/8)%2===0)?"#34333d":"#2b2a33";px(x0,sy,x1-x0,4,g);for(let x=x0+2;x<x1-2;x+=5){const c=cols[((x*3+sy+wob)>>>0)%cols.length];px(x,sy+((x+sy)%2?1:0),3,3,c);}}for(let sy=top;sy<bot;sy+=2){const wy=s2w(sy);const edge=(side===0)?worldToScreen(0,wy).x-10:worldToScreen(FIELD_W,wy).x+8;px(edge,sy,2,2,"#c8ccd4");}}return;}
+  const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a","#e0902a"];const step=(lvl===1)?26:60;
+  for(let side=0;side<2;side++){for(let sy=top;sy<bot;sy+=4){const wy=s2w(sy);const leftEdge=worldToScreen(0,wy).x,rightEdge=worldToScreen(FIELD_W,wy).x;let x0,x1;if(side===0){x1=leftEdge-6;x0=Math.max(0,x1-14);}else{x0=rightEdge+6;x1=Math.min(320,x0+14);}if(x1-x0<3)continue;px(x0,sy,x1-x0,4,"#2f7a38");}for(let sy=top+8;sy<bot;sy+=step){const wy=s2w(sy);const edge=(side===0)?worldToScreen(0,wy).x-10:worldToScreen(FIELD_W,wy).x+6;const c=cols[((sy+side*7+wob)>>>0)%cols.length];px(edge,sy-3,3,3,c);px(edge,sy,3,3,"#3a2a1a");}}
 }
-function drawSetPiecePrompt(){ctx.fillStyle="rgba(0,0,0,0.55)";ctx.fillRect(40,250,240,46);ctx.textAlign="center";const labels={kickoff:(lang==="it"?"CALCIO D'INIZIO":"KICK-OFF"),throwin:(lang==="it"?"RIMESSA LATERALE":"THROW-IN"),corner:(lang==="it"?"CALCIO D'ANGOLO":"CORNER"),goalkick:(lang==="it"?"RINVIO":"GOAL KICK"),freekick:(lang==="it"?"PUNIZIONE":"FREE KICK"),penalty:(lang==="it"?"RIGORE":"PENALTY")};ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(labels[awaitKind]||"",160,266);ctx.fillStyle="#00e5ff";ctx.font="bold 10px monospace";const hint=(awaitKind==="penalty")?(lang==="it"?"A = tiro forte   B = piazzato":"A = power   B = placed"):(lang==="it"?"A = lungo   B = corto":"A = long   B = short");ctx.fillText(hint,160,284);ctx.textAlign="left";}
-function drawScene(){drawStands();drawPitch();drawSideStands();drawGoal(0);drawGoal(FIELD_H);const camTop=camY-VIEW_SPAN/2-40,camBot=camY+VIEW_SPAN/2+40;const ents=[];for(let i=0;i<players.length;i++){if(players[i].y<camTop||players[i].y>camBot)continue;ents.push({y:players[i].y,kind:"player",ref:players[i],idx:i});}ents.push({y:ball.y,kind:"ball",ref:ball});ents.sort(function(a,b){return a.y-b.y;});ents.forEach(function(e){if(e.kind==="player"){drawFootballer(e.ref,e.idx===controlledIdx&&e.ref.team===0);}else{drawBall(e.ref);}});drawHUD();}
-function drawStands(){const grad=ctx.createLinearGradient(0,0,0,VIEW.top);grad.addColorStop(0,"#6ab0e8");grad.addColorStop(1,"#b8dcf4");ctx.fillStyle=grad;ctx.fillRect(0,0,320,VIEW.top);px(0,VIEW.top-26,320,26,"#33323a");for(let i=0;i<160;i++){const sx=(i*79)%320,sy=VIEW.top-24+((i*37)%22);const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a"];px(sx,sy,2,2,cols[i%cols.length]);}px(0,VIEW.top-3,320,3,"#e8e8e8");}
-function drawSideStands(){const cols=["#d85a5a","#5a7ac8","#e8d85a","#f0f0f0","#5ac87a","#e0902a","#c060c0"];const top=VIEW.top,bot=VIEW.bottom;const wob=Math.floor(splashTime/350)%2;function s2w(sy){const df=(sy-top)/(bot-top);return (camY-VIEW_SPAN/2)+df*VIEW_SPAN;}for(let side=0;side<2;side++){for(let sy=top;sy<bot;sy+=4){const wy=s2w(sy);const leftEdge=worldToScreen(0,wy).x,rightEdge=worldToScreen(FIELD_W,wy).x;let x0,x1;if(side===0){x1=leftEdge-16;x0=0;}else{x1=320;x0=rightEdge+16;}if(x1-x0<3)continue;const grad=(Math.floor(sy/8)%2===0)?"#34333d":"#2b2a33";px(x0,sy,x1-x0,4,grad);for(let x=x0+2;x<x1-2;x+=5){const c=cols[((x*3+sy+wob)>>>0)%cols.length];px(x,sy+((x+sy)%2?1:0),3,3,c);}}for(let sy=top;sy<bot;sy+=2){const wy=s2w(sy);const edge=(side===0)?worldToScreen(0,wy).x-10:worldToScreen(FIELD_W,wy).x+8;px(edge,sy,2,2,"#c8ccd4");}}}
 function drawPitch(){px(0,VIEW.top,320,VIEW.bottom-VIEW.top,"#238a37");const BAND=70;const top=camY-VIEW_SPAN/2;const first=Math.floor(top/BAND)-1;const lastBand=Math.ceil((camY+VIEW_SPAN/2)/BAND)+1;for(let bnd=first;bnd<=lastBand;bnd++){const yA=bnd*BAND,yB=(bnd+1)*BAND;const light=(((bnd%2)+2)%2)===0;const aL=worldToScreen(0,yA),aR=worldToScreen(FIELD_W,yA),bL=worldToScreen(0,yB),bR=worldToScreen(FIELD_W,yB);const margin=10;ctx.fillStyle=light?"#2fa845":"#279a3d";ctx.beginPath();ctx.moveTo(aL.x-margin,aL.y);ctx.lineTo(aR.x+margin,aR.y);ctx.lineTo(bR.x+margin,bR.y);ctx.lineTo(bL.x-margin,bL.y);ctx.closePath();ctx.fill();}ctx.strokeStyle="rgba(255,255,255,0.85)";ctx.lineWidth=2;const tl=worldToScreen(0,0),tr=worldToScreen(FIELD_W,0),br=worldToScreen(FIELD_W,FIELD_H),bl=worldToScreen(0,FIELD_H);ctx.beginPath();ctx.moveTo(tl.x,tl.y);ctx.lineTo(tr.x,tr.y);ctx.lineTo(br.x,br.y);ctx.lineTo(bl.x,bl.y);ctx.closePath();ctx.stroke();const cm0=worldToScreen(0,FIELD_H/2),cm1=worldToScreen(FIELD_W,FIELD_H/2);ctx.beginPath();ctx.moveTo(cm0.x,cm0.y);ctx.lineTo(cm1.x,cm1.y);ctx.stroke();const c=worldToScreen(FIELD_W/2,FIELD_H/2);ctx.beginPath();ctx.ellipse(c.x,c.y,40*c.scale,16*c.scale,0,0,Math.PI*2);ctx.stroke();drawPenaltyBox(0);drawPenaltyBox(FIELD_H);ctx.lineWidth=1;}
 function drawPenaltyBox(goalY){const dir=(goalY===0)?1:-1;const boxDepth=FIELD_H*0.11;const x1=FIELD_W/2-GOAL_W/2-30,x2=FIELD_W/2+GOAL_W/2+30;const yIn=goalY+dir*boxDepth;const a=worldToScreen(x1,goalY),b=worldToScreen(x1,yIn),cc=worldToScreen(x2,yIn),d=worldToScreen(x2,goalY);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.lineTo(cc.x,cc.y);ctx.lineTo(d.x,d.y);ctx.stroke();}
 function drawGoal(goalY){const xL=FIELD_W/2-GOAL_W/2,xR=FIELD_W/2+GOAL_W/2;const postL=worldToScreen(xL,goalY),postR=worldToScreen(xR,goalY);const postH=20*postL.scale;const dir=(goalY===0)?-1:1;const depth=10*postL.scale;ctx.strokeStyle="rgba(255,255,255,0.5)";ctx.lineWidth=1;for(let k=0;k<=6;k++){const xx=xL+(xR-xL)*(k/6);const p=worldToScreen(xx,goalY);ctx.beginPath();ctx.moveTo(p.x,p.y-postH);ctx.lineTo(p.x,p.y-postH+dir*depth*0.4+depth*0.6);ctx.stroke();}for(let k=0;k<=2;k++){const yy=-postH+(postH)*(k/2);ctx.beginPath();ctx.moveTo(postL.x,postL.y+yy);ctx.lineTo(postR.x,postR.y+yy);ctx.stroke();}ctx.strokeStyle="#ffffff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(postL.x,postL.y);ctx.lineTo(postL.x,postL.y-postH);ctx.lineTo(postR.x,postR.y-postH);ctx.lineTo(postR.x,postR.y);ctx.stroke();ctx.lineWidth=1;}
 function drawFootballer(p,isControlled){const s=worldToScreen(p.x,p.y);const u=s.scale*0.92;const cx=s.x,footY=s.y;const kit=(p.role==="gk")?GK_KIT:teamKit(p.team);ctx.fillStyle="rgba(0,0,0,0.28)";ctx.beginPath();ctx.ellipse(cx,footY,8*u,3*u,0,0,Math.PI*2);ctx.fill();if(isControlled&&slide.active){const dirX=(lastDir.x>=0)?1:-1;px(cx-10*u,footY-8*u,20*u,7*u,kit.c1);px(cx+dirX*8*u,footY-9*u,8*u,4*u,kit.short);px(cx+dirX*15*u,footY-9*u,4*u,3*u,"#1a1a1a");px(cx-dirX*10*u,footY-12*u,6*u,6*u,"#e8b890");return;}if(isControlled&&Math.floor(splashTime/200)%2===0){ctx.fillStyle="#ffe23a";const ay=footY-44*u;ctx.beginPath();ctx.moveTo(cx,ay+8);ctx.lineTo(cx-5,ay);ctx.lineTo(cx+5,ay);ctx.closePath();ctx.fill();}if(p._lx===undefined){p._lx=p.x;p._ly=p.y;p._anim=0;}const moved=Math.hypot(p.x-p._lx,p.y-p._ly);p._lx=p.x;p._ly=p.y;const running=moved>0.4;if(running){p._anim=(p._anim+moved*0.12)%(Math.PI*2);}const swing=running?Math.sin(p._anim):0;const legF=swing*3*u,armF=-swing*3*u,bob=running?Math.abs(Math.cos(p._anim))*1.5*u:0;px(cx-5*u,footY-14*u-bob,4*u,10*u+legF,kit.sock);px(cx+1*u,footY-14*u-bob,4*u,10*u-legF,kit.sock);px(cx-6*u,footY-20*u-bob,5*u,8*u,kit.short);px(cx+1*u,footY-20*u-bob,5*u,8*u,kit.short);px(cx-6*u+swing*2*u,footY-4*u,5*u,3*u,"#1a1a1a");px(cx+1*u-swing*2*u,footY-4*u,5*u,3*u,"#1a1a1a");drawShirt(cx,footY-32*u-bob,12*u,14*u,kit);px(cx-8*u,footY-31*u-bob+armF,2*u,9*u,kit.c1);px(cx+6*u,footY-31*u-bob-armF,2*u,9*u,kit.c1);px(cx-3*u,footY-40*u-bob,6*u,6*u,"#e8b890");px(cx-3*u,footY-40*u-bob,6*u,2*u,"#3a2a1a");}
-function drawShirt(x,y,w,h,kit){const left=x-w/2;if(kit.pattern==="vstripe"){const st=4,sw=w/st;for(let i=0;i<st;i++){ctx.fillStyle=(i%2===0)?kit.c1:kit.c2;ctx.fillRect(left+i*sw,y,Math.ceil(sw),h);}}else if(kit.pattern==="hstripe"){const st=3,sh=h/st;for(let i=0;i<st;i++){ctx.fillStyle=(i%2===0)?kit.c1:kit.c2;ctx.fillRect(left,y+i*sh,w,Math.ceil(sh));}}else if(kit.pattern==="vthin"){ctx.fillStyle=kit.c1;ctx.fillRect(left,y,w,h);const cols=6,sw=w/cols;ctx.fillStyle=kit.c2;for(let i=0;i<cols;i+=2){ctx.fillRect(left+i*sw,y,Math.max(1,sw*0.5),h);}}else if(kit.pattern==="checker"){const cols=3,rows=3,sw=w/cols,sh=h/rows;for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){ctx.fillStyle=((r+c)%2===0)?kit.c1:kit.c2;ctx.fillRect(left+c*sw,y+r*sh,Math.ceil(sw),Math.ceil(sh));}}else{ctx.fillStyle=kit.c1;ctx.fillRect(left,y,w,h);}ctx.fillStyle=shade(kit.c1,-30);ctx.fillRect(x-2,y,4,2);}
+function drawShirt(x,y,w,h,kit){const left=x-w/2;ctx.fillStyle=kit.c1;ctx.fillRect(left,y,w,h);ctx.fillStyle=shade(kit.c1,-30);ctx.fillRect(x-2,y,4,2);}
 function drawBall(b){const s=worldToScreen(b.x,b.y);const r=6.2*s.scale;const bx=s.x;const z=b.z||0;const lift=z*0.9*s.scale;const by=s.y-lift;const shadowScale=1/(1+z*0.03);ctx.fillStyle="rgba(0,0,0,0.30)";ctx.beginPath();ctx.ellipse(s.x,s.y,r*shadowScale,r*0.4*shadowScale,0,0,Math.PI*2);ctx.fill();const rr=r*(1+z*0.01);ctx.fillStyle="rgba(255,235,80,0.35)";ctx.beginPath();ctx.arc(bx,by,rr*1.7,0,Math.PI*2);ctx.fill();ctx.fillStyle="#111";ctx.beginPath();ctx.arc(bx,by,rr+1,0,Math.PI*2);ctx.fill();ctx.fillStyle="#ffffff";ctx.beginPath();ctx.arc(bx,by,rr,0,Math.PI*2);ctx.fill();ctx.fillStyle="#111";ctx.beginPath();ctx.arc(bx,by,rr*0.42,0,Math.PI*2);ctx.fill();}
-function drawHUD(){ctx.fillStyle="#101010";ctx.fillRect(0,0,320,30);ctx.textAlign="left";const homeName=teamName(playerTeam),awayName=teamName(teamPool[matchOpponentIndex]);ctx.font="bold 10px monospace";ctx.fillStyle="#8ecdff";ctx.fillText(abbr(homeName),6,12);ctx.fillStyle="#fff";ctx.textAlign="center";ctx.font="bold 13px monospace";ctx.fillText(scoreHome+" - "+scoreAway,160,13);ctx.textAlign="right";ctx.font="bold 10px monospace";ctx.fillStyle="#ff9a9a";ctx.fillText(abbr(awayName),314,12);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 9px monospace";const remain=Math.max(0,HALF_MS-matchElapsedMs);const hl=(matchHalf===1)?t("firstHalf"):t("secondHalf");ctx.fillText(hl+"  "+fmtTime(remain),160,26);ctx.textAlign="left";}
-function abbr(name){return name.length>7?name.slice(0,7):name;}
+function matchHomeName(){return teamName(homeTeamObj);}
+function matchAwayName(){return teamName(awayTeamObj);}
+function drawHUD(){ctx.fillStyle="#101010";ctx.fillRect(0,0,320,30);ctx.textAlign="left";ctx.font="bold 10px monospace";ctx.fillStyle="#8ecdff";ctx.fillText(abbr(matchHomeName()),6,12);ctx.fillStyle="#fff";ctx.textAlign="center";ctx.font="bold 13px monospace";ctx.fillText(scoreHome+" - "+scoreAway,160,13);ctx.textAlign="right";ctx.font="bold 10px monospace";ctx.fillStyle="#ff9a9a";ctx.fillText(abbr(matchAwayName()),314,12);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 9px monospace";const remain=Math.max(0,HALF_MS-matchElapsedMs);const hl=(matchHalf===1)?t("firstHalf"):t("secondHalf");ctx.fillText(hl+"  "+fmtTime(remain),160,26);ctx.textAlign="left";}
 function drawCountdown(){ctx.fillStyle="rgba(0,0,0,0.35)";ctx.fillRect(0,0,320,320);const n=Math.ceil(countdownMs/1000);ctx.fillStyle=(n<=1)?"#00ff00":"#ffcc00";ctx.font="bold 90px monospace";ctx.textAlign="center";ctx.fillText(n>0?String(n):t("go"),160,200);ctx.fillStyle="#fff";ctx.font="bold 12px monospace";ctx.fillText(matchHalf===1?t("firstHalf"):t("secondHalf"),160,240);ctx.textAlign="left";}
 function drawHalfTime(){ctx.fillStyle="rgba(0,0,0,0.8)";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 24px monospace";ctx.fillText(t("halfTime"),160,130);ctx.fillStyle="#fff";ctx.font="bold 18px monospace";ctx.fillText(scoreHome+" - "+scoreAway,160,168);if(Math.floor(splashTime/450)%2===0){ctx.fillStyle="#00e5ff";ctx.font="bold 12px monospace";ctx.fillText("A / START",160,210);}ctx.textAlign="left";}
-function drawGoalFlash(){const t2=splashTime-goalFlashStart;const flash=Math.floor(t2/120)%2===0;ctx.fillStyle=flash?"rgba(20,10,60,0.6)":"rgba(0,0,0,0.55)";ctx.fillRect(0,0,320,320);for(let i=0;i<40;i++){const cx=(i*89+Math.floor(t2/24)*(1+i%4))%320,cy=(i*53+Math.floor(t2/16)*(1+i%3))%320;const cols=["#ffd84a","#ff5555","#44ddaa","#8844ff","#ffffff","#12a0e0"];px(cx,cy,3,3,cols[i%cols.length]);}ctx.textAlign="center";const pulse=34+Math.sin(t2/55)*8,yB=150+Math.sin(t2/90)*6;ctx.fillStyle="#5a0000";ctx.font="bold "+Math.floor(pulse)+"px monospace";ctx.fillText(t("goal"),162,yB+2);const sk=(goalScorerTeam===0)?playerTeam.kit:teamPool[matchOpponentIndex].kit;ctx.fillStyle="#ffd84a";ctx.fillText(t("goal"),160,yB);drawBigFootballer(160,250,1.4,sk,"celebrate");ctx.fillStyle="#fff";ctx.font="bold 18px monospace";ctx.fillText(scoreHome+" - "+scoreAway,160,290);ctx.textAlign="left";}
+function drawGoalFlash(){const t2=splashTime-goalFlashStart;const flash=Math.floor(t2/120)%2===0;ctx.fillStyle=flash?"rgba(20,10,60,0.6)":"rgba(0,0,0,0.55)";ctx.fillRect(0,0,320,320);for(let i=0;i<40;i++){const cx=(i*89+Math.floor(t2/24)*(1+i%4))%320,cy=(i*53+Math.floor(t2/16)*(1+i%3))%320;const cols=["#ffd84a","#ff5555","#44ddaa","#8844ff","#ffffff","#12a0e0"];px(cx,cy,3,3,cols[i%cols.length]);}ctx.textAlign="center";const pulse=34+Math.sin(t2/55)*8,yB=150+Math.sin(t2/90)*6;ctx.fillStyle="#5a0000";ctx.font="bold "+Math.floor(pulse)+"px monospace";ctx.fillText(t("goal"),162,yB+2);const sk=(goalScorerTeam===0)?playerKit:oppKit;ctx.fillStyle="#ffd84a";ctx.fillText(t("goal"),160,yB);drawBigFootballer(160,250,1.4,sk,"celebrate");ctx.fillStyle="#fff";ctx.font="bold 18px monospace";ctx.fillText(scoreHome+" - "+scoreAway,160,290);ctx.textAlign="left";}
 function drawPause(){ctx.fillStyle="rgba(0,0,0,0.8)";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#fff";ctx.font="bold 26px monospace";ctx.fillText(t("pause"),160,96);const items=pauseItems();ctx.font="bold 15px monospace";items.forEach(function(key,idx){const label=t(key),y=140+idx*32;if(idx===pauseIndex){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navChooseConfirm"),160,278);ctx.textAlign="left";}
-function drawFullTime(){ctx.fillStyle="rgba(0,0,0,0.85)";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 24px monospace";ctx.fillText(t("fullTime"),160,96);let outcome,outColor;if(scoreHome>scoreAway){outcome=t("win");outColor="#00ff88";}else if(scoreHome<scoreAway){outcome=t("loss");outColor="#ff6060";}else{outcome=t("draw");outColor="#e8e860";}ctx.fillStyle="#fff";ctx.font="bold 13px monospace";ctx.fillText(abbr(teamName(playerTeam))+"  "+scoreHome+" - "+scoreAway+"  "+abbr(teamName(teamPool[matchOpponentIndex])),160,140);ctx.fillStyle=outColor;ctx.font="bold 20px monospace";ctx.fillText(outcome,160,175);ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";ctx.fillText(t("continueA"),160,220);ctx.textAlign="left";}
-function drawInfoOverlay(paused){ctx.fillStyle=paused?"rgba(0,0,0,0.9)":"rgba(0,0,0,0.78)";ctx.fillRect(0,0,320,320);ctx.strokeStyle="#00e5ff";ctx.strokeRect(28,36,264,200);ctx.fillStyle="#00e5ff";ctx.font="bold 14px monospace";ctx.textAlign="center";ctx.fillText(t("matchInfo")+(paused?"  -  "+t("pause"):""),160,58);ctx.font="bold 11px monospace";ctx.fillStyle="#fff";ctx.textAlign="left";const remain=Math.max(0,HALF_MS-matchElapsedMs);ctx.fillText(teamName(playerTeam)+" vs "+teamName(teamPool[matchOpponentIndex]),45,86);ctx.fillText(t("result")+": "+scoreHome+" - "+scoreAway,45,106);ctx.fillText((matchHalf===1?t("firstHalf"):t("secondHalf")),45,126);ctx.fillText(t("timeLeft")+": "+fmtTime(remain),45,146);ctx.fillText(playerFormation+"  vs  "+opponentFormation,45,166);if(paused){ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 10px monospace";ctx.fillText("START = "+t("resume")+"   SELECT = "+t("matchInfo"),160,220);}ctx.textAlign="left";}
+function drawFullTime(){ctx.fillStyle="rgba(0,0,0,0.85)";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 24px monospace";ctx.fillText(t("fullTime"),160,96);let myG=playerIsHome?scoreHome:scoreAway,opG=playerIsHome?scoreAway:scoreHome;let outcome,outColor;if(myG>opG){outcome=t("win");outColor="#00ff88";}else if(myG<opG){outcome=t("loss");outColor="#ff6060";}else{outcome=t("draw");outColor="#e8e860";}ctx.fillStyle="#fff";ctx.font="bold 13px monospace";ctx.fillText(abbr(matchHomeName())+"  "+scoreHome+" - "+scoreAway+"  "+abbr(matchAwayName()),160,140);ctx.fillStyle=outColor;ctx.font="bold 20px monospace";ctx.fillText(outcome,160,175);ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";ctx.fillText(matchMode==="career"?t("toManagement"):t("continueA"),160,220);ctx.textAlign="left";}
+function drawInfoOverlay(paused){ctx.fillStyle=paused?"rgba(0,0,0,0.9)":"rgba(0,0,0,0.78)";ctx.fillRect(0,0,320,320);ctx.strokeStyle="#00e5ff";ctx.strokeRect(28,36,264,200);ctx.fillStyle="#00e5ff";ctx.font="bold 14px monospace";ctx.textAlign="center";ctx.fillText(t("matchInfo")+(paused?"  -  "+t("pause"):""),160,58);ctx.font="bold 11px monospace";ctx.fillStyle="#fff";ctx.textAlign="left";const remain=Math.max(0,HALF_MS-matchElapsedMs);ctx.fillText(matchHomeName()+" vs "+matchAwayName(),45,86);ctx.fillText(t("result")+": "+scoreHome+" - "+scoreAway,45,106);ctx.fillText((matchHalf===1?t("firstHalf"):t("secondHalf")),45,126);ctx.fillText(t("timeLeft")+": "+fmtTime(remain),45,146);ctx.fillText(playerFormation+"  vs  "+opponentFormation,45,166);if(paused){ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 10px monospace";ctx.fillText("START = "+t("resume")+"   SELECT = "+t("matchInfo"),160,220);}ctx.textAlign="left";}
+function drawSetPieceAnnounce(){ctx.fillStyle="rgba(0,0,0,0.82)";ctx.fillRect(0,0,320,320);const titles={corner:(lang==="it"?"CALCIO D'ANGOLO":"CORNER KICK"),freekick:(lang==="it"?"PUNIZIONE":"FREE KICK"),penalty:(lang==="it"?"RIGORE":"PENALTY")};const subt={corner:(lang==="it"?"A tuo favore!":"Your kick!"),freekick:(lang==="it"?"A tuo favore!":"Your kick!"),penalty:(lang==="it"?"Dal dischetto!":"From the spot!")};ctx.textAlign="center";ctx.strokeStyle="#f8d820";ctx.lineWidth=3;ctx.strokeRect(30,110,260,100);ctx.lineWidth=1;const blink=Math.floor(splashTime/300)%2===0;ctx.fillStyle=blink?"#ffd84a":"#ffffff";ctx.font="bold 22px monospace";ctx.fillText(titles[awaitKind]||"",160,152);ctx.fillStyle="#00e5ff";ctx.font="bold 12px monospace";ctx.fillText(subt[awaitKind]||"",160,178);if(spAnnounceMs>0){const secs=Math.ceil(spAnnounceMs/1000);ctx.fillStyle="#ffffff";ctx.font="bold 12px monospace";ctx.fillText((lang==="it"?"Pronti tra ":"Ready in ")+secs+"s",160,244);}else if(Math.floor(splashTime/400)%2===0){ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(lang==="it"?"Premi A per battere":"Press A to take it",160,244);}ctx.textAlign="left";}
+function drawSetPiecePrompt(){ctx.fillStyle="rgba(0,0,0,0.55)";ctx.fillRect(40,250,240,46);ctx.textAlign="center";const labels={kickoff:(lang==="it"?"CALCIO D'INIZIO":"KICK-OFF"),throwin:(lang==="it"?"RIMESSA LATERALE":"THROW-IN"),corner:(lang==="it"?"CALCIO D'ANGOLO":"CORNER"),goalkick:(lang==="it"?"RINVIO":"GOAL KICK"),freekick:(lang==="it"?"PUNIZIONE":"FREE KICK"),penalty:(lang==="it"?"RIGORE":"PENALTY")};ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(labels[awaitKind]||"",160,266);ctx.fillStyle="#00e5ff";ctx.font="bold 10px monospace";const hint=(awaitKind==="penalty")?(lang==="it"?"A = tiro forte   B = piazzato":"A = power   B = placed"):(lang==="it"?"A = lungo   B = corto":"A = long   B = short");ctx.fillText(hint,160,284);ctx.textAlign="left";}
+function drawOppSetPieceWait(){ctx.fillStyle="rgba(0,0,0,0.5)";ctx.fillRect(40,250,240,44);ctx.textAlign="center";const labels={corner:(lang==="it"?"ANGOLO AVVERSARIO":"OPPONENT CORNER"),freekick:(lang==="it"?"PUNIZIONE AVVERSARIA":"OPPONENT FREE KICK"),penalty:(lang==="it"?"RIGORE AVVERSARIO":"OPPONENT PENALTY"),goalkick:(lang==="it"?"RINVIO AVVERSARIO":"OPPONENT GOAL KICK"),throwin:(lang==="it"?"RIMESSA AVVERSARIA":"OPPONENT THROW-IN")};ctx.fillStyle="#ff9a9a";ctx.font="bold 11px monospace";ctx.fillText(labels[oppSetPieceKind]||"",160,268);ctx.fillStyle="#ffffff";ctx.font="bold 12px monospace";const secs=Math.ceil(oppSetPieceMs/1000);ctx.fillText((lang==="it"?"Batte tra ":"Kicks in ")+secs+"s",160,286);ctx.textAlign="left";}
 function drawBigFootballer(cx,footY,s,kit,pose){pose=pose||"idle";px(cx-18*s,footY,36*s,4*s,"rgba(0,0,0,0.3)");if(pose==="kick"){px(cx-6*s,footY-16*s,6*s,12*s,kit.sock);px(cx+2*s,footY-22*s,12*s,5*s,kit.sock);px(cx+12*s,footY-23*s,5*s,4*s,"#1a1a1a");px(cx-7*s,footY-4*s,6*s,4*s,"#1a1a1a");}else{px(cx-7*s,footY-18*s,5*s,14*s,kit.sock);px(cx+2*s,footY-18*s,5*s,14*s,kit.sock);px(cx-8*s,footY-4*s,6*s,4*s,"#1a1a1a");px(cx+2*s,footY-4*s,6*s,4*s,"#1a1a1a");}px(cx-9*s,footY-26*s,7*s,10*s,kit.short);px(cx+2*s,footY-26*s,7*s,10*s,kit.short);drawShirt(cx,footY-42*s,20*s,18*s,kit);if(pose==="celebrate"){px(cx-14*s,footY-58*s,4*s,16*s,kit.c1);px(cx+10*s,footY-58*s,4*s,16*s,kit.c1);px(cx-14*s,footY-60*s,4*s,4*s,"#e8b890");px(cx+10*s,footY-60*s,4*s,4*s,"#e8b890");}else{px(cx-13*s,footY-42*s,4*s,14*s,kit.c1);px(cx+9*s,footY-42*s,4*s,14*s,kit.c1);px(cx-13*s,footY-30*s,4*s,4*s,"#e8b890");px(cx+9*s,footY-30*s,4*s,4*s,"#e8b890");}px(cx-5*s,footY-54*s,10*s,10*s,"#e8b890");px(cx-5*s,footY-54*s,10*s,3*s,"#3a2a1a");px(cx-5*s,footY-54*s,2*s,5*s,"#3a2a1a");if(pose!=="celebrate"){const bx=(pose==="kick")?cx+22*s:cx+16*s,by=footY-3*s;ctx.fillStyle="#ffffff";ctx.beginPath();ctx.arc(bx,by,5*s,0,Math.PI*2);ctx.fill();ctx.fillStyle="#111";ctx.beginPath();ctx.arc(bx,by,2*s,0,Math.PI*2);ctx.fill();}}
-const AZZURRO_KIT=kit("solid","#1b8ce0","#1b8ce0","#ffffff","#1b8ce0");
-function drawSplash(){const bands=["#0e2a4a","#164a7a","#2a70a8","#3a90c8","#6ab0e0","#9fd0f0"];for(let i=0;i<bands.length;i++){px(0,i*15,320,15,bands[i]);}px(40,20,6,24,"#888");px(30,12,26,10,"#ffe070");px(274,20,6,24,"#888");px(264,12,26,10,"#ffe070");ctx.fillStyle="rgba(255,240,160,0.15)";ctx.beginPath();ctx.moveTo(43,22);ctx.lineTo(0,150);ctx.lineTo(120,150);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(277,22);ctx.lineTo(200,150);ctx.lineTo(320,150);ctx.closePath();ctx.fill();px(0,96,320,24,"#2a2933");for(let i=0;i<120;i++){const sx=(i*83)%320,sy=98+((i*41)%20);const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a"];px(sx,sy,2,2,cols[i%cols.length]);}px(0,120,320,200,"#279a3d");for(let i=0;i<8;i++){px(0,120+i*26,320,13,(i%2===0)?"#2fa845":"#279a3d");}ctx.strokeStyle="rgba(255,255,255,0.6)";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(160,120);ctx.lineTo(160,300);ctx.stroke();ctx.beginPath();ctx.ellipse(160,220,46,20,0,0,Math.PI*2);ctx.stroke();ctx.lineWidth=1;drawBigFootballer(150,285,2.1,AZZURRO_KIT,"kick");ctx.textAlign="center";ctx.fillStyle="#003a00";ctx.font="bold 30px monospace";ctx.fillText("CRUDO",163,44);ctx.fillStyle="#dc0000";ctx.fillText("CRUDO",160,41);ctx.fillStyle="#004a6a";ctx.font="bold 22px monospace";ctx.fillText("FOOTBALL",162,70);ctx.fillStyle="#ffd84a";ctx.fillText("FOOTBALL",160,68);if(Math.floor(splashTime/450)%2===0){ctx.fillStyle="#ffffff";ctx.font="bold 13px monospace";ctx.fillText(">> "+t("pressStart")+" <<",160,150);}ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t("langLabel")+": "+lang.toUpperCase(),160,316);ctx.textAlign="left";}
-function drawModeSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#dc0000";ctx.font="bold 20px monospace";ctx.fillText(t("title"),160,40);ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(lang==="it"?"SCEGLI MODALITA":"CHOOSE MODE",160,66);const items=modeItems();ctx.font="bold 15px monospace";items.forEach(function(key,idx){const label=t(key),y=104+idx*32;if(idx===menuIndex){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});drawBigFootballer(160,250,1.4,NATIONAL_TEAMS[9].kit,"idle");ctx.fillStyle="#7ad0ff";ctx.font="bold 9px monospace";ctx.fillText(t("langLabel")+": "+lang.toUpperCase()+"  ("+t("toggleLangHint")+")",160,286);ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navChoose"),160,304);ctx.textAlign="left";}
-function drawTeamSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 13px monospace";ctx.fillText(t("chooseTeam"),160,18);const cols=2,colX=[12,168],nameOffset=26;teamPool.forEach(function(team,idx){const col=idx%cols,row=Math.floor(idx/cols),x=colX[col],cy=40+row*33;drawKitSwatch(x,cy-11,team.kit);ctx.textAlign="left";ctx.font="bold 10px monospace";ctx.fillStyle="#ffffff";const name=teamName(team),nameX=x+nameOffset;ctx.fillText(name,nameX,cy);if(idx===menuIndex){const nameW=ctx.measureText(name).width,dotX=nameX+nameW+6;ctx.beginPath();ctx.arc(dotX,cy-4,3.5,0,Math.PI*2);ctx.fillStyle="#ffe23a";ctx.fill();}});ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.textAlign="center";ctx.fillText(t("navTeamHint"),160,316);ctx.textAlign="left";}
-function drawKitSwatch(x,y,kit){const w=16,h=14,prevX=x;if(kit.pattern==="vstripe"){const st=4,sw=w/st;for(let i=0;i<st;i++){px(prevX+i*sw,y,Math.ceil(sw),h,(i%2===0)?kit.c1:kit.c2);}}else if(kit.pattern==="hstripe"){const st=3,sh=h/st;for(let i=0;i<st;i++){px(prevX,y+i*sh,w,Math.ceil(sh),(i%2===0)?kit.c1:kit.c2);}}else if(kit.pattern==="vthin"){px(prevX,y,w,h,kit.c1);const cols=6,sw=w/cols;for(let i=0;i<cols;i+=2)px(prevX+i*sw,y,Math.max(1,sw*0.5),h,kit.c2);}else if(kit.pattern==="checker"){const cols=3,rows=3,sw=w/cols,sh=h/rows;for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){px(prevX+c*sw,y+r*sh,Math.ceil(sw),Math.ceil(sh),((r+c)%2===0)?kit.c1:kit.c2);}}else{px(prevX,y,w,h,kit.c1);}px(prevX-3,y+1,3,6,kit.c1);px(prevX+w,y+1,3,6,kit.c1);ctx.strokeStyle="#000";ctx.lineWidth=1;ctx.strokeRect(prevX-3,y,w+6,h);}
-function drawBracket(){ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("championship"),160,18);if(!tournament){ctx.textAlign="left";return;}if(tournament.champion>=0){ctx.fillStyle="#ffd84a";ctx.font="bold 16px monospace";ctx.fillText(lang==="it"?"CAMPIONE:":"CHAMPION:",160,130);ctx.fillStyle="#fff";ctx.font="bold 18px monospace";ctx.fillText(teamName(NATIONAL_TEAMS[tournament.champion]),160,158);drawBigFootballer(160,250,1.6,NATIONAL_TEAMS[tournament.champion].kit,"celebrate");ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";return;}ctx.fillStyle="#00e5ff";ctx.font="bold 12px monospace";ctx.fillText(roundName(tournament.curRound),160,38);const arr=tournament.rounds[tournament.curRound];ctx.font="bold 9px monospace";arr.forEach(function(m,i){const y=58+i*22;const an=(m.a>=0)?teamName(NATIONAL_TEAMS[m.a]):"?";const bn=(m.b>=0)?teamName(NATIONAL_TEAMS[m.b]):"?";const isCur=(i===tournament.curMatch);const mine=(m.a===playerTeamIndex||m.b===playerTeamIndex);if(isCur){ctx.fillStyle="rgba(0,229,255,0.12)";ctx.fillRect(14,y-12,292,18);}ctx.textAlign="left";if(m.a>=0)px(18,y-9,7,9,NATIONAL_TEAMS[m.a].kit.c1);if(m.b>=0)px(172,y-9,7,9,NATIONAL_TEAMS[m.b].kit.c1);ctx.fillStyle=mine?"#ffe23a":"#ddd";ctx.fillText(abbr(an),28,y);ctx.textAlign="center";ctx.fillStyle="#888";ctx.fillText("vs",160,y);ctx.textAlign="left";ctx.fillStyle=mine?"#ffe23a":"#ddd";ctx.fillText(abbr(bn),182,y);if(m.winner>=0){ctx.textAlign="right";ctx.fillStyle="#00ff88";ctx.fillText("W:"+abbr(teamName(NATIONAL_TEAMS[m.winner])),306,y);}});ctx.textAlign="center";const m=tourCurrentMatch();ctx.fillStyle="#f8d820";ctx.font="bold 10px monospace";if(playerInMatch(m)){ctx.fillText(lang==="it"?"A = GIOCA LA TUA PARTITA":"A = PLAY YOUR MATCH",160,300);}else{ctx.fillText(lang==="it"?"A = SIMULA / AVANZA":"A = SIMULATE / ADVANCE",160,300);}ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";}
-function drawLeague(){
-  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
-  ctx.fillStyle="#f8d820";ctx.font="bold 13px monospace";ctx.fillText(t("leagueTable"),160,15);
-  if(!league){ctx.textAlign="left";return;}
-  const totalRounds=league.fixtures.length;const curRound=Math.min(league.round,totalRounds-1);const isFirstLeg=curRound<(totalRounds/2);
-  ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";
-  if(!leagueDone()){ctx.fillText((isFirstLeg?t("firstLeg"):t("secondLeg"))+" - "+t("matchDay")+" "+(curRound+1)+"/"+totalRounds,160,28);}else{ctx.fillText(t("leagueDone"),160,28);}
-  ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle="#8ecdff";
-  const xPos=8,xTeam=26,xPg=210,xGf=242,xGs=268,xPts=300;
-  ctx.fillText("#",xPos,42);ctx.fillText(t("colTeam")||"Team",xTeam,42);ctx.textAlign="right";ctx.fillText(t("colPlayed"),xPg,42);ctx.fillText(t("colGf"),xGf,42);ctx.fillText(t("colGs"),xGs,42);ctx.fillText(t("colPts"),xPts,42);ctx.textAlign="left";
-  const table=leagueSortedTable();ctx.font="bold 9px monospace";const rowH=15,top=52;
-  for(let i=0;i<table.length;i++){const row=table[i];const y=top+i*rowH;const mine=(row.team===playerTeamIndex);if(mine){ctx.fillStyle="rgba(255,226,58,0.14)";ctx.fillRect(4,y-10,312,rowH-2);}px(xPos+8,y-8,6,8,NATIONAL_TEAMS[row.team].kit.c1);ctx.fillStyle=mine?"#ffe23a":"#dddddd";ctx.textAlign="left";ctx.fillText((i+1)+"",xPos,y);ctx.fillText(abbr(teamName(NATIONAL_TEAMS[row.team])),xTeam+8,y);ctx.textAlign="right";ctx.fillText(row.pg+"",xPg,y);ctx.fillText(row.gf+"",xGf,y);ctx.fillText(row.gs+"",xGs,y);ctx.fillStyle=mine?"#ffe23a":"#00ff88";ctx.fillText(row.pts+"",xPts,y);}
-  ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 10px monospace";
-  if(leagueDone()){const champ=table[0];ctx.fillText(t("leagueChamp")+": "+abbr(teamName(NATIONAL_TEAMS[champ.team])),160,300);}else{const m=leaguePlayerFixture();if(m)ctx.fillText(t("playNext"),160,300);else ctx.fillText(t("simNext"),160,300);}
-  ctx.fillStyle="#666666";ctx.font="bold 8px monospace";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";
-}
-function drawPenalty(){ctx.fillStyle="#0a1428";ctx.fillRect(0,0,320,320);ctx.strokeStyle="#ffffff";ctx.lineWidth=3;ctx.strokeRect(90,60,140,60);ctx.strokeStyle="rgba(255,255,255,0.4)";ctx.lineWidth=1;for(let gx=100;gx<230;gx+=12){ctx.beginPath();ctx.moveTo(gx,60);ctx.lineTo(gx,120);ctx.stroke();}for(let gy=68;gy<120;gy+=12){ctx.beginPath();ctx.moveTo(90,gy);ctx.lineTo(230,gy);ctx.stroke();}ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("penalties"),160,30);ctx.fillStyle="#fff";ctx.font="bold 16px monospace";ctx.fillText(abbr(teamName(playerTeam))+"  "+(pk?pk.myScore:0)+" - "+(pk?pk.oppScore:0)+"  "+abbr(teamName(teamPool[matchOpponentIndex])),160,48);if(!pk){ctx.textAlign="left";return;}const gkX=160+pk.gkSide*55;const showGkX=(pk.phase==="result")?gkX:160;drawBigFootballer(showGkX,118,0.8,GK_KIT,"idle");const shooterKit=(pk.turn==="player")?playerTeam.kit:teamPool[matchOpponentIndex].kit;drawBigFootballer(160,250,1.2,shooterKit,"kick");if(pk.phase==="aim"){ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";if(pk.turn==="player"){ctx.fillText(lang==="it"?"IL TUO TIRO":"YOUR SHOT",160,150);ctx.fillText(lang==="it"?"Direzione + A = tira":"Direction + A = shoot",160,285);}else{ctx.fillText(lang==="it"?"PARA IL RIGORE":"SAVE THE PENALTY",160,150);ctx.fillText(lang==="it"?"Direzione + A = tuffati":"Direction + A = dive",160,285);}}else{if((pk.turn==="player"&&pk.scored)||(pk.turn==="opp"&&!pk.scored))ctx.fillStyle="#00ff88";else ctx.fillStyle="#ff6060";ctx.font="bold 18px monospace";ctx.fillText(pk.msg,160,155);ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);}ctx.textAlign="left";}
+function drawPenalty(){ctx.fillStyle="#0a1428";ctx.fillRect(0,0,320,320);ctx.strokeStyle="#ffffff";ctx.lineWidth=3;ctx.strokeRect(90,60,140,60);ctx.strokeStyle="rgba(255,255,255,0.4)";ctx.lineWidth=1;for(let gx=100;gx<230;gx+=12){ctx.beginPath();ctx.moveTo(gx,60);ctx.lineTo(gx,120);ctx.stroke();}for(let gy=68;gy<120;gy+=12){ctx.beginPath();ctx.moveTo(90,gy);ctx.lineTo(230,gy);ctx.stroke();}ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("penalties"),160,30);ctx.fillStyle="#fff";ctx.font="bold 16px monospace";ctx.fillText(abbr(matchHomeName())+"  "+(pk?pk.myScore:0)+" - "+(pk?pk.oppScore:0)+"  "+abbr(matchAwayName()),160,48);if(!pk){ctx.textAlign="left";return;}const gkX=160+pk.gkSide*55;const showGkX=(pk.phase==="result")?gkX:160;drawBigFootballer(showGkX,118,0.8,GK_KIT,"idle");const shooterKit=(pk.turn==="player")?playerKit:oppKit;drawBigFootballer(160,250,1.2,shooterKit,"kick");if(pk.phase==="aim"){ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";if(pk.turn==="player"){ctx.fillText(lang==="it"?"IL TUO TIRO":"YOUR SHOT",160,150);ctx.fillText(lang==="it"?"Direzione + A = tira":"Direction + A = shoot",160,285);}else{ctx.fillText(lang==="it"?"PARA IL RIGORE":"SAVE THE PENALTY",160,150);ctx.fillText(lang==="it"?"Direzione + A = tuffati":"Direction + A = dive",160,285);}}else{if((pk.turn==="player"&&pk.scored)||(pk.turn==="opp"&&!pk.scored))ctx.fillStyle="#00ff88";else ctx.fillStyle="#ff6060";ctx.font="bold 18px monospace";ctx.fillText(pk.msg,160,155);ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);}ctx.textAlign="left";}
 function drawDrawChoice(){ctx.fillStyle="rgba(0,0,0,0.88)";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 18px monospace";ctx.fillText(t("draw")+" "+scoreHome+" - "+scoreAway,160,90);const items=drawChoiceItems();ctx.font="bold 15px monospace";items.forEach(function(key,idx){const label=t(key);const y=150+idx*34;if(idx===menuIndex){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});ctx.textAlign="left";}
-function drawOpponentSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseOpponent"),160,20);const list=opponentList();list.forEach(function(teamIdx,i){const y=44+i*17,team=teamPool[teamIdx],name=teamName(team);drawKitSwatch(60,y-10,team.kit);ctx.textAlign="left";ctx.font="bold 10px monospace";ctx.fillStyle="#ffffff";const nameX=86;ctx.fillText(name,nameX,y);if(i===menuIndex){const nameW=ctx.measureText(name).width;ctx.beginPath();ctx.arc(nameX+nameW+7,y-4,3.5,0,Math.PI*2);ctx.fillStyle="#ffe23a";ctx.fill();}});ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";}
-function drawFormationSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseFormation"),160,24);ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(teamName(playerTeam),160,42);ctx.font="bold 13px monospace";FORMATION_NAMES.forEach(function(name,i){const y=70+i*24;ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.fillText(name,40,y);if(i===formationIndex){const w=ctx.measureText(name).width;ctx.beginPath();ctx.arc(40+w+9,y-4,3.5,0,Math.PI*2);ctx.fillStyle="#ffe23a";ctx.fill();}});drawFormationPreview(FORMATION_NAMES[formationIndex],210,66,90,180);ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,306);ctx.textAlign="left";}
-function drawFormationPreview(name,bx,by,bw,bh){px(bx,by,bw,bh,"#279a3d");ctx.strokeStyle="rgba(255,255,255,0.7)";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.beginPath();ctx.moveTo(bx,by+bh/2);ctx.lineTo(bx+bw,by+bh/2);ctx.stroke();ctx.beginPath();ctx.arc(bx+bw/2,by+bh/2,10,0,Math.PI*2);ctx.stroke();const form=buildFormation(name),kit=playerTeam.kit;form.forEach(function(pl){const px_=bx+pl.fy*bw,py_=by+bh-(pl.fx*bh*1.8);ctx.fillStyle=(pl.role==="gk")?"#ffe23a":kit.c1;ctx.beginPath();ctx.arc(px_,Math.max(by+4,Math.min(by+bh-4,py_)),3,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#000";ctx.stroke();});}
-function drawPodium(){const bgTop=(finalRank===1)?"#1a2a5a":"#141830";px(0,0,320,320,bgTop);for(let i=0;i<30;i++){const cx=(i*97+Math.floor(splashTime/30)*(i%3+1))%320,cy=(i*53+Math.floor(splashTime/20)*(i%2+1))%260+10;const colors=["#ffd84a","#ff5555","#44ddaa","#8844ff","#ffffff"];px(cx,cy,3,3,colors[i%colors.length]);}ctx.textAlign="center";ctx.fillStyle="#ffd84a";ctx.font="bold 22px monospace";ctx.fillText(t("podiumWin"),160,60);drawBigFootballer(160,220,1.8,playerTeam.kit,"celebrate");ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";wrapText(t("podiumWinMsg"),160,270,300,15);ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,306);ctx.textAlign="left";}
+const AZZURRO_KIT={pattern:"solid",c1:"#1b8ce0",c2:"#1b8ce0",short:"#ffffff",sock:"#1b8ce0"};
+function drawSplash(){const bands=["#0e2a4a","#164a7a","#2a70a8","#3a90c8","#6ab0e0","#9fd0f0"];for(let i=0;i<bands.length;i++){px(0,i*15,320,15,bands[i]);}px(0,96,320,24,"#2a2933");for(let i=0;i<120;i++){const sx=(i*83)%320,sy=98+((i*41)%20);const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a"];px(sx,sy,2,2,cols[i%cols.length]);}px(0,120,320,200,"#279a3d");for(let i=0;i<8;i++){px(0,120+i*26,320,13,(i%2===0)?"#2fa845":"#279a3d");}ctx.strokeStyle="rgba(255,255,255,0.6)";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(160,120);ctx.lineTo(160,300);ctx.stroke();ctx.beginPath();ctx.ellipse(160,220,46,20,0,0,Math.PI*2);ctx.stroke();ctx.lineWidth=1;drawBigFootballer(150,285,2.1,AZZURRO_KIT,"kick");ctx.textAlign="center";ctx.fillStyle="#003a00";ctx.font="bold 30px monospace";ctx.fillText("CRUDO",163,44);ctx.fillStyle="#dc0000";ctx.fillText("CRUDO",160,41);ctx.fillStyle="#004a6a";ctx.font="bold 22px monospace";ctx.fillText("FOOTBALL",162,70);ctx.fillStyle="#ffd84a";ctx.fillText("FOOTBALL",160,68);if(Math.floor(splashTime/450)%2===0){ctx.fillStyle="#ffffff";ctx.font="bold 13px monospace";ctx.fillText(">> "+t("pressStart")+" <<",160,150);}ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t("langLabel")+": "+lang.toUpperCase(),160,316);ctx.textAlign="left";}
+function drawMenuList(titleKey,items,idx,extraY){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#dc0000";ctx.font="bold 20px monospace";ctx.fillText(t("title"),160,40);ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t(titleKey),160,72);ctx.font="bold 16px monospace";items.forEach(function(key,i){const label=t(key),y=(extraY||120)+i*34;if(i===idx){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});ctx.fillStyle="#7ad0ff";ctx.font="bold 9px monospace";ctx.fillText(t("langLabel")+": "+lang.toUpperCase()+"  ("+t("toggleLangHint")+")",160,300);ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChoose"),160,314);ctx.textAlign="left";}
+function drawModeSelect(){drawMenuList("title",modeItems(),(menuIndex%modeItems().length+modeItems().length)%modeItems().length,130);drawBigFootballer(160,258,1.3,AZZURRO_KIT,"idle");}
+function drawCareerStart(){drawMenuList("career",careerStartItems(),(menuIndex%careerStartItems().length+careerStartItems().length)%careerStartItems().length,150);}
+function drawTeamSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("chooseLeagueTeam"),160,16);if(matchMode==="career"){ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t("league1")+" - "+t("lvlBase"),160,28);}const list=teamSelectList();const cols=2,colX=[10,166];const sel=((menuIndex%list.length)+list.length)%list.length;list.forEach(function(tm,i){const col=i%cols,row=Math.floor(i/cols),x=colX[col],cy=44+row*23;ctx.textAlign="left";ctx.font="bold 9px monospace";ctx.fillStyle=(i===sel)?"#ffe23a":"#ffffff";const nm=teamName(tm);ctx.fillText((i===sel?"> ":"  ")+(nm.length>13?nm.slice(0,13):nm),x,cy);});ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.textAlign="center";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";}
+function drawKitSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseKit"),160,24);const cols=2,colX=[70,190];const sel=((menuIndex%KIT_COLORS.length)+KIT_COLORS.length)%KIT_COLORS.length;KIT_COLORS.forEach(function(kc,i){const col=i%cols,row=Math.floor(i/cols),x=colX[col],cy=56+row*38;px(x,cy-10,18,16,kc.c);ctx.strokeStyle=(i===sel)?"#ffe23a":"#000";ctx.lineWidth=(i===sel)?2:1;ctx.strokeRect(x,cy-10,18,16);ctx.textAlign="left";ctx.font="bold 9px monospace";ctx.fillStyle=(i===sel)?"#ffe23a":"#ddd";ctx.fillText(colorName(kc),x+24,cy+2);});ctx.textAlign="center";ctx.fillStyle="#00e5ff";ctx.font="bold 8px monospace";ctx.fillText(lang==="it"?"Colore fisso per tutta la carriera":"Fixed color for the whole career",160,300);ctx.fillStyle="#666";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";}
+function drawOpponentSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseOpponent"),160,18);const list=singleOppList();const sel=((menuIndex%list.length)+list.length)%list.length;ctx.font="bold 9px monospace";const perCol=16,cols=2,colX=[10,166];list.forEach(function(tm,i){const col=Math.floor(i/perCol),row=i%perCol,x=colX[col],cy=36+row*16;if(col>=cols)return;ctx.textAlign="left";ctx.fillStyle=(i===sel)?"#ffe23a":"#ddd";const nm=teamName(tm);ctx.fillText((i===sel?">":" ")+(nm.length>13?nm.slice(0,13):nm),x,cy);});ctx.textAlign="center";ctx.fillStyle="#666";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";}
+function playerTeamObjOrSingle(){return matchMode==="career"?playerTeamObj():homeTeamObj;}
+function drawFormationSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseFormation"),160,24);ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(teamName(playerTeamObjOrSingle()),160,42);ctx.font="bold 13px monospace";FORMATION_NAMES.forEach(function(name,i){const y=70+i*24;ctx.textAlign="left";ctx.fillStyle=(i===formationIndex)?"#ffe23a":"#ffffff";ctx.fillText((i===formationIndex?"> ":"  ")+name,40,y);});drawFormationPreview(FORMATION_NAMES[formationIndex],210,66,90,180);ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,306);ctx.textAlign="left";}
+function drawFormationPreview(name,bx,by,bw,bh){px(bx,by,bw,bh,"#279a3d");ctx.strokeStyle="rgba(255,255,255,0.7)";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.beginPath();ctx.moveTo(bx,by+bh/2);ctx.lineTo(bx+bw,by+bh/2);ctx.stroke();ctx.beginPath();ctx.arc(bx+bw/2,by+bh/2,10,0,Math.PI*2);ctx.stroke();const form=buildFormation(name);const kc=(matchMode==="career")?kitFromColor(career.kitColId):(playerKit||AZZURRO_KIT);form.forEach(function(pl){const px_=bx+pl.fy*bw,py_=by+bh-(pl.fx*bh*1.8);ctx.fillStyle=(pl.role==="gk")?"#ffe23a":kc.c1;ctx.beginPath();ctx.arc(px_,Math.max(by+4,Math.min(by+bh-4,py_)),3,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#000";ctx.stroke();});}
+function drawStandings(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("standings"),160,13);
+  const lg=curLeague();const def=LEAGUE_DEFS[lg.defIdx];
+  ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";
+  const totalRounds=lg.fixtures.length;const cur=Math.min(lg.round,totalRounds);
+  ctx.fillText(t(def.key)+"  -  "+t("matchDay")+" "+cur+"/"+totalRounds,160,26);
+  ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle="#8ecdff";
+  const xN=6,xT=18,xPg=176,xW=200,xD=222,xL=244,xGf=268,xP=300;
+  ctx.fillText("#",xN,40);ctx.fillText(t("colTeam"),xT,40);
+  ctx.textAlign="right";ctx.fillText(t("colPlayed"),xPg,40);ctx.fillText(t("colWon"),xW,40);ctx.fillText(t("colDrawn"),xD,40);ctx.fillText(t("colLost"),xL,40);ctx.fillText(t("colGf"),xGf,40);ctx.fillText(t("colPts"),xP,40);ctx.textAlign="left";
+  const table=leagueSortedTable(lg);ctx.font="bold 8px monospace";const rowH=23,top=52;
+  for(let i=0;i<table.length;i++){const r=table[i];const tm=teamByUid(lg,r.uid);const y=top+i*rowH;const mine=(r.uid===career.playerUid);
+    if(mine){ctx.fillStyle="rgba(255,226,58,0.14)";ctx.fillRect(2,y-9,316,rowH-3);}
+    ctx.fillStyle=mine?"#ffe23a":"#dddddd";ctx.textAlign="left";ctx.fillText((i+1)+"",xN,y);
+    const nm=teamName(tm);ctx.fillText(nm.length>18?nm.slice(0,18):nm,xT,y);
+    ctx.textAlign="right";ctx.fillText(r.pg+"",xPg,y);ctx.fillText(r.v+"",xW,y);ctx.fillText(r.n+"",xD,y);ctx.fillText(r.s+"",xL,y);ctx.fillText(r.gf+"",xGf,y);
+    ctx.fillStyle=mine?"#ffe23a":"#00ff88";ctx.fillText(r.pts+"",xP,y);ctx.textAlign="left";
+  }
+  ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("continueA"),160,315);ctx.textAlign="left";
+}
+function drawBuildingIcon(cx,cy,lvl){
+  if(lvl===0){px(cx-14,cy-6,28,18,"#c98a4a");px(cx-16,cy-6,32,3,"#8a5a2b");ctx.fillStyle="#7a3020";ctx.beginPath();ctx.moveTo(cx-18,cy-6);ctx.lineTo(cx,cy-22);ctx.lineTo(cx+18,cy-6);ctx.closePath();ctx.fill();px(cx-4,cy+2,8,10,"#5a3a1a");px(cx-11,cy-2,6,6,"#bfe0ff");px(cx+5,cy-2,6,6,"#bfe0ff");}
+  else if(lvl===1){px(cx-16,cy-30,32,42,"#b08a5a");px(cx-18,cy-30,36,3,"#7a3020");for(let f=0;f<3;f++){const fy=cy-26+f*14;px(cx-12,fy,7,7,"#bfe0ff");px(cx+5,fy,7,7,"#bfe0ff");}px(cx-4,cy+2,8,10,"#5a3a1a");}
+  else{px(cx-14,cy-46,28,58,"#8fa0b8");px(cx-16,cy-46,32,3,"#5a6a80");for(let f=0;f<7;f++){const fy=cy-42+f*8;px(cx-10,fy,5,5,"#ffe28a");px(cx-2,fy,5,5,"#bfe0ff");px(cx+6,fy,5,5,"#ffe28a");}px(cx-4,cy+4,8,8,"#3a4658");}
+}
+function drawManagement(){
+  ctx.fillStyle="#12203a";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 16px monospace";ctx.fillText(t("management"),160,26);
+  const lg=curLeague();const def=LEAGUE_DEFS[lg.defIdx];const me=playerTeamObj();
+  drawBuildingIcon(70,120,career.leagueLevel);
+  ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 13px monospace";
+  const nm=teamName(me);ctx.fillText(nm.length>16?nm.slice(0,16):nm,108,96);
+  ctx.fillStyle="#00e5ff";ctx.font="bold 10px monospace";ctx.fillText(t(def.key),108,116);
+  ctx.fillStyle="#8ecdff";ctx.font="bold 9px monospace";ctx.fillText(t(def.lvl),108,132);
+  ctx.fillStyle="#ffd84a";ctx.font="bold 10px monospace";ctx.fillText(t("seasonN")+" "+career.season,108,150);
+  const items=["playMatch","standings","exitToMenu"];ctx.textAlign="center";ctx.font="bold 14px monospace";
+  const sel=((menuIndex%items.length)+items.length)%items.length;
+  items.forEach(function(key,i){const y=200+i*30;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
+  ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChooseConfirm"),160,314);ctx.textAlign="left";
+}
+function drawPromo(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 16px monospace";ctx.fillText(t("seasonEnd"),160,40);
+  let msg,col;if(promoOutcome==="promoted"){msg=t("promoted");col="#00ff88";}else if(promoOutcome==="relegated"){msg=t("relegated");col="#ff6060";}else if(promoOutcome==="won"){msg=t("careerWin");col="#ffd84a";}else{msg=t("stayed");col="#e8e860";}
+  ctx.fillStyle=col;ctx.font="bold 20px monospace";ctx.fillText(msg,160,150);
+  drawBigFootballer(160,250,1.5,(career?kitFromColor(career.kitColId):AZZURRO_KIT),(promoOutcome==="relegated")?"idle":"celebrate");
+  ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";
+}
+function drawCareerWin(){const t2=splashTime;ctx.fillStyle="#1a2a5a";ctx.fillRect(0,0,320,320);for(let i=0;i<40;i++){const cx=(i*97+Math.floor(t2/30)*(i%3+1))%320,cy=(i*53+Math.floor(t2/20)*(i%2+1))%280+10;const colors=["#ffd84a","#ff5555","#44ddaa","#8844ff","#ffffff"];px(cx,cy,3,3,colors[i%colors.length]);}ctx.textAlign="center";ctx.fillStyle="#ffd84a";ctx.font="bold 20px monospace";ctx.fillText(t("careerWin"),160,54);drawBigFootballer(160,210,1.8,(career?kitFromColor(career.kitColId):AZZURRO_KIT),"celebrate");ctx.fillStyle="#ffffff";ctx.font="bold 10px monospace";wrapText(t("careerWinMsg"),160,258,300,14);ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,308);ctx.textAlign="left";}
 let lastTime=performance.now();
 function gameLoop(now){let dt=now-lastTime;lastTime=now;if(dt>100)dt=100;try{update(dt);draw();}catch(err){console.error(err);}requestAnimationFrame(gameLoop);}
 requestAnimationFrame(gameLoop);
