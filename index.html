@@ -479,14 +479,20 @@ function updateAI(){
         else if(dRank===4){ tx=FIELD_W/2; ty=ownGoalY(p.team)+attackDir(p.team)*(FIELD_H*0.10); }
         else { tx=homeX(p.team,p.fy)+(ball.x-FIELD_W/2)*0.30; ty=homeY(p.team,p.fx)+(ball.y-homeY(p.team,p.fx))*0.18; }
       } else if(isChaser){tx=carrier.x;ty=carrier.y+attackDir(carrier.team)*6;goDirect=true;}
+      else if(p.team===0&&p.role==="def"&&i===centralDefenderIdx(0)){
+        tx=carrier.x;ty=carrier.y+attackDir(carrier.team)*6;goDirect=true;
+      }
       else{tx=homeX(p.team,p.fy)+(ball.x-FIELD_W/2)*0.30;ty=homeY(p.team,p.fx)+(ball.y-homeY(p.team,p.fx))*0.18;}
     } else if(myTeamHasBall){
       const carrier=owner;const rankToCarrier=closenessRankExcluding(p.team,i,carrier,ball.owner);const dir2=attackDir(p.team);
       if(!aggressive){
         const wingR=wingManForTeam(p.team,+1,ball.owner);const wingL=wingManForTeam(p.team,-1,ball.owner);
+        const lineY=oppDefenceLineY(p.team);
+        const midY=(carrier.y+lineY)/2;
+        const wingY=midY-dir2*(FIELD_H*0.03);
         if(rankToCarrier===1){tx=carrier.x+(p.x<carrier.x?-70:70);ty=carrier.y+dir2*40;goingUp=true;}
-        else if(i===wingR){tx=FIELD_W*0.88;ty=targetGoalY(p.team)+dir2*(FIELD_H*0.24);goingUp=true;}
-        else if(i===wingL){tx=FIELD_W*0.12;ty=targetGoalY(p.team)+dir2*(FIELD_H*0.24);goingUp=true;}
+        else if(i===wingR){tx=FIELD_W*0.88;ty=wingY;goingUp=true;}
+        else if(i===wingL){tx=FIELD_W*0.12;ty=wingY;goingUp=true;}
         else{const wingBias=(p.fy<0.5)?-1:1;tx=homeX(p.team,p.fy)+FIELD_W*0.06*wingBias;ty=homeY(p.team,p.fx)+dir2*70;}
       } else {
         const runner=mostAdvanced(p.team,ball.owner);const attackers=5;const attackRank=attackRankInTeam(p.team,i,ball.owner);goingUp=(attackRank<=attackers);
@@ -515,6 +521,30 @@ function wingManForTeam(team,side,excludeIdx){
   for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role==="gk"||i===excludeIdx)continue;if(i===controlledIdx&&team===0)continue;const sideScore=(side>0)?q.x:(FIELD_W-q.x);const advScore=-Math.abs(q.y-goalY)*0.15;const score=sideScore+advScore;if(score>bestScore){bestScore=score;best=i;}}
   return best;
 }
+function oppDefenderRank(team,idx,carrier){
+  const myD=Math.hypot(players[idx].x-carrier.x,players[idx].y-carrier.y);let rank=1;
+  for(let j=0;j<players.length;j++){if(j===idx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-carrier.x,q.y-carrier.y);if(d<myD)rank++;}
+  return rank;
+}
+function centralDefenderIdx(team){
+  let best=-1,bestScore=Infinity;
+  for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role!=="def")continue;if(i===controlledIdx&&team===0)continue;
+    const centro=Math.abs(q.x-FIELD_W/2);const arretr=Math.abs(q.y-ownGoalY(team))*0.05;const score=centro+arretr;
+    if(score<bestScore){bestScore=score;best=i;}
+  }
+  return best;
+}
+function oppDefenceLineY(team){
+  const goalY=targetGoalY(team);const opp=[];
+  for(let i=0;i<players.length;i++){if(players[i].team!==team&&players[i].role!=="gk")opp.push(players[i].y);}
+  if(opp.length===0)return goalY;
+  opp.sort(function(a,b){return Math.abs(a-goalY)-Math.abs(b-goalY);});
+  return opp[Math.min(1,opp.length-1)];
+}
+function openLaneX(team,idx){const lanes=[FIELD_W*0.2,FIELD_W*0.5,FIELD_W*0.8];let best=FIELD_W/2,bestScore=-Infinity;const goalY=targetGoalY(team);for(let l=0;l<lanes.length;l++){const lx=lanes[l];let minOppDist=Infinity;for(let j=0;j<players.length;j++){const q=players[j];if(q.team===team)continue;const d=Math.hypot(q.x-lx,q.y-(goalY+(team===0?120:-120)));if(d<minOppDist)minOppDist=d;}if(minOppDist>bestScore){bestScore=minOppDist;best=lx;}}return best;}
+function closenessRank(team,idx,target){const myD=Math.hypot(players[idx].x-target.x,players[idx].y-target.y);let rank=1;for(let j=0;j<players.length;j++){if(j===idx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-target.x,q.y-target.y);if(d<myD)rank++;}return rank;}
+function closenessRankExcluding(team,idx,target,excludeIdx){const myD=Math.hypot(players[idx].x-target.x,players[idx].y-target.y);let rank=1;for(let j=0;j<players.length;j++){if(j===idx||j===excludeIdx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-target.x,q.y-target.y);if(d<myD)rank++;}return rank;}
+function mostAdvanced(team,excludeIdx){const goalY=targetGoalY(team);let best=-1,bestD=Infinity;for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role==="gk"||i===excludeIdx)continue;if(i===controlledIdx&&team===0)continue;const d=Math.abs(q.y-goalY);if(d<bestD){bestD=d;best=i;}}return best;}
 function dribbleAvoidX(p){
   const dir=attackDir(p.team);let push=0;
   for(let j=0;j<players.length;j++){const q=players[j];if(q.team===p.team||q.role==="gk")continue;
@@ -529,15 +559,6 @@ function dribbleAvoidX(p){
   if(p.x+push<40)push=40-p.x; if(p.x+push>FIELD_W-40)push=(FIELD_W-40)-p.x;
   return push;
 }
-function oppDefenderRank(team,idx,carrier){
-  const myD=Math.hypot(players[idx].x-carrier.x,players[idx].y-carrier.y);let rank=1;
-  for(let j=0;j<players.length;j++){if(j===idx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-carrier.x,q.y-carrier.y);if(d<myD)rank++;}
-  return rank;
-}
-function openLaneX(team,idx){const lanes=[FIELD_W*0.2,FIELD_W*0.5,FIELD_W*0.8];let best=FIELD_W/2,bestScore=-Infinity;const goalY=targetGoalY(team);for(let l=0;l<lanes.length;l++){const lx=lanes[l];let minOppDist=Infinity;for(let j=0;j<players.length;j++){const q=players[j];if(q.team===team)continue;const d=Math.hypot(q.x-lx,q.y-(goalY+(team===0?120:-120)));if(d<minOppDist)minOppDist=d;}if(minOppDist>bestScore){bestScore=minOppDist;best=lx;}}return best;}
-function closenessRank(team,idx,target){const myD=Math.hypot(players[idx].x-target.x,players[idx].y-target.y);let rank=1;for(let j=0;j<players.length;j++){if(j===idx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-target.x,q.y-target.y);if(d<myD)rank++;}return rank;}
-function closenessRankExcluding(team,idx,target,excludeIdx){const myD=Math.hypot(players[idx].x-target.x,players[idx].y-target.y);let rank=1;for(let j=0;j<players.length;j++){if(j===idx||j===excludeIdx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-target.x,q.y-target.y);if(d<myD)rank++;}return rank;}
-function mostAdvanced(team,excludeIdx){const goalY=targetGoalY(team);let best=-1,bestD=Infinity;for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role==="gk"||i===excludeIdx)continue;if(i===controlledIdx&&team===0)continue;const d=Math.abs(q.y-goalY);if(d<bestD){bestD=d;best=i;}}return best;}
 function updateGoalkeeper(p){
   const goalY=ownGoalY(p.team);const targetY=goalY+(goalY===0?14:-14);let targetX=FIELD_W/2;const movingTowardGoal=(goalY===0)?(ball.vy<-0.5):(ball.vy>0.5);
   if(ball.owner<0&&movingTowardGoal){const dyToLine=(targetY-ball.y);const tHit=(Math.abs(ball.vy)>0.1)?(dyToLine/ball.vy):999;if(tHit>0&&tHit<120){const predX=ball.x+ball.vx*tHit;targetX=Math.max(FIELD_W/2-GOAL_W/2-10,Math.min(FIELD_W/2+GOAL_W/2+10,predX));}else{targetX=Math.max(FIELD_W/2-GOAL_W/2,Math.min(FIELD_W/2+GOAL_W/2,ball.x));}}
