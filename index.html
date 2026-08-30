@@ -66,8 +66,8 @@ let lang="en"; try{lang=localStorage.getItem(LANG_KEY)||"en";}catch(e){}
 const MUSIC_KEY="crudoFootballMusic";
 let musicOn=true; try{const mv=localStorage.getItem(MUSIC_KEY);if(mv!==null)musicOn=(mv==="1");}catch(e){}
 const I18N={
-it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF",calendar:"CALENDARIO",history:"STORICO",objective:"OBIETTIVO",home:"Casa",away:"Trasferta",nextMatch:"Prossima",objTop:"Arriva nei primi",objWin:"Vinci il titolo",objSafe:"Non retrocedere",objMet:"OBIETTIVO RAGGIUNTO!",objFail:"OBIETTIVO FALLITO",bonusNext:"Bonus stagione: +8% forza",malusNext:"Malus stagione: -8% forza",season:"Stagione",pos:"Pos",noHistory:"Nessuna stagione conclusa",vs:"vs"},
-en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF",calendar:"FIXTURES",history:"HISTORY",objective:"OBJECTIVE",home:"Home",away:"Away",nextMatch:"Next",objTop:"Finish in top",objWin:"Win the title",objSafe:"Avoid relegation",objMet:"OBJECTIVE MET!",objFail:"OBJECTIVE FAILED",bonusNext:"Season bonus: +8% strength",malusNext:"Season malus: -8% strength",season:"Season",pos:"Pos",noHistory:"No season completed yet",vs:"vs"}
+it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF",calendar:"CALENDARIO",history:"STORICO",objective:"OBIETTIVO",home:"Casa",away:"Trasferta",nextMatch:"Prossima",objTop:"Arriva nei primi",objWin:"Vinci il titolo",objSafe:"Non retrocedere",objMet:"OBIETTIVO RAGGIUNTO!",objFail:"OBIETTIVO FALLITO",bonusNext:"Bonus stagione: +8% forza",malusNext:"Malus stagione: -8% forza",season:"Stagione",pos:"Pos",noHistory:"Nessuna stagione conclusa",vs:"vs",morale:"MORALE",training:"ALLENAMENTO",trainDef:"DIFESA",trainMid:"CENTROCAMPO",trainAtt:"ATTACCO",trainChoose:"Alleni un reparto per la prossima partita",trainSet:"Allenamento impostato!",trainNone:"Nessuno",trainedNext:"Allenato:"},
+en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF",calendar:"FIXTURES",history:"HISTORY",objective:"OBJECTIVE",home:"Home",away:"Away",nextMatch:"Next",objTop:"Finish in top",objWin:"Win the title",objSafe:"Avoid relegation",objMet:"OBJECTIVE MET!",objFail:"OBJECTIVE FAILED",bonusNext:"Season bonus: +8% strength",malusNext:"Season malus: -8% strength",season:"Season",pos:"Pos",noHistory:"No season completed yet",vs:"vs",morale:"MORALE",training:"TRAINING",trainDef:"DEFENCE",trainMid:"MIDFIELD",trainAtt:"ATTACK",trainChoose:"Train a line for the next match",trainSet:"Training set!",trainNone:"None",trainedNext:"Trained:"}
 };
 function t(k){return (I18N[lang]&&I18N[lang][k])||I18N.en[k]||k;}
 function toggleLang(){lang=(lang==="en")?"it":"en";try{localStorage.setItem(LANG_KEY,lang);}catch(e){}}
@@ -174,7 +174,7 @@ function makeLeague(defIdx,teams){return {defIdx:defIdx,teams:teams,table:newTab
 function startNewCareer(playerLeagueIdx,playerTeamUid,kitColId){
   const leagues=[];
   for(let d=0;d<3;d++){const teams=LEAGUE_DEFS[d].teams.map(function(pair,i){return makeTeamObj(pair,"L"+d+"-"+i);});leagues.push(makeLeague(d,teams));}
-  career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitColId,history:[],strengthMod:1.0,leagueSeasons:1,objective:objectiveForLeague(playerLeagueIdx,1)};
+  career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitColId,history:[],strengthMod:1.0,leagueSeasons:1,morale:50,training:null,objective:objectiveForLeague(playerLeagueIdx,1)};
   saveCareer();
 }
 function objectiveForLeague(lvl,seasonsInLeague){
@@ -196,6 +196,8 @@ function ensureCareerFields(){
   if(!career.history)career.history=[];
   if(typeof career.strengthMod!=="number")career.strengthMod=1.0;
   if(typeof career.leagueSeasons!=="number")career.leagueSeasons=1;
+  if(typeof career.morale!=="number")career.morale=50;
+  if(career.training===undefined)career.training=null;
   if(!career.objective)career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons);
 }
 function saveCareer(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(career));hasSave=true;}catch(e){}}
@@ -219,6 +221,9 @@ function careerRecordResult(myGoals,oppGoals){
   const lg=curLeague();const m=playerFixture();if(!m)return;
   let hg,ag;if(m.h===career.playerUid){hg=myGoals;ag=oppGoals;}else{hg=oppGoals;ag=myGoals;}
   m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);
+  let dMor;if(myGoals>oppGoals)dMor=12;else if(myGoals===oppGoals)dMor=2;else dMor=-5;
+  career.morale=Math.max(0,Math.min(100,(career.morale||50)+dMor));
+  career.training=null;
   simOthersInRound(lg);lg.round++;
   saveCareer();
 }
@@ -279,6 +284,8 @@ function makePlayer(team,rd,num){return {team:team,role:rd.role,num:num,fx:rd.fx
 function teamKit(team){return team===0?playerKit:oppKit;}
 function leagueLevelForMatch(){ return matchMode==="career"?career.leagueLevel:selLeagueIdx; }
 function careerStrengthMod(){ return (matchMode==="career"&&career&&typeof career.strengthMod==="number")?career.strengthMod:1.0; }
+function moraleMult(){ if(matchMode!=="career"||!career||typeof career.morale!=="number")return 1.0; return 0.94+(career.morale/100)*0.12; }
+function trainingMultForRole(role){ if(matchMode!=="career"||!career||!career.training)return 1.0; if(career.training===role)return 1.08; return 1.0; }
 function resetFormation(kickTeam){
   players.forEach(function(p){p.x=homeX(p.team,p.fy);p.y=homeY(p.team,p.fx);p.vx=0;p.vy=0;p.kickCooldown=0;});
   ball.x=FIELD_W/2; ball.y=FIELD_H/2; ball.vx=0; ball.vy=0; ball.z=0; ball.vz=0; ball.high=false;
@@ -433,7 +440,7 @@ function updateAI(){
     const p=players[i];if(p.kickCooldown>0)p.kickCooldown--;
     if(i===controlledIdx&&p.team===0)continue;
     if(p.role==="gk"&&i!==ball.owner){updateGoalkeeper(p);continue;}
-    const aggressive=(p.team===1);const spd=AI_SPEED*(p.team===0?MY_AI_MULT*careerStrengthMod():OPP_AI_MULT)*(p.team===0?1:1);const dir=attackDir(p.team);const myTeamHasBall=owner&&owner.team===p.team;
+    const aggressive=(p.team===1);const myMods=(p.team===0)?(MY_AI_MULT*careerStrengthMod()*moraleMult()*trainingMultForRole(p.role)):OPP_AI_MULT;const spd=AI_SPEED*myMods;const dir=attackDir(p.team);const myTeamHasBall=owner&&owner.team===p.team;
     if(ball.owner<0&&ball.z>6&&Math.hypot(ball.x-p.x,ball.y-p.y)<CATCH_RADIUS+12&&p.kickCooldown===0){const goalY=targetGoalY(p.team);const inAttack=Math.abs(p.y-goalY)<FIELD_H*0.35;headerBall(p.team,inAttack?"b":"a",p);continue;}
     let tx,ty;let goDirect=false;let goingUp=false;
     if(owner&&i===ball.owner){
@@ -625,6 +632,7 @@ function pressAction(action){
     case "STANDINGS": navStandings(action); break;
     case "CALENDAR": navSimpleBack(action); break;
     case "HISTORY": navSimpleBack(action); break;
+    case "TRAINING": navTraining(action); break;
     case "MANAGEMENT": navManagement(action); break;
     case "PROMO": navPromo(action); break;
     case "PENALTY": penaltyInput(action); break;
@@ -741,18 +749,28 @@ function navFormation(action){
   if(formationIndex<0)formationIndex=FORMATION_NAMES.length-1;if(formationIndex>=FORMATION_NAMES.length)formationIndex=0;
 }
 function goToManagement(){state="MANAGEMENT";menuIndex=0;}
-function managementItems(){return ["playMatch","calendar","standings","history","exitToMenu"];}
+function managementItems(){return ["training","playMatch","calendar","standings","history","exitToMenu"];}
 function navManagement(action){
   if(maybeLangToggle(action))return;
   const items=managementItems();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
   else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
     if(c==="playMatch"){startCareerMatch();}
+    else if(c==="training"){state="TRAINING";menuIndex=0;}
     else if(c==="calendar"){state="CALENDAR";}
     else if(c==="standings"){state="STANDINGS";}
     else if(c==="history"){state="HISTORY";}
     else{backToMenu();}
   }
+  if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
+function trainingItems(){return ["trainDef","trainMid","trainAtt"];}
+function trainingRoleFor(key){return key==="trainDef"?"def":key==="trainMid"?"mid":"att";}
+function navTraining(action){
+  if(maybeLangToggle(action))return;const items=trainingItems();
+  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];career.training=trainingRoleFor(c);saveCareer();playSound(680,"square",0.1);goToManagement();}
+  else if(action==="b"){goToManagement();}
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
 }
 function navSimpleBack(action){
@@ -844,6 +862,7 @@ function draw(){
     case "STANDINGS": return drawStandings();
     case "CALENDAR": return drawCalendar();
     case "HISTORY": return drawHistory();
+    case "TRAINING": return drawTraining();
     case "MANAGEMENT": return drawManagement();
     case "PROMO": return drawPromo();
     case "CAREERWIN": return drawCareerWin();
@@ -963,6 +982,16 @@ function drawHistory(){
   }
   ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,314);ctx.textAlign="left";
 }
+function drawTraining(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("training"),160,28);
+  ctx.fillStyle="#8ecdff";ctx.font="bold 9px monospace";wrapText(t("trainChoose"),160,50,280,12);
+  const items=trainingItems();const sel=((menuIndex%items.length)+items.length)%items.length;
+  ctx.font="bold 16px monospace";
+  items.forEach(function(key,i){const y=110+i*40;const role=trainingRoleFor(key);const isCur=(career.training===role);const label=t(key)+(isCur?"  \u2713":"");if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle=isCur?"#00ff88":"#aaa";ctx.fillText(label,160,y);}});
+  ctx.fillStyle="#00ff88";ctx.font="bold 9px monospace";ctx.fillText("+8% "+(lang==="it"?"al reparto per la prossima partita":"to the line for next match"),160,250);
+  ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,300);ctx.textAlign="left";
+}
 function drawStandings(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("standings"),160,13);
@@ -991,22 +1020,27 @@ function drawBuildingIcon(cx,cy,lvl){
 }
 function drawManagement(){
   ctx.fillStyle="#12203a";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
-  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("management"),160,20);
+  ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("management"),160,16);
   const lg=curLeague();const def=LEAGUE_DEFS[lg.defIdx];const me=playerTeamObj();
-  drawBuildingIcon(58,86,career.leagueLevel);
-  ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";
-  ctx.fillText(teamName(me),96,58);
-  ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t(def.key),96,74);
-  ctx.fillStyle="#ffd84a";ctx.font="bold 9px monospace";ctx.fillText(t("seasonN")+" "+career.season,96,90);
-  ctx.textAlign="center";ctx.fillStyle="#ff9a9a";ctx.font="bold 9px monospace";
-  ctx.fillText(t("objective")+": "+objectiveText(career.objective),160,116);
-  if(career.strengthMod>1.001){ctx.fillStyle="#00ff88";ctx.fillText(t("bonusNext"),160,130);}
-  else if(career.strengthMod<0.999){ctx.fillStyle="#ff6060";ctx.fillText(t("malusNext"),160,130);}
-  ctx.fillStyle="#00ff88";ctx.font="bold 8px monospace";ctx.fillText("* "+t("autoSave")+" *",160,144);
-  const items=managementItems();ctx.textAlign="center";ctx.font="bold 13px monospace";
+  drawBuildingIcon(50,72,career.leagueLevel);
+  ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 10px monospace";
+  ctx.fillText(teamName(me),88,44);
+  ctx.fillStyle="#00e5ff";ctx.font="bold 8px monospace";ctx.fillText(t(def.key),88,58);
+  ctx.fillStyle="#ffd84a";ctx.font="bold 8px monospace";ctx.fillText(t("seasonN")+" "+career.season,88,70);
+  ctx.fillStyle="#8ecdff";ctx.font="bold 8px monospace";ctx.fillText(t("morale"),88,84);
+  const bx=132,bw=110,bh=7,by=78;const mor=Math.max(0,Math.min(100,career.morale||50));
+  px(bx,by,bw,bh,"#20304a");const fillW=Math.round(bw*mor/100);const mc=(mor>=66)?"#00ff88":(mor>=33)?"#f2c11e":"#ff6060";px(bx,by,fillW,bh,mc);ctx.strokeStyle="#0a1424";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);
+  ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 8px monospace";ctx.fillText(mor+"",bx+bw+6,by+7);
+  ctx.textAlign="center";ctx.fillStyle="#ff9a9a";ctx.font="bold 8px monospace";
+  ctx.fillText(t("objective")+": "+objectiveText(career.objective),160,102);
+  const trLabel=career.training?(career.training==="def"?t("trainDef"):career.training==="mid"?t("trainMid"):t("trainAtt")):t("trainNone");
+  ctx.fillStyle=career.training?"#00ff88":"#8888aa";ctx.fillText(t("trainedNext")+" "+trLabel,160,114);
+  if(career.strengthMod>1.001){ctx.fillStyle="#00ff88";ctx.fillText(t("bonusNext"),160,126);}
+  else if(career.strengthMod<0.999){ctx.fillStyle="#ff6060";ctx.fillText(t("malusNext"),160,126);}
+  const items=managementItems();ctx.textAlign="center";ctx.font="bold 12px monospace";
   const sel=((menuIndex%items.length)+items.length)%items.length;
-  items.forEach(function(key,i){const y=168+i*26;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
-  ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChooseConfirm"),160,312);ctx.textAlign="left";
+  items.forEach(function(key,i){const y=148+i*25;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
+  ctx.fillStyle="#00ff88";ctx.font="bold 7px monospace";ctx.fillText("* "+t("autoSave")+" *",160,312);ctx.textAlign="left";
 }
 function drawPromo(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
