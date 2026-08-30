@@ -66,8 +66,8 @@ let lang="en"; try{lang=localStorage.getItem(LANG_KEY)||"en";}catch(e){}
 const MUSIC_KEY="crudoFootballMusic";
 let musicOn=true; try{const mv=localStorage.getItem(MUSIC_KEY);if(mv!==null)musicOn=(mv==="1");}catch(e){}
 const I18N={
-it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF"},
-en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF"}
+it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF",calendar:"CALENDARIO",history:"STORICO",objective:"OBIETTIVO",home:"Casa",away:"Trasferta",nextMatch:"Prossima",objTop:"Arriva nei primi",objWin:"Vinci il titolo",objSafe:"Non retrocedere",objMet:"OBIETTIVO RAGGIUNTO!",objFail:"OBIETTIVO FALLITO",bonusNext:"Bonus stagione: +8% forza",malusNext:"Malus stagione: -8% forza",season:"Stagione",pos:"Pos",noHistory:"Nessuna stagione conclusa",vs:"vs"},
+en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF",calendar:"FIXTURES",history:"HISTORY",objective:"OBJECTIVE",home:"Home",away:"Away",nextMatch:"Next",objTop:"Finish in top",objWin:"Win the title",objSafe:"Avoid relegation",objMet:"OBJECTIVE MET!",objFail:"OBJECTIVE FAILED",bonusNext:"Season bonus: +8% strength",malusNext:"Season malus: -8% strength",season:"Season",pos:"Pos",noHistory:"No season completed yet",vs:"vs"}
 };
 function t(k){return (I18N[lang]&&I18N[lang][k])||I18N.en[k]||k;}
 function toggleLang(){lang=(lang==="en")?"it":"en";try{localStorage.setItem(LANG_KEY,lang);}catch(e){}}
@@ -141,6 +141,7 @@ let aiHoldMs=0,aiHoldOwner=-1;
 let countdownMs=0,showInfoOverlay=false,goalFlashMs=0,goalScorerTeam=0,goalFlashStart=0,halfBreakMs=0;
 let pauseIndex=0,splashTime=0;
 let promoOutcome="";
+let objectiveMet=false,objectiveActive=false;
 const move={up:false,down:false,left:false,right:false};
 const keyHeld={a:false,b:false};
 let aPressedFrame=false,bPressedFrame=false,aHoldMs=0,bHoldMs=0;
@@ -173,11 +174,32 @@ function makeLeague(defIdx,teams){return {defIdx:defIdx,teams:teams,table:newTab
 function startNewCareer(playerLeagueIdx,playerTeamUid,kitColId){
   const leagues=[];
   for(let d=0;d<3;d++){const teams=LEAGUE_DEFS[d].teams.map(function(pair,i){return makeTeamObj(pair,"L"+d+"-"+i);});leagues.push(makeLeague(d,teams));}
-  career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitColId};
+  career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitColId,history:[],strengthMod:1.0,leagueSeasons:1,objective:objectiveForLeague(playerLeagueIdx,1)};
   saveCareer();
 }
+function objectiveForLeague(lvl,seasonsInLeague){
+  const s=seasonsInLeague||1;
+  if(lvl===0){ return (s===1)?{type:"top",n:6}:{type:"top",n:3}; }
+  if(lvl===1){ return (s===1)?{type:"safe"}:{type:"top",n:3}; }
+  if(s===1)return {type:"safe"};
+  if(s===2)return {type:"top",n:3};
+  return {type:"win",n:1};
+}
+function objectiveText(obj){
+  if(!obj)return "";
+  if(obj.type==="win")return t("objWin");
+  if(obj.type==="safe")return t("objSafe");
+  return t("objTop")+" "+obj.n;
+}
+function ensureCareerFields(){
+  if(!career)return;
+  if(!career.history)career.history=[];
+  if(typeof career.strengthMod!=="number")career.strengthMod=1.0;
+  if(typeof career.leagueSeasons!=="number")career.leagueSeasons=1;
+  if(!career.objective)career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons);
+}
 function saveCareer(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(career));hasSave=true;}catch(e){}}
-function loadCareer(){try{const raw=localStorage.getItem(SAVE_KEY);if(!raw)return false;career=JSON.parse(raw);return !!career;}catch(e){return false;}}
+function loadCareer(){try{const raw=localStorage.getItem(SAVE_KEY);if(!raw)return false;career=JSON.parse(raw);ensureCareerFields();return !!career;}catch(e){return false;}}
 function deleteCareer(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}hasSave=false;}
 function curLeague(){return career?career.leagues[career.leagueLevel]:null;}
 function teamByUid(lg,uid){return lg.teams.find(function(x){return x.uid===uid;});}
@@ -210,7 +232,16 @@ function finishSeason(){
   else if(lvl===0){ if(playerRank<3){outcome="promoted";} }
   else { if(playerRank<3){outcome="promoted";} else if(playerRank>=order[1].length-3){outcome="relegated";} }
   promoOutcome=outcome;
-  if(outcome==="won"){ saveCareer(); return; }
+  const rank1=playerRank+1;
+  const obj=career.objective||objectiveForLeague(lvl,career.leagueSeasons);
+  if(obj.type==="win")objectiveMet=(rank1===1);
+  else if(obj.type==="safe")objectiveMet=(outcome!=="relegated");
+  else objectiveMet=(rank1<=obj.n);
+  objectiveActive=true;
+  const nextMod=objectiveMet?1.08:0.92;
+  const meTeam=teamByUid(L[lvl],career.playerUid);
+  career.history.push({season:career.season,lvl:lvl,pos:rank1,outcome:outcome,teamEn:meTeam?meTeam.en:"?",teamIt:meTeam?meTeam.it:"?",objMet:objectiveMet});
+  if(outcome==="won"){ career.strengthMod=nextMod; career.season++; career.leagueSeasons=(career.leagueSeasons||1)+1; career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons); saveCareer(); return; }
   function topN(o,n){return o.slice(0,n).map(function(r){return r.uid;});}
   function botN(o,n){return o.slice(o.length-n).map(function(r){return r.uid;});}
   const up01=topN(order[0],3), down10=botN(order[1],3);
@@ -224,6 +255,10 @@ function finishSeason(){
   if(outcome==="promoted")career.leagueLevel=lvl+1;
   else if(outcome==="relegated")career.leagueLevel=lvl-1;
   career.season++;
+  career.strengthMod=nextMod;
+  if(outcome==="promoted"||outcome==="relegated")career.leagueSeasons=1;
+  else career.leagueSeasons=(career.leagueSeasons||1)+1;
+  career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons);
   saveCareer();
 }
 function colorRgb(hex){const n=parseInt(hex.slice(1),16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
@@ -242,7 +277,8 @@ function ownGoalY(team){return defendsBottom(team)?FIELD_H:0;}
 function targetGoalY(team){return defendsBottom(team)?0:FIELD_H;}
 function makePlayer(team,rd,num){return {team:team,role:rd.role,num:num,fx:rd.fx,fy:rd.fy,x:0,y:0,vx:0,vy:0,kickCooldown:0};}
 function teamKit(team){return team===0?playerKit:oppKit;}
-function leagueLevelForMatch(){ return matchMode==="career"?career.leagueLevel:2; }
+function leagueLevelForMatch(){ return matchMode==="career"?career.leagueLevel:selLeagueIdx; }
+function careerStrengthMod(){ return (matchMode==="career"&&career&&typeof career.strengthMod==="number")?career.strengthMod:1.0; }
 function resetFormation(kickTeam){
   players.forEach(function(p){p.x=homeX(p.team,p.fy);p.y=homeY(p.team,p.fx);p.vx=0;p.vy=0;p.kickCooldown=0;});
   ball.x=FIELD_W/2; ball.y=FIELD_H/2; ball.vx=0; ball.vy=0; ball.z=0; ball.vz=0; ball.high=false;
@@ -397,7 +433,7 @@ function updateAI(){
     const p=players[i];if(p.kickCooldown>0)p.kickCooldown--;
     if(i===controlledIdx&&p.team===0)continue;
     if(p.role==="gk"&&i!==ball.owner){updateGoalkeeper(p);continue;}
-    const aggressive=(p.team===1);const spd=AI_SPEED*(p.team===0?MY_AI_MULT:OPP_AI_MULT);const dir=attackDir(p.team);const myTeamHasBall=owner&&owner.team===p.team;
+    const aggressive=(p.team===1);const spd=AI_SPEED*(p.team===0?MY_AI_MULT*careerStrengthMod():OPP_AI_MULT)*(p.team===0?1:1);const dir=attackDir(p.team);const myTeamHasBall=owner&&owner.team===p.team;
     if(ball.owner<0&&ball.z>6&&Math.hypot(ball.x-p.x,ball.y-p.y)<CATCH_RADIUS+12&&p.kickCooldown===0){const goalY=targetGoalY(p.team);const inAttack=Math.abs(p.y-goalY)<FIELD_H*0.35;headerBall(p.team,inAttack?"b":"a",p);continue;}
     let tx,ty;let goDirect=false;let goingUp=false;
     if(owner&&i===ball.owner){
@@ -587,6 +623,8 @@ function pressAction(action){
     case "OPPONENT_SELECT": navOpponent(action); break;
     case "FORMATION_SELECT": navFormation(action); break;
     case "STANDINGS": navStandings(action); break;
+    case "CALENDAR": navSimpleBack(action); break;
+    case "HISTORY": navSimpleBack(action); break;
     case "MANAGEMENT": navManagement(action); break;
     case "PROMO": navPromo(action); break;
     case "PENALTY": penaltyInput(action); break;
@@ -703,16 +741,23 @@ function navFormation(action){
   if(formationIndex<0)formationIndex=FORMATION_NAMES.length-1;if(formationIndex>=FORMATION_NAMES.length)formationIndex=0;
 }
 function goToManagement(){state="MANAGEMENT";menuIndex=0;}
+function managementItems(){return ["playMatch","calendar","standings","history","exitToMenu"];}
 function navManagement(action){
   if(maybeLangToggle(action))return;
-  const items=["playMatch","standings","exitToMenu"];
+  const items=managementItems();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
   else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
     if(c==="playMatch"){startCareerMatch();}
+    else if(c==="calendar"){state="CALENDAR";}
     else if(c==="standings"){state="STANDINGS";}
+    else if(c==="history"){state="HISTORY";}
     else{backToMenu();}
   }
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
+}
+function navSimpleBack(action){
+  if(maybeLangToggle(action))return;
+  if(action==="a"||action==="start"||action==="b"){playSound(500,"square",0.06);goToManagement();}
 }
 function navStandings(action){
   if(maybeLangToggle(action))return;
@@ -797,6 +842,8 @@ function draw(){
     case "OPPONENT_SELECT": return drawOpponentSelect();
     case "FORMATION_SELECT": return drawFormationSelect();
     case "STANDINGS": return drawStandings();
+    case "CALENDAR": return drawCalendar();
+    case "HISTORY": return drawHistory();
     case "MANAGEMENT": return drawManagement();
     case "PROMO": return drawPromo();
     case "CAREERWIN": return drawCareerWin();
@@ -859,6 +906,63 @@ function drawOpponentSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);
 function drawFormationSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseFormation"),160,24);ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(teamName(playerTeamObjOrSingle()),160,42);ctx.font="bold 13px monospace";FORMATION_NAMES.forEach(function(name,i){const y=70+i*24;ctx.textAlign="left";ctx.fillStyle=(i===formationIndex)?"#ffe23a":"#ffffff";ctx.fillText((i===formationIndex?"> ":"  ")+name,40,y);});drawFormationPreview(FORMATION_NAMES[formationIndex],210,66,90,180);ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,306);ctx.textAlign="left";}
 function playerTeamObjOrSingle(){return matchMode==="career"?playerTeamObj():homeTeamObj;}
 function drawFormationPreview(name,bx,by,bw,bh){px(bx,by,bw,bh,"#279a3d");ctx.strokeStyle="rgba(255,255,255,0.7)";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.beginPath();ctx.moveTo(bx,by+bh/2);ctx.lineTo(bx+bw,by+bh/2);ctx.stroke();ctx.beginPath();ctx.arc(bx+bw/2,by+bh/2,10,0,Math.PI*2);ctx.stroke();const form=buildFormation(name);const kc=(matchMode==="career")?kitFromColor(career.kitColId):(playerKit||AZZURRO_KIT);form.forEach(function(pl){const px_=bx+pl.fy*bw,py_=by+bh-(pl.fx*bh*1.8);ctx.fillStyle=(pl.role==="gk")?"#ffe23a":kc.c1;ctx.beginPath();ctx.arc(px_,Math.max(by+4,Math.min(by+bh-4,py_)),3,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#000";ctx.stroke();});}
+function upcomingPlayerMatches(maxN){
+  const lg=curLeague();const out=[];
+  for(let r=lg.round;r<lg.fixtures.length&&out.length<maxN;r++){
+    const rd=lg.fixtures[r];if(!rd)continue;
+    for(const m of rd){ if(!m.played&&(m.h===career.playerUid||m.a===career.playerUid)){ out.push({round:r,m:m}); break; } }
+  }
+  return out;
+}
+function drawCalendar(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("calendar"),160,26);
+  const lg=curLeague();const list=upcomingPlayerMatches(4);
+  if(list.length===0){ctx.fillStyle="#aaa";ctx.font="bold 11px monospace";ctx.fillText("-",160,120);ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";return;}
+  for(let i=0;i<list.length;i++){
+    const it=list[i];const m=it.m;const isHome=(m.h===career.playerUid);
+    const oppUid=isHome?m.a:m.h;const opp=teamByUid(lg,oppUid);
+    const y=64+i*54;const first=(i===0);
+    ctx.textAlign="center";
+    if(first){ctx.fillStyle="rgba(0,229,255,0.14)";ctx.fillRect(14,y-20,292,46);ctx.strokeStyle="#00e5ff";ctx.lineWidth=1;ctx.strokeRect(14,y-20,292,46);}
+    ctx.fillStyle=first?"#00e5ff":"#8ecdff";ctx.font="bold 9px monospace";
+    ctx.fillText(t("matchDay")+" "+(it.round+1)+(first?"  -  "+t("nextMatch"):""),160,y-6);
+    ctx.fillStyle=first?"#ffffff":"#ddd";ctx.font="bold 12px monospace";
+    ctx.fillText(teamName(opp),160,y+10);
+    ctx.fillStyle=isHome?"#00ff88":"#ffb060";ctx.font="bold 9px monospace";
+    ctx.fillText(isHome?t("home"):t("away"),160,y+22);
+  }
+  ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,314);ctx.textAlign="left";
+}
+function historyOutcomeText(o){
+  if(o==="promoted")return t("promoted");
+  if(o==="relegated")return t("relegated");
+  if(o==="won")return t("careerWin");
+  return t("stayed");
+}
+function historyOutcomeColor(o){
+  if(o==="promoted")return "#00ff88";
+  if(o==="relegated")return "#ff6060";
+  if(o==="won")return "#ffd84a";
+  return "#e8e860";
+}
+function drawHistory(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("history"),160,24);
+  const h=(career&&career.history)?career.history:[];
+  if(h.length===0){ctx.fillStyle="#aaa";ctx.font="bold 10px monospace";ctx.fillText(t("noHistory"),160,120);ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";return;}
+  ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle="#8ecdff";
+  ctx.fillText(t("season"),8,40);ctx.fillText("Lega",56,40);ctx.textAlign="right";ctx.fillText(t("pos"),150,40);ctx.textAlign="left";ctx.fillText("Esito",166,40);
+  const rows=h.slice().reverse();const maxRows=15;const rowH=17,top=56;
+  for(let i=0;i<rows.length&&i<maxRows;i++){
+    const r=rows[i];const y=top+i*rowH;
+    ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 8px monospace";ctx.fillText("#"+r.season,8,y);
+    ctx.fillStyle="#8ecdff";ctx.fillText(t(LEAGUE_DEFS[r.lvl].key).replace(" League","").slice(0,10),56,y);
+    ctx.textAlign="right";ctx.fillStyle=r.objMet?"#00ff88":"#dddddd";ctx.fillText(r.pos+"\u00B0",150,y);
+    ctx.textAlign="left";ctx.fillStyle=historyOutcomeColor(r.outcome);ctx.fillText(historyOutcomeText(r.outcome),166,y);
+  }
+  ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,314);ctx.textAlign="left";
+}
 function drawStandings(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("standings"),160,13);
@@ -887,28 +991,36 @@ function drawBuildingIcon(cx,cy,lvl){
 }
 function drawManagement(){
   ctx.fillStyle="#12203a";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
-  ctx.fillStyle="#f8d820";ctx.font="bold 16px monospace";ctx.fillText(t("management"),160,26);
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("management"),160,20);
   const lg=curLeague();const def=LEAGUE_DEFS[lg.defIdx];const me=playerTeamObj();
-  drawBuildingIcon(70,120,career.leagueLevel);
+  drawBuildingIcon(58,86,career.leagueLevel);
   ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";
-  ctx.fillText(teamName(me),108,96);
-  ctx.fillStyle="#00e5ff";ctx.font="bold 10px monospace";ctx.fillText(t(def.key),108,116);
-  ctx.fillStyle="#8ecdff";ctx.font="bold 9px monospace";ctx.fillText(t(def.lvl),108,132);
-  ctx.fillStyle="#ffd84a";ctx.font="bold 10px monospace";ctx.fillText(t("seasonN")+" "+career.season,108,150);
-  ctx.textAlign="center";ctx.fillStyle="#00ff88";ctx.font="bold 9px monospace";
-  ctx.fillText("* "+t("autoSave")+" *",160,176);
-  const items=["playMatch","standings","exitToMenu"];ctx.textAlign="center";ctx.font="bold 14px monospace";
+  ctx.fillText(teamName(me),96,58);
+  ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t(def.key),96,74);
+  ctx.fillStyle="#ffd84a";ctx.font="bold 9px monospace";ctx.fillText(t("seasonN")+" "+career.season,96,90);
+  ctx.textAlign="center";ctx.fillStyle="#ff9a9a";ctx.font="bold 9px monospace";
+  ctx.fillText(t("objective")+": "+objectiveText(career.objective),160,116);
+  if(career.strengthMod>1.001){ctx.fillStyle="#00ff88";ctx.fillText(t("bonusNext"),160,130);}
+  else if(career.strengthMod<0.999){ctx.fillStyle="#ff6060";ctx.fillText(t("malusNext"),160,130);}
+  ctx.fillStyle="#00ff88";ctx.font="bold 8px monospace";ctx.fillText("* "+t("autoSave")+" *",160,144);
+  const items=managementItems();ctx.textAlign="center";ctx.font="bold 13px monospace";
   const sel=((menuIndex%items.length)+items.length)%items.length;
-  items.forEach(function(key,i){const y=200+i*30;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
-  ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChooseConfirm"),160,314);ctx.textAlign="left";
+  items.forEach(function(key,i){const y=168+i*26;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
+  ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChooseConfirm"),160,312);ctx.textAlign="left";
 }
 function drawPromo(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 16px monospace";ctx.fillText(t("seasonEnd"),160,40);
   let msg,col;if(promoOutcome==="promoted"){msg=t("promoted");col="#00ff88";}else if(promoOutcome==="relegated"){msg=t("relegated");col="#ff6060";}else if(promoOutcome==="won"){msg=t("careerWin");col="#ffd84a";}else{msg=t("stayed");col="#e8e860";}
-  ctx.fillStyle=col;ctx.font="bold 20px monospace";ctx.fillText(msg,160,150);
-  drawBigFootballer(160,250,1.5,(career?kitFromColor(career.kitColId):AZZURRO_KIT),(promoOutcome==="relegated")?"idle":"celebrate");
-  ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";
+  ctx.fillStyle=col;ctx.font="bold 20px monospace";ctx.fillText(msg,160,140);
+  if(objectiveActive){
+    ctx.font="bold 12px monospace";ctx.fillStyle=objectiveMet?"#00ff88":"#ff6060";
+    ctx.fillText(objectiveMet?t("objMet"):t("objFail"),160,172);
+    ctx.font="bold 9px monospace";ctx.fillStyle=objectiveMet?"#8effc0":"#ffb0b0";
+    ctx.fillText(objectiveMet?t("bonusNext"):t("malusNext"),160,188);
+  }
+  drawBigFootballer(160,258,1.4,(career?kitFromColor(career.kitColId):AZZURRO_KIT),(promoOutcome==="relegated")?"idle":"celebrate");
+  ctx.fillStyle="#00e5ff";ctx.font="bold 11px monospace";ctx.fillText(t("continueA"),160,304);ctx.textAlign="left";
 }
 function drawCareerWin(){const t2=splashTime;ctx.fillStyle="#1a2a5a";ctx.fillRect(0,0,320,320);for(let i=0;i<40;i++){const cx=(i*97+Math.floor(t2/30)*(i%3+1))%320,cy=(i*53+Math.floor(t2/20)*(i%2+1))%280+10;const colors=["#ffd84a","#ff5555","#44ddaa","#8844ff","#ffffff"];px(cx,cy,3,3,colors[i%colors.length]);}ctx.textAlign="center";ctx.fillStyle="#ffd84a";ctx.font="bold 20px monospace";ctx.fillText(t("careerWin"),160,54);drawBigFootballer(160,210,1.8,(career?kitFromColor(career.kitColId):AZZURRO_KIT),"celebrate");ctx.fillStyle="#ffffff";ctx.font="bold 10px monospace";wrapText(t("careerWinMsg"),160,258,300,14);ctx.fillStyle="#888";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,308);ctx.textAlign="left";}
 let lastTime=performance.now();
