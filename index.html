@@ -108,12 +108,12 @@ function playWhistle(){ playSound(2100,"square",0.12); setTimeout(function(){pla
 function playGoalJingle(){ playSound(660,"triangle",0.12); setTimeout(function(){playSound(880,"triangle",0.12);},120); setTimeout(function(){playSound(1100,"triangle",0.2);},240); }
 function playKick(){ playSound(180,"square",0.05); }
 let musicGain=null,musicTimer=null,musicStep=0;
-const MUSIC_LEAD=[523,659,784,659,523,587,659,587,523,494,440,494,523,659,784,880,784,659,587,523,494,440,392,440];
-const MUSIC_BASS=[131,131,196,196,131,131,165,165,110,110,147,147,131,131,196,196,110,110,147,147,131,131,98,98];
-const MUSIC_STEP_MS=220;
-function ensureMusicGain(){ if(!audioCtx)return null; if(!musicGain){ musicGain=audioCtx.createGain(); musicGain.gain.setValueAtTime(0.05,audioCtx.currentTime); musicGain.connect(audioCtx.destination);} return musicGain; }
-function musicNote(freq,type,dur,vol){ if(!audioCtx||!musicGain)return; const osc=audioCtx.createOscillator(),g=audioCtx.createGain(); osc.type=type; osc.frequency.setValueAtTime(freq,audioCtx.currentTime); g.gain.setValueAtTime(0,audioCtx.currentTime); g.gain.linearRampToValueAtTime(vol,audioCtx.currentTime+0.02); g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+dur); osc.connect(g); g.connect(musicGain); osc.start(); osc.stop(audioCtx.currentTime+dur+0.02); }
-function musicTickStep(){ if(!musicOn){stopMusic();return;} const lead=MUSIC_LEAD[musicStep%MUSIC_LEAD.length]; const bass=MUSIC_BASS[musicStep%MUSIC_BASS.length]; musicNote(lead,"square",0.18,0.6); if(musicStep%2===0)musicNote(bass,"triangle",0.22,0.9); musicStep=(musicStep+1)%MUSIC_LEAD.length; }
+const MUSIC_LEAD=[392,523,659,523,440,587,523,440,349,440,523,440,392,494,587,494,392,523,440,392];
+const MUSIC_BASS=[131,131,147,147,110,110,131,131,117,117,110,110,98,98,110,110,131,131,110,110];
+const MUSIC_STEP_MS=430;
+function ensureMusicGain(){ if(!audioCtx)return null; if(!musicGain){ musicGain=audioCtx.createGain(); musicGain.gain.setValueAtTime(0.022,audioCtx.currentTime); musicGain.connect(audioCtx.destination);} return musicGain; }
+function musicNote(freq,type,dur,vol){ if(!audioCtx||!musicGain)return; const osc=audioCtx.createOscillator(),g=audioCtx.createGain(); osc.type=type; osc.frequency.setValueAtTime(freq,audioCtx.currentTime); g.gain.setValueAtTime(0,audioCtx.currentTime); g.gain.linearRampToValueAtTime(vol,audioCtx.currentTime+0.06); g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+dur); osc.connect(g); g.connect(musicGain); osc.start(); osc.stop(audioCtx.currentTime+dur+0.02); }
+function musicTickStep(){ if(!musicOn){stopMusic();return;} const lead=MUSIC_LEAD[musicStep%MUSIC_LEAD.length]; const bass=MUSIC_BASS[musicStep%MUSIC_BASS.length]; musicNote(lead,"triangle",0.55,0.5); if(musicStep%2===0)musicNote(bass,"sine",0.7,0.6); musicStep=(musicStep+1)%MUSIC_LEAD.length; }
 function startMusic(){ if(!musicOn)return; initAudio(); ensureMusicGain(); if(musicTimer)return; musicTickStep(); musicTimer=setInterval(musicTickStep,MUSIC_STEP_MS); }
 function stopMusic(){ if(musicTimer){clearInterval(musicTimer);musicTimer=null;} }
 function isMenuState(){ return state!=="PLAYING"&&state!=="COUNTDOWN"&&state!=="HALFTIME"&&state!=="PAUSE"&&state!=="FULLTIME"&&state!=="PENALTY"; }
@@ -226,8 +226,12 @@ function finishSeason(){
   career.season++;
   saveCareer();
 }
+function colorRgb(hex){const n=parseInt(hex.slice(1),16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
+function colorDistance(h1,h2){const a=colorRgb(h1),b=colorRgb(h2);const dr=a.r-b.r,dg=a.g-b.g,db=a.b-b.b;return Math.sqrt(dr*dr+dg*dg+db*db);}
 function randomOppKitColId(playerColId){
-  const pool=KIT_COLORS.filter(function(k){return k.id!==playerColId;});
+  const myKc=KIT_COLORS.find(function(k){return k.id===playerColId;})||KIT_COLORS[0];
+  let pool=KIT_COLORS.filter(function(k){return k.id!==playerColId&&colorDistance(k.c,myKc.c)>=90;});
+  if(pool.length===0)pool=KIT_COLORS.filter(function(k){return k.id!==playerColId;});
   return pool[rngInt(0,pool.length-1)].id;
 }
 function defendsBottom(team){ if(team===0) return (playerSide===0); return (playerSide!==0); }
