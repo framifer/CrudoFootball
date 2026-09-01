@@ -718,7 +718,7 @@ function updateAI(){
       const carrier=owner;const distCarrier=Math.hypot(carrier.x-p.x,carrier.y-p.y);const rank=closenessRank(p.team,i,carrier);const isChaser=rank<=chasersFor(p.team);const tackleRange=aggressive?CATCH_RADIUS+3:CATCH_RADIUS+4;const tackleChance=aggressive?0.13:0.24;
       // PUNTO 2: quando la MIA squadra (team 0) attacca, il difensore avversario a contatto
       // commette fallo con probabilita' 35% -> punizione/rigore a mio favore.
-      if(aggressive&&carrier.team===0&&isChaser&&distCarrier<tackleRange+2&&p.kickCooldown===0&&rng()<0.35){p.kickCooldown=30;awardFoul(1,carrier.x,carrier.y);return;}
+      if(aggressive&&carrier.team===0&&isChaser&&distCarrier<tackleRange+2&&p.kickCooldown===0&&rng()<(1/800)){p.kickCooldown=30;awardFoul(1,carrier.x,carrier.y);return;}
       if(isChaser&&distCarrier<tackleRange&&p.kickCooldown===0&&rng()<tackleChance){ball.owner=i;ball.vx=0;ball.vy=0;ball.high=false;carrier.kickCooldown=18;playSound(140,"square",0.06);continue;}
       // PUNTO 3: se io (team 0) attacco, la DIFESA avversaria (team 1) si organizza:
       //  2 difensori seguono le mie ali (dx/sx), 1 pressa il portatore, 1 arretra
@@ -906,7 +906,36 @@ function awardFoul(foulingTeam,fx,fy){
   for(let i=0;i<players.length;i++){const pl=players[i];if(pl.team!==victimTeam||pl.role==="gk")continue;const d=Math.hypot(pl.x-spotX,pl.y-spotY);if(d<bestD){bestD=d;kickerIdx=i;}}
   if(kickerIdx<0)return;
   players[kickerIdx].x=spotX;players[kickerIdx].y=spotY;ball.x=spotX;ball.y=spotY+attackDir(victimTeam)*7;ball.vx=0;ball.vy=0;ball.high=false;ball.z=0;ball.vz=0;ball.owner=kickerIdx;ball.lastTouch=victimTeam;controlledIfMine(kickerIdx,victimTeam);
-  const kind=(inBoxY&&inBoxX)?"penalty":"freekick";playWhistle();beginSetPiece(kind,kickerIdx,victimTeam);
+  const kind=(inBoxY&&inBoxX)?"penalty":"freekick";
+  // PUNIZIONE A MIO FAVORE: disponi 2 ali a meta' strada, 1 supporto affianco e libera il cono davanti
+  if(kind==="freekick"&&victimTeam===0){ arrangeMyFreekick(kickerIdx); }
+  playWhistle();beginSetPiece(kind,kickerIdx,victimTeam);
+}
+// Dispone i miei giocatori per una punizione battuta da me (kickerIdx = battitore della squadra 0):
+//  - 2 giocatori sulle fasce (dx/sx), a meta' strada tra il battitore e la linea difensiva avversaria
+//  - 1 giocatore di supporto proprio affianco al battitore
+//  - libera il "cono" davanti al battitore verso la porta (sposta di lato gli avversari sulla linea di tiro)
+function arrangeMyFreekick(kickerIdx){
+  const kicker=players[kickerIdx];if(!kicker)return;
+  const dir=attackDir(0);                       // verso la porta che attacco
+  const lineY=oppDefenceLineY(0);               // Y della linea difensiva avversaria
+  const midY=(kicker.y+lineY)/2;                // meta' strada tra me e la linea
+  // candidati miei (movimento, non gk, non il battitore) ordinati per avanzamento
+  const mates=[];for(let i=0;i<players.length;i++){const p=players[i];if(p.team!==0||p.role==="gk"||i===kickerIdx)continue;mates.push(i);}
+  mates.sort(function(a,b){return Math.abs(players[a].y-lineY)-Math.abs(players[b].y-lineY);});
+  // ala destra e ala sinistra a meta' strada
+  if(mates.length>0){const p=players[mates[0]];p.x=FIELD_W*0.86;p.y=Math.max(6,Math.min(FIELD_H-6,midY));p.vx=0;p.vy=0;p.kickCooldown=0;}
+  if(mates.length>1){const p=players[mates[1]];p.x=FIELD_W*0.14;p.y=Math.max(6,Math.min(FIELD_H-6,midY));p.vx=0;p.vy=0;p.kickCooldown=0;}
+  // supporto affianco al battitore (a destra se c'e' spazio, altrimenti a sinistra)
+  if(mates.length>2){const p=players[mates[2]];const sideX=(kicker.x<FIELD_W-70)?(kicker.x+50):(kicker.x-50);p.x=Math.max(6,Math.min(FIELD_W-6,sideX));p.y=Math.max(6,Math.min(FIELD_H-6,kicker.y+dir*4));p.vx=0;p.vy=0;p.kickCooldown=0;}
+  // libera il cono davanti a me: sposta lateralmente gli avversari (non gk) che sono davanti ed entro ~200px
+  for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==1||q.role==="gk")continue;
+    const ahead=(q.y-kicker.y)*dir;              // >0 = davanti verso la porta
+    if(ahead<=0||ahead>FIELD_H*0.28)continue;    // solo chi e' davanti ed entro ~200px
+    if(Math.abs(q.x-kicker.x)>70)continue;       // solo chi e' sulla linea di tiro (cono stretto)
+    const push=(q.x<=kicker.x)?-90:90;           // spostalo dal lato piu' vicino, fuori dal cono
+    q.x=Math.max(6,Math.min(FIELD_W-6,q.x+push));q.vx=0;q.vy=0;q.kickCooldown=0;
+  }
 }
 function controlledIfMine(idx,team){if(team===0)controlledIdx=idx;}
 // Recupero al contatto: se il portatore e' avversario e un mio giocatore di movimento
