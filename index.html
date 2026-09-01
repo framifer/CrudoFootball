@@ -66,18 +66,24 @@ let lang="en"; try{lang=localStorage.getItem(LANG_KEY)||"en";}catch(e){}
 const MUSIC_KEY="crudoFootballMusic";
 let musicOn=true; try{const mv=localStorage.getItem(MUSIC_KEY);if(mv!==null)musicOn=(mv==="1");}catch(e){}
 const I18N={
-it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF",calendar:"CALENDARIO",history:"STORICO",objective:"OBIETTIVO",home:"Casa",away:"Trasferta",nextMatch:"Prossima",objTop:"Arriva nei primi",objWin:"Vinci il titolo",objSafe:"Non retrocedere",objMet:"OBIETTIVO RAGGIUNTO!",objFail:"OBIETTIVO FALLITO",bonusNext:"Bonus stagione: +8% forza",malusNext:"Malus stagione: -8% forza",season:"Stagione",pos:"Pos",noHistory:"Nessuna stagione conclusa",vs:"vs",morale:"MORALE",training:"ALLENAMENTO",trainDef:"DIFESA",trainMid:"CENTROCAMPO",trainAtt:"ATTACCO",trainChoose:"Alleni un reparto per la prossima partita",trainSet:"Allenamento impostato!",trainNone:"Nessuno",trainedNext:"Allenato:",rules:"REGOLE",rulesScroll:"Su/Giu = scorri   B = indietro",kitStyle:"STILE MAGLIA",kitSolid:"TINTA UNITA",kitStripes:"A RIGHE",kitColor1:"COLORE 1",kitColor2:"COLORE 2",kitColorSingle:"COLORE MAGLIA",budget:"Budget",stadium:"STADIO",squad:"ROSA",market:"CALCIO MERCATO",secGk:"Portiere",secDef:"Difensori",secMid:"Centrocampisti",secAtt:"Attaccanti",upgrade:"MIGLIORA",income:"Introito/partita",price:"Prezzo",notEnough:"Budget insufficiente",maxLevel:"LIVELLO MASSIMO",unlockNext:"Sbloccato salendo di lega",careerWinTitle:"CAMPIONE NAZIONALE!",continueCareerOpt:"CONTINUA CARRIERA",newCareerOpt:"NUOVA CARRIERA",maxSquad:"AL MASSIMO",buy5:"A = +5%",intlCup:"INTERNATIONAL CUP",cupChampion:"HAI VINTO LA COPPA!",cupOut:"ELIMINATO DALLA COPPA",cupNextMatch:"Prossima partita di coppa",cupVs:"contro"},
-en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF",calendar:"FIXTURES",history:"HISTORY",objective:"OBJECTIVE",home:"Home",away:"Away",nextMatch:"Next",objTop:"Finish in top",objWin:"Win the title",objSafe:"Avoid relegation",objMet:"OBJECTIVE MET!",objFail:"OBJECTIVE FAILED",bonusNext:"Season bonus: +8% strength",malusNext:"Season malus: -8% strength",season:"Season",pos:"Pos",noHistory:"No season completed yet",vs:"vs",morale:"MORALE",training:"TRAINING",trainDef:"DEFENCE",trainMid:"MIDFIELD",trainAtt:"ATTACK",trainChoose:"Train a line for the next match",trainSet:"Training set!",trainNone:"None",trainedNext:"Trained:",rules:"RULES",rulesScroll:"Up/Down = scroll   B = back",kitStyle:"KIT STYLE",kitSolid:"SOLID",kitStripes:"STRIPES",kitColor1:"COLOR 1",kitColor2:"COLOR 2",kitColorSingle:"KIT COLOR",budget:"Budget",stadium:"STADIUM",squad:"SQUAD",market:"TRANSFER MARKET",secGk:"Goalkeeper",secDef:"Defenders",secMid:"Midfielders",secAtt:"Forwards",upgrade:"UPGRADE",income:"Income/match",price:"Price",notEnough:"Not enough budget",maxLevel:"MAX LEVEL",unlockNext:"Unlocked by promotion",careerWinTitle:"NATIONAL CHAMPION!",continueCareerOpt:"CONTINUE CAREER",newCareerOpt:"NEW CAREER",maxSquad:"MAXED",buy5:"A = +5%",intlCup:"INTERNATIONAL CUP",cupChampion:"YOU WON THE CUP!",cupOut:"KNOCKED OUT OF THE CUP",cupNextMatch:"Next cup match",cupVs:"vs"}
+it:{title:"CRUDO FOOTBALL",pressStart:"Premi START",career:"CARRIERA",singleMatch:"PARTITA SINGOLA",continueCareer:"CONTINUA CARRIERA",newCareer:"NUOVA CARRIERA",chooseLeagueTeam:"SCEGLI LA SQUADRA",chooseKit:"SCEGLI IL COLORE",chooseOpponent:"SCEGLI AVVERSARIO",chooseLeague:"SCEGLI LA LEGA",chooseOppLeague:"LEGA AVVERSARIO",chooseFormation:"SCEGLI IL MODULO",management:"DIRIGENZA",standings:"CLASSIFICA",colPlayed:"G",colWon:"V",colDrawn:"P",colLost:"S",colGf:"GF",colGs:"GS",colPts:"Pti",colTeam:"Squadra",matchDay:"Giornata",playMatch:"A = GIOCA",promoted:"PROMOSSA!",relegated:"RETROCESSA!",stayed:"RESTA NELLA LEGA",careerWin:"HAI VINTO IL CAMPIONATO!",careerWinMsg:"Sei arrivato primo nella National League! CAMPIONE ASSOLUTO!",seasonEnd:"FINE STAGIONE",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Livello Base",lvlInter:"Livello Intermedio",lvlElite:"Livello Elite",seasonN:"Campionato n.",exitToMenu:"ESCI AL MENU",pause:"PAUSA",resume:"RIPRENDI",fullTime:"FINE PARTITA!",halfTime:"INTERVALLO",firstHalf:"1\u00B0 TEMPO",secondHalf:"2\u00B0 TEMPO",result:"Risultato",matchInfo:"INFO PARTITA",timeLeft:"Tempo restante",navChoose:"Frecce = scegli   A = conferma",navChooseConfirm:"Frecce = scegli   A/START = conferma",navTeamHint:"Frecce = scegli  A = ok  B = indietro",navBack:"B/SELECT = indietro",continueA:"A per continuare",langLabel:"LINGUA",toggleLangHint:"SELECT = English",go:"VIA",goal:"GOOOL!",win:"VITTORIA!",draw:"PAREGGIO",loss:"SCONFITTA",penaltiesOpt:"TIRA I RIGORI",keepDraw:"FINISCI IN PAREGGIO",penalties:"RIGORI",toManagement:"A = DIRIGENZA / PROSSIMA",saved:"Carriera salvata!",autoSave:"Salvataggio automatico",musicOn:"MUSICA: ON",musicOff:"MUSICA: OFF",calendar:"CALENDARIO",history:"STORICO",objective:"OBIETTIVO",home:"Casa",away:"Trasferta",nextMatch:"Prossima",objTop:"Arriva nei primi",objWin:"Vinci il titolo",objSafe:"Non retrocedere",objMet:"OBIETTIVO RAGGIUNTO!",objFail:"OBIETTIVO FALLITO",bonusNext:"Bonus stagione: +8% forza",malusNext:"Malus stagione: -8% forza",season:"Stagione",pos:"Pos",noHistory:"Nessuna stagione conclusa",vs:"vs",morale:"MORALE",training:"ALLENAMENTO",trainDef:"DIFESA",trainMid:"CENTROCAMPO",trainAtt:"ATTACCO",trainChoose:"Alleni un reparto per la prossima partita",trainSet:"Allenamento impostato!",trainNone:"Nessuno",trainedNext:"Allenato:",rules:"REGOLE",rulesScroll:"Su/Giu = scorri   B = indietro",kitStyle:"STILE MAGLIA",kitSolid:"TINTA UNITA",kitStripes:"A RIGHE",kitColor1:"COLORE 1",kitColor2:"COLORE 2",kitColorSingle:"COLORE MAGLIA",budget:"Budget",stadium:"STADIO",squad:"ROSA",market:"CALCIO MERCATO",secGk:"Portiere",secDef:"Difensori",secMid:"Centrocampisti",secAtt:"Attaccanti",upgrade:"MIGLIORA",income:"Introito/partita",price:"Prezzo",notEnough:"Budget insufficiente",maxLevel:"LIVELLO MASSIMO",unlockNext:"Sbloccato salendo di lega",careerWinTitle:"CAMPIONE NAZIONALE!",continueCareerOpt:"CONTINUA CARRIERA",newCareerOpt:"NUOVA CARRIERA",maxSquad:"AL MASSIMO",buy5:"A = +5%",intlCup:"INTERNATIONAL CUP",cupChampion:"HAI VINTO LA COPPA!",cupOut:"ELIMINATO DALLA COPPA",cupNextMatch:"Prossima partita di coppa",cupVs:"contro",marketMenu:"CALCIO MERCATO",marketOpen:"MERCATO APERTO",marketClosed:"MERCATO CHIUSO",marketWindows:"Aperto: giornate 1-3 e 11-13"},
+en:{title:"CRUDO FOOTBALL",pressStart:"Press START",career:"CAREER",singleMatch:"SINGLE MATCH",continueCareer:"CONTINUE CAREER",newCareer:"NEW CAREER",chooseLeagueTeam:"CHOOSE TEAM",chooseKit:"CHOOSE KIT COLOR",chooseOpponent:"CHOOSE OPPONENT",chooseLeague:"CHOOSE LEAGUE",chooseOppLeague:"OPPONENT LEAGUE",chooseFormation:"CHOOSE FORMATION",management:"MANAGEMENT",standings:"STANDINGS",colPlayed:"P",colWon:"W",colDrawn:"D",colLost:"L",colGf:"GF",colGs:"GA",colPts:"Pts",colTeam:"Team",matchDay:"Matchday",playMatch:"A = PLAY",promoted:"PROMOTED!",relegated:"RELEGATED!",stayed:"STAYS IN LEAGUE",careerWin:"YOU WON THE TITLE!",careerWinMsg:"You finished 1st in the National League! ABSOLUTE CHAMPION!",seasonEnd:"SEASON END",league1:"Regional League",league2:"Interregional League",league3:"National League",lvlBase:"Base Level",lvlInter:"Intermediate Level",lvlElite:"Elite Level",seasonN:"Season no.",exitToMenu:"EXIT TO MENU",pause:"PAUSE",resume:"RESUME",fullTime:"FULL TIME!",halfTime:"HALF TIME",firstHalf:"1ST HALF",secondHalf:"2ND HALF",result:"Result",matchInfo:"MATCH INFO",timeLeft:"Time left",navChoose:"Arrows = move   A = confirm",navChooseConfirm:"Arrows = move   A/START = confirm",navTeamHint:"Arrows = move  A = ok  B = back",navBack:"B/SELECT = back",continueA:"Press A to continue",langLabel:"LANGUAGE",toggleLangHint:"SELECT = Italiano",go:"GO",goal:"GOOOAL!",win:"WIN!",draw:"DRAW",loss:"DEFEAT",penaltiesOpt:"PENALTY SHOOTOUT",keepDraw:"END IN A DRAW",penalties:"PENALTIES",toManagement:"A = MANAGEMENT / NEXT",saved:"Career saved!",autoSave:"Auto-save",musicOn:"MUSIC: ON",musicOff:"MUSIC: OFF",calendar:"FIXTURES",history:"HISTORY",objective:"OBJECTIVE",home:"Home",away:"Away",nextMatch:"Next",objTop:"Finish in top",objWin:"Win the title",objSafe:"Avoid relegation",objMet:"OBJECTIVE MET!",objFail:"OBJECTIVE FAILED",bonusNext:"Season bonus: +8% strength",malusNext:"Season malus: -8% strength",season:"Season",pos:"Pos",noHistory:"No season completed yet",vs:"vs",morale:"MORALE",training:"TRAINING",trainDef:"DEFENCE",trainMid:"MIDFIELD",trainAtt:"ATTACK",trainChoose:"Train a line for the next match",trainSet:"Training set!",trainNone:"None",trainedNext:"Trained:",rules:"RULES",rulesScroll:"Up/Down = scroll   B = back",kitStyle:"KIT STYLE",kitSolid:"SOLID",kitStripes:"STRIPES",kitColor1:"COLOR 1",kitColor2:"COLOR 2",kitColorSingle:"KIT COLOR",budget:"Budget",stadium:"STADIUM",squad:"SQUAD",market:"TRANSFER MARKET",secGk:"Goalkeeper",secDef:"Defenders",secMid:"Midfielders",secAtt:"Forwards",upgrade:"UPGRADE",income:"Income/match",price:"Price",notEnough:"Not enough budget",maxLevel:"MAX LEVEL",unlockNext:"Unlocked by promotion",careerWinTitle:"NATIONAL CHAMPION!",continueCareerOpt:"CONTINUE CAREER",newCareerOpt:"NEW CAREER",maxSquad:"MAXED",buy5:"A = +5%",intlCup:"INTERNATIONAL CUP",cupChampion:"YOU WON THE CUP!",cupOut:"KNOCKED OUT OF THE CUP",cupNextMatch:"Next cup match",cupVs:"vs",marketMenu:"TRANSFER MARKET",marketOpen:"MARKET OPEN",marketClosed:"MARKET CLOSED",marketWindows:"Open: matchdays 1-3 and 11-13"}
 };
 function t(k){return (I18N[lang]&&I18N[lang][k])||I18N.en[k]||k;}
+// ---- Testo REGOLE (paragrafi per lingua). "" = riga vuota ----
 const RULES_TEXT={
 it:[
 "COME SI GIOCA - CARRIERA","",
-"Inizio: Scegli una squadra tra quelle della Regional League e il colore della tua maglia (resta fisso per tutta la carriera).","",
-"Dirigenza: Dal menu della tua societa puoi: allenare un reparto (Difesa/Centrocampo/Attacco) per un bonus nella prossima partita; vedere l'obiettivo assegnato dalla societa; controllare classifica, calendario e storico; e il morale della squadra, che sale con le vittorie e scende con le sconfitte, influenzando la forza in campo.","",
-"Il campionato: Giochi le tue partite di andata e ritorno. A fine stagione, se arrivi tra le prime 3 vieni promosso (Regional > Interregional > National); se finisci tra le ultime 3 retrocedi.","",
-"Obiettivo societa: Ogni stagione la societa ti da un traguardo. Raggiungerlo da un bonus alla stagione dopo, se fallisci riceverai un malus.","",
-"Vittoria finale: Quando vinci il campionato della National League, hai vinto il gioco!","",
+"Inizio: Scegli una squadra della Regional League, lo stile della maglia (tinta unita o a righe) e i colori. La maglia resta per tutta la carriera.","",
+"Dirigenza: Dal menu della societa gestisci tutto: giochi le partite, alleni un reparto, compri al mercato, migliori lo stadio e controlli classifica, calendario, storico e budget.","",
+"Il campionato: Partite di andata e ritorno. A fine stagione le prime 3 salgono (Regional > Interregional > National), le ultime 3 scendono. Piu' sali di lega, piu' gli avversari sono forti.","",
+"Obiettivo: Ogni stagione la societa da un traguardo. Raggiungerlo da un bonus di forza (+8%) alla stagione dopo; fallirlo da un malus (-8%).","",
+"Morale: sale con le vittorie, scende con le sconfitte, e influenza la forza in campo.","",
+"Allenamento: alleni Difesa, Centrocampo o Attacco per un +8% a quel reparto nella prossima partita.","",
+"Budget e incassi: ogni partita incassi denaro (di piu' in casa e se vinci; di piu' nelle leghe superiori e con uno stadio migliore).","",
+"Stadio: col budget puoi migliorare lo stadio (8 livelli in 3 famiglie, sbloccati salendo di lega). Ogni livello aumenta gli introiti e resta per sempre.","",
+"Rosa e Calcio Mercato: la rosa ha 4 reparti (Portiere, Difesa, Centrocampo, Attacco) da 0 a 100. Al Calcio Mercato puoi potenziare un reparto del +5% (fino a 100), e il valore resta per sempre. Il mercato e' aperto solo in 2 finestre: giornate 1-3 e giornate 11-13 di ogni campionato.","",
+"Vittoria National: quando vinci la National League scegli se continuare la carriera o iniziarne una nuova. Se continui, si apre l'International Cup: un torneo a 16 squadre a eliminazione diretta, con partite sparse tra le giornate di campionato.","",
 "COMANDI:",
 "D-Pad: muovi il giocatore",
 "A: tiro / scivolata / battuta lunga",
@@ -87,11 +93,16 @@ it:[
 ],
 en:[
 "HOW TO PLAY - CAREER","",
-"Start: Choose a team among those in the Regional League and your kit color (it stays fixed for the whole career).","",
-"Management: From your club menu you can: train a line (Defence/Midfield/Attack) for a bonus in the next match; see the objective set by the club; check standings, fixtures and history; and team morale, which rises with wins and drops with losses, affecting your strength on the pitch.","",
-"The league: You play your matches home and away. At season end, if you finish in the top 3 you are promoted (Regional > Interregional > National); if you finish in the bottom 3 you are relegated.","",
-"Club objective: Every season the club gives you a target. Meeting it gives a bonus next season, failing it gives a malus.","",
-"Final win: When you win the National League title, you have won the game!","",
+"Start: Choose a Regional League team, the kit style (solid or stripes) and the colors. The kit stays for the whole career.","",
+"Management: From the club menu you handle everything: play matches, train a line, buy on the market, upgrade the stadium and check standings, fixtures, history and budget.","",
+"The league: Home and away matches. At season end the top 3 go up (Regional > Interregional > National), the bottom 3 go down. The higher the league, the stronger the opponents.","",
+"Objective: Each season the club sets a target. Meeting it gives a strength bonus (+8%) next season; failing it gives a malus (-8%).","",
+"Morale: rises with wins, drops with losses, and affects your strength on the pitch.","",
+"Training: train Defence, Midfield or Attack for a +8% to that line in the next match.","",
+"Budget and income: every match earns money (more at home and when you win; more in higher leagues and with a better stadium).","",
+"Stadium: with the budget you can upgrade the stadium (8 tiers in 3 families, unlocked by promotion). Each tier raises income and is permanent.","",
+"Squad and Transfer Market: the squad has 4 lines (Goalkeeper, Defence, Midfield, Attack) from 0 to 100. At the Transfer Market you can boost a line by +5% (up to 100), and the value is permanent. The market is open only in 2 windows: matchdays 1-3 and matchdays 11-13 of each season.","",
+"National win: when you win the National League you choose whether to continue the career or start a new one. If you continue, the International Cup opens: a 16-team knockout tournament, with matches spread across the league matchdays.","",
 "CONTROLS:",
 "D-Pad: move the player",
 "A: shot / slide / long kick",
@@ -102,6 +113,7 @@ en:[
 };
 let rulesScroll=0;
 function toggleLang(){lang=(lang==="en")?"it":"en";try{localStorage.setItem(LANG_KEY,lang);}catch(e){}}
+// ---- Palette colori maglia (10 colori 8-bit ben distinti) ----
 const KIT_COLORS=[
 {id:"red",it:"ROSSO",en:"RED",c:"#d81e2c"},
 {id:"blue",it:"BLU",en:"BLUE",c:"#1b6ec2"},
@@ -116,6 +128,7 @@ const KIT_COLORS=[
 ];
 function colorName(kc){return kc[lang]||kc.en;}
 function kitFromColor(colId){const kc=KIT_COLORS.find(function(k){return k.id===colId;})||KIT_COLORS[0];const c1=kc.c;const short=(kc.id==="white"||kc.id==="yellow")?"#1b1b1b":"#ffffff";return {pattern:"solid",c1:c1,c2:c1,short:short,sock:c1,colId:kc.id,sig:"solid:"+kc.id};}
+// crea una maglia da una "spec": {pattern:"solid"|"stripes", c1:colId, c2:colId}
 function hexForColId(colId){const kc=KIT_COLORS.find(function(k){return k.id===colId;})||KIT_COLORS[0];return kc.c;}
 function kitFromSpec(spec){
   if(!spec)return kitFromColor("blue");
@@ -127,9 +140,11 @@ function kitFromSpec(spec){
   }
   return kitFromColor(spec.c1);
 }
+// firma univoca della maglia (per evitare avversari con la stessa maglia)
 function kitSig(spec){ if(!spec)return ""; return (spec.pattern==="stripes")?("stripes:"+spec.c1+"|"+spec.c2):("solid:"+spec.c1); }
 function careerKit(){ if(!career)return AZZURRO_KIT; return kitFromSpec(career.kitSpec||{pattern:"solid",c1:career.kitColId||"blue",c2:career.kitColId||"blue"}); }
 const GK_KIT={pattern:"solid",c1:"#1fbf5a",c2:"#1fbf5a",short:"#111111",sock:"#1fbf5a",colId:"gk"};
+// ---- Le 3 leghe: nomi EN/IT (11 squadre ciascuna) ----
 const LEAGUE_DEFS=[
 {key:"league1",lvl:"lvlBase",teams:[
 ["Hilltop Village","Villaggio della Collina"],["Green Valley","Valle Verde"],["East Side","Zona Est"],["Pine Forest","Bosco di Pini"],["Riverside Town","Citta del Lungofiume"],["Creek Town","Citta del Torrente"],["Stone Bridge","Ponte di Pietra"],["Oak Wood","Bosco delle Querce"],["West Suburbs","Periferia Ovest"],["South District","Quartiere Sud"],["North Heights","Alture del Nord"]
@@ -141,7 +156,11 @@ const LEAGUE_DEFS=[
 ["North Town","Citta del Nord"],["South City","Metropoli del Sud"],["East Coast","Costa Orientale"],["West Region","Regione Occidentale"],["Central District","Distretto Centrale"],["Valley Division","Divisione della Valle"],["Mountain Village","Borgo di Montagna"],["Capital Academy","Accademia della Capitale"],["Metropolitan FC","Metropolitana FC"],["Lake District","Distretto dei Laghi"],["Forest Park","Parco Forestale"]
 ]}
 ];
+// nome squadra a partire da un oggetto {en,it}
 function teamName(team){if(!team)return "?";return (lang==="it"?team.it:team.en)||team.en;}
+// ---- FASE 3: STADIO / ECONOMIA / ROSA ----
+// 8 livelli stadio in 3 famiglie. minLeague = lega minima per acquistarlo.
+// incomeBonus = quota aggiuntiva (+15% per livello, cumulativo con l'indice).
 const STADIUM_TIERS=[
   {it:"Stadio Regionale",en:"Regional Stadium",minLeague:0,cost:0},
   {it:"Stadio Regionale 2a Gen",en:"Regional Stadium 2nd Gen",minLeague:0,cost:500},
@@ -152,16 +171,26 @@ const STADIUM_TIERS=[
   {it:"Stadio Nazionale 2a Gen",en:"National Stadium 2nd Gen",minLeague:2,cost:4200},
   {it:"Stadio Internazionale",en:"International Stadium",minLeague:2,cost:5600}
 ];
-const STADIUM_INCOME_PER_TIER=0.15;
+const STADIUM_INCOME_PER_TIER=0.15; // +15% introiti per ogni livello di stadio
+// introiti base a partita per lega: [casa, trasferta, bonusVittoria]
 const LEAGUE_INCOME=[ {home:90,away:30,win:50}, {home:120,away:60,win:80}, {home:160,away:90,win:100} ];
 const START_BUDGET=1000;
-const SQUAD_START=58;
-const MARKET_STEP=0.05;
-const MARKET_BASE_COST=150;
+const SQUAD_START=58;              // valore iniziale di ogni reparto (0..100)
+const MARKET_STEP=0.05;            // +5% del valore attuale per acquisto
+const MARKET_BASE_COST=150;        // costo base del prossimo +5%
 function stadiumName(tier){const s=STADIUM_TIERS[tier]||STADIUM_TIERS[0];return (lang==="it"?s.it:s.en);}
 function stadiumIncomeMult(tier){return 1+STADIUM_INCOME_PER_TIER*tier;}
+// costo per incrementare un reparto: cresce col valore (esponenziale morbido)
 function marketCost(value){return Math.round(MARKET_BASE_COST*(1+value/50));}
+// nuovo valore dopo un +5% (cap 100)
 function marketNextValue(value){return Math.min(100,Math.round((value*(1+MARKET_STEP))*10)/10);}
+// finestra di mercato: aperta nelle giornate 1-3 (andata) e 11-13 (ritorno) del campionato
+function marketWindowOpen(){
+  if(matchMode!=="career"||!career)return false;
+  const lg=curLeague();if(!lg)return false;
+  const day=(lg.round||0)+1; // giornata corrente 1-based
+  return (day>=1&&day<=3)||(day>=11&&day<=13);
+}
 const AudioCtxClass=window.AudioContext||window.webkitAudioContext;
 let audioCtx=null,crowdGain=null,crowdNoiseSrc=null,crowdLP=null,crowdRoarMs=0;
 function initAudio(){ if(!audioCtx){ audioCtx=new AudioCtxClass(); const bufSize=2*audioCtx.sampleRate; const buffer=audioCtx.createBuffer(1,bufSize,audioCtx.sampleRate); const data=buffer.getChannelData(0); for(let i=0;i<bufSize;i++) data[i]=Math.random()*2-1; crowdNoiseSrc=audioCtx.createBufferSource(); crowdNoiseSrc.buffer=buffer; crowdNoiseSrc.loop=true; crowdLP=audioCtx.createBiquadFilter(); crowdLP.type="lowpass"; crowdLP.frequency.setValueAtTime(700,audioCtx.currentTime); crowdGain=audioCtx.createGain(); crowdGain.gain.setValueAtTime(0.0,audioCtx.currentTime); crowdNoiseSrc.connect(crowdLP); crowdLP.connect(crowdGain); crowdGain.connect(audioCtx.destination); crowdNoiseSrc.start(); } if(audioCtx.state==="suspended"){audioCtx.resume();} }
@@ -171,7 +200,9 @@ function playSound(freq=440,type="square",duration=0.08){ initAudio(); const osc
 function playWhistle(){ playSound(2100,"square",0.12); setTimeout(function(){playSound(1800,"square",0.1);},120); }
 function playGoalJingle(){ playSound(660,"triangle",0.12); setTimeout(function(){playSound(880,"triangle",0.12);},120); setTimeout(function(){playSound(1100,"triangle",0.2);},240); }
 function playKick(){ playSound(180,"square",0.05); }
+// ---- MUSICHETTA 8-BIT rilassata (menu / fuori dalle partite) ----
 let musicGain=null,musicTimer=null,musicStep=0;
+// melodia lenta e dolce in loop (arpeggio morbido) + basso profondo
 const MUSIC_LEAD=[392,523,659,523,440,587,523,440,349,440,523,440,392,494,587,494,392,523,440,392];
 const MUSIC_BASS=[131,131,147,147,110,110,131,131,117,117,110,110,98,98,110,110,131,131,110,110];
 const MUSIC_STEP_MS=430;
@@ -184,17 +215,24 @@ function isMenuState(){ return state!=="PLAYING"&&state!=="COUNTDOWN"&&state!=="
 function updateMusicPlayback(){ if(musicOn&&isMenuState()){ if(!musicTimer)startMusic(); } else { if(musicTimer)stopMusic(); } }
 function toggleMusic(){ musicOn=!musicOn; try{localStorage.setItem(MUSIC_KEY,musicOn?"1":"0");}catch(e){} if(musicOn){musicStep=0;startMusic();}else{stopMusic();} }
 let state="SPLASH",menuIndex=0;
+// ---- CARRIERA ----
+// career = { season, leagueLevel(0..2), leagues:[{teams:[{en,it,uid}], table:{uid:{...}}, fixtures, round, finished}...],
+//            playerUid, kitColId }
 let career=null;
-let matchMode="single";
-let cupMatch=false;
+let matchMode="single";            // "single" | "career"
+let cupMatch=false;                 // true se la partita in corso e' di International Cup
 let hasSave=false; try{hasSave=!!localStorage.getItem(SAVE_KEY);}catch(e){}
-let homeTeamObj=null, awayTeamObj=null;
+// squadre in campo per la partita corrente
+let homeTeamObj=null, awayTeamObj=null;        // {en,it,uid}
 let playerKit=null, oppKit=null;
-let lastOppKitSig=null;
-let playerIsHome=true;
+let lastOppKitSig=null;               // firma ultima maglia avversaria (per non ripeterla)
+let playerIsHome=true;                          // true: sono la squadra "casa" del fixture
+// partita singola (amichevole): squadre generate al volo
 let singleOppObj=null;
 let pendingOppObj=null, pendingHome=true, formationIndex=0;
 let matchElapsedMs=0,matchHalf=1,scoreT0=0,scoreT1=0,playerSide=0;
+// scoreHome/scoreAway derivano SEMPRE dall'identita' della squadra (team0=io, team1=avversario),
+// non dalla zona di campo. Se sono in trasferta, "home" e' l'avversario (team1).
 function scoreHomeVal(){return playerIsHome?scoreT0:scoreT1;}
 function scoreAwayVal(){return playerIsHome?scoreT1:scoreT0;}
 let kickoffTeam=0,firstHalfKickoff=0;
@@ -202,14 +240,14 @@ let awaitingKick=false,awaitKind="kickoff",awaitKicker=-1;
 let spAnnounce=false,spAnnounceMs=0;
 let oppSetPieceMs=0,oppSetPieceKicker=-1,oppSetPieceKind="";
 let passTarget=-1;
-let spNoOffside=false;
-let cornerNoOffside=false;
-let cornerNoOffsideTeam=-1;
+let spNoOffside=false;              // true dopo una battuta di set-piece: niente fuorigioco sul primo tocco
+let cornerNoOffside=false;          // true dopo un corner: niente fuorigioco per tutta l'azione seguente
+let cornerNoOffsideTeam=-1;         // squadra che attacca dal corner (beneficia del no-fuorigioco)
 let aiHoldMs=0,aiHoldOwner=-1;
 let countdownMs=0,showInfoOverlay=false,goalFlashMs=0,goalScorerTeam=0,goalFlashStart=0,halfBreakMs=0;
 let pauseIndex=0,splashTime=0;
 let promoOutcome="";
-let objectiveMet=false,objectiveActive=false;
+let objectiveMet=false,objectiveActive=false;               // "promoted"|"relegated"|"stayed"|"won"
 const move={up:false,down:false,left:false,right:false};
 const keyHeld={a:false,b:false};
 let aPressedFrame=false,bPressedFrame=false,aHoldMs=0,bHoldMs=0;
@@ -227,10 +265,15 @@ const LINE_DEPTH={def:0.16,mid:0.31,att:0.45};
 function buildFormation(name){ const counts=FORMATIONS[name]||FORMATIONS["4-4-2"]; const arr=[{role:"gk",fx:0.04,fy:0.50}]; const lines=[{role:"def",n:counts[0]},{role:"mid",n:counts[1]},{role:"att",n:counts[2]}]; lines.forEach(function(line){const n=line.n; for(let i=0;i<n;i++){const fy=(n===1)?0.5:0.14+(0.72)*(i/(n-1)); arr.push({role:line.role,fx:LINE_DEPTH[line.role],fy:fy});}}); return arr; }
 let playerFormation="4-4-2",opponentFormation="4-4-2";
 function randomFormation(){return FORMATION_NAMES[rngInt(0,FORMATION_NAMES.length-1)]||"4-4-2";}
+// ============ CARRIERA ============
+// Costruisce una lega da una definizione LEAGUE_DEFS[idx]. uid = "L{lvl}-{i}" iniziale,
+// ma dopo promo/retro le squadre migrano mantenendo il proprio uid stabile.
 function makeTeamObj(pair,uid){return {en:pair[0],it:pair[1],uid:uid};}
 function newTable(teams){const tb={};teams.forEach(function(tm){tb[tm.uid]={uid:tm.uid,pg:0,v:0,n:0,s:0,gf:0,gs:0,pts:0};});return tb;}
+// Calendario round-robin andata+ritorno (11 squadre -> 20 giornate, ognuno jolly a turno).
 function buildFixtures(teams){
   const N=teams.length; const arr=teams.map(function(x){return x.uid;});
+  // se dispari aggiungi BYE
   const list=arr.slice(); if(list.length%2===1)list.push(null);
   const n=list.length,rounds=n-1,half=n/2,legs=[];
   const rot=list.slice();
@@ -245,10 +288,13 @@ function startNewCareer(playerLeagueIdx,playerTeamUid,kitSpec){
   career={season:1,leagueLevel:playerLeagueIdx,leagues:leagues,playerUid:playerTeamUid,kitColId:kitSpec.c1,kitSpec:{pattern:kitSpec.pattern,c1:kitSpec.c1,c2:kitSpec.c2},history:[],strengthMod:1.0,leagueSeasons:1,morale:50,training:null,objective:objectiveForLeague(playerLeagueIdx,1),budget:START_BUDGET,stadiumTier:0,squad:{gk:SQUAD_START,def:SQUAD_START,mid:SQUAD_START,att:SQUAD_START}};
   saveCareer();
 }
+// obiettivo stagionale: dipende dalla lega e da quante stagioni consecutive ci sei (seasonsInLeague, 1-based)
+// tipi: {type:"top",n}=arriva nei primi n | {type:"safe"}=non retrocedere | {type:"win"}=vinci il titolo
 function objectiveForLeague(lvl,seasonsInLeague){
   const s=seasonsInLeague||1;
   if(lvl===0){ return (s===1)?{type:"top",n:6}:{type:"top",n:3}; }
   if(lvl===1){ return (s===1)?{type:"safe"}:{type:"top",n:3}; }
+  // National (lvl 2): 1a=non retrocedere, 2a=primi 3, 3a+=vinci
   if(s===1)return {type:"safe"};
   if(s===2)return {type:"top",n:3};
   return {type:"win",n:1};
@@ -259,6 +305,7 @@ function objectiveText(obj){
   if(obj.type==="safe")return t("objSafe");
   return t("objTop")+" "+obj.n;
 }
+// migra un salvataggio vecchio che non ha i nuovi campi
 function ensureCareerFields(){
   if(!career)return;
   if(!career.history)career.history=[];
@@ -288,80 +335,112 @@ function leagueCurRound(lg){return lg.fixtures[lg.round]||null;}
 function playerFixture(){const lg=curLeague();const rd=leagueCurRound(lg);if(!rd)return null;for(const m of rd){if(!m.played&&(m.h===career.playerUid||m.a===career.playerUid))return m;}return null;}
 function leagueDone(lg){return lg.round>=lg.fixtures.length;}
 function simOthersInRound(lg){const rd=leagueCurRound(lg);if(!rd)return;for(const m of rd){if(m.played)continue;if(m.h===career.playerUid||m.a===career.playerUid)continue;const hg=rngInt(0,4),ag=rngInt(0,4);m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);}}
+// simula per intero una lega NON del giocatore (per classifica finale stagione)
 function simEntireLeague(lg){while(!leagueDone(lg)){const rd=leagueCurRound(lg);for(const m of rd){if(m.played)continue;const hg=rngInt(0,4),ag=rngInt(0,4);m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);}lg.round++;}}
+// registra il risultato della partita del giocatore e avanza la giornata
 function careerRecordResult(myGoals,oppGoals){
   const lg=curLeague();const m=playerFixture();if(!m)return;
   let hg,ag;if(m.h===career.playerUid){hg=myGoals;ag=oppGoals;}else{hg=oppGoals;ag=myGoals;}
   m.hg=hg;m.ag=ag;m.played=true;leagueApply(lg,m.h,m.a,hg,ag);
+  // INCASSO: introito base della lega (casa/trasferta) * moltiplicatore stadio + bonus vittoria
   const inc=LEAGUE_INCOME[career.leagueLevel]||LEAGUE_INCOME[0];
   let gate=(playerIsHome?inc.home:inc.away)*stadiumIncomeMult(career.stadiumTier||0);
   if(myGoals>oppGoals)gate+=inc.win;
   career.budget=Math.round((career.budget||0)+gate);
+  // MORALE: vittoria +12, pareggio +2, sconfitta -5 (0..100)
   let dMor;if(myGoals>oppGoals)dMor=12;else if(myGoals===oppGoals)dMor=2;else dMor=-5;
   career.morale=Math.max(0,Math.min(100,(career.morale||50)+dMor));
-  career.training=null;
+  career.training=null; // l'allenamento vale solo per la partita appena giocata
   simOthersInRound(lg);lg.round++;
   saveCareer();
 }
+// Fine stagione: simula le altre leghe, calcola promo/retro tra le 3 leghe scambiando
+// 3 squadre alla volta, determina la sorte del giocatore e prepara la nuova stagione.
 function finishSeason(){
   const L=career.leagues; const lvl=career.leagueLevel;
+  // simula per intero le leghe non giocate dal giocatore (quella del giocatore e' gia finita)
   for(let d=0;d<3;d++){ if(d!==lvl) simEntireLeague(L[d]); }
+  // classifiche finali (array di uid ordinati)
   const order=[leagueSortedTable(L[0]),leagueSortedTable(L[1]),leagueSortedTable(L[2])];
-  const playerRank=order[lvl].findIndex(function(r){return r.uid===career.playerUid;});
+  // posizione del giocatore nella sua lega
+  const playerRank=order[lvl].findIndex(function(r){return r.uid===career.playerUid;}); // 0-based
+  // determina esito giocatore
   let outcome="stayed";
   if(lvl===2){ if(playerRank===0){outcome="won";} else if(playerRank>=order[2].length-3){outcome="relegated";} }
   else if(lvl===0){ if(playerRank<3){outcome="promoted";} }
   else { if(playerRank<3){outcome="promoted";} else if(playerRank>=order[1].length-3){outcome="relegated";} }
   promoOutcome=outcome;
-  const rank1=playerRank+1;
+  // --- OBIETTIVO STAGIONALE: valutazione ed effetto sulla stagione successiva ---
+  const rank1=playerRank+1; // posizione 1-based
   const obj=career.objective||objectiveForLeague(lvl,career.leagueSeasons);
   if(obj.type==="win")objectiveMet=(rank1===1);
   else if(obj.type==="safe")objectiveMet=(outcome!=="relegated");
   else objectiveMet=(rank1<=obj.n);
   objectiveActive=true;
   const nextMod=objectiveMet?1.08:0.92;
+  // --- STORICO: registro la stagione conclusa ---
   const meTeam=teamByUid(L[lvl],career.playerUid);
   career.history.push({season:career.season,lvl:lvl,pos:rank1,outcome:outcome,teamEn:meTeam?meTeam.en:"?",teamIt:meTeam?meTeam.it:"?",objMet:objectiveMet});
   if(outcome==="won"){ career.strengthMod=nextMod; career.nationalTitles=(career.nationalTitles||0)+1; career.intlCupUnlocked=true; career.season++; career.leagueSeasons=(career.leagueSeasons||1)+1; career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons); saveCareer(); return; }
+  // --- scambi promo/retro tra leghe adiacenti (top3 salgono, bottom3 scendono) ---
+  // costruisci nuovo elenco squadre per ciascuna lega partendo dagli uid ordinati
   function topN(o,n){return o.slice(0,n).map(function(r){return r.uid;});}
   function botN(o,n){return o.slice(o.length-n).map(function(r){return r.uid;});}
-  const up01=topN(order[0],3), down10=botN(order[1],3);
-  const up12=topN(order[1],3), down21=botN(order[2],3);
+  const up01=topN(order[0],3), down10=botN(order[1],3);      // L0<->L1
+  const up12=topN(order[1],3), down21=botN(order[2],3);      // L1<->L2
+  // helper: raccogli tutti gli oggetti team per uid da qualsiasi lega
   const allTeams={}; L.forEach(function(lg){lg.teams.forEach(function(tm){allTeams[tm.uid]=tm;});});
+  // nuova composizione:
+  // L0: (L0 tranne up01) + down10
   const l0uids=order[0].map(function(r){return r.uid;}).filter(function(u){return up01.indexOf(u)<0;}).concat(down10);
+  // L2: (L2 tranne down21) + up12
   const l2uids=order[2].map(function(r){return r.uid;}).filter(function(u){return down21.indexOf(u)<0;}).concat(up12);
+  // L1: (L1 tranne up12 e down10) + up01 + down21
   const l1uids=order[1].map(function(r){return r.uid;}).filter(function(u){return up12.indexOf(u)<0&&down10.indexOf(u)<0;}).concat(up01).concat(down21);
   function rebuild(defIdx,uids){const teams=uids.map(function(u){return allTeams[u];});return makeLeague(defIdx,teams);}
   career.leagues=[rebuild(0,l0uids),rebuild(1,l1uids),rebuild(2,l2uids)];
+  // aggiorna il livello del giocatore
   if(outcome==="promoted")career.leagueLevel=lvl+1;
   else if(outcome==="relegated")career.leagueLevel=lvl-1;
   career.season++;
   career.strengthMod=nextMod;
+  // stagioni consecutive nella lega attuale: reset a 1 se ho cambiato lega, altrimenti +1
   if(outcome==="promoted"||outcome==="relegated")career.leagueSeasons=1;
   else career.leagueSeasons=(career.leagueSeasons||1)+1;
   career.objective=objectiveForLeague(career.leagueLevel,career.leagueSeasons);
   saveCareer();
 }
+// ---- Colori maglia per la partita ----
+// il giocatore usa sempre career.kitColId (o playerKit gia' impostato in singola).
+// l'avversario prende un colore casuale != quello del giocatore.
 function colorRgb(hex){const n=parseInt(hex.slice(1),16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
 function colorDistance(h1,h2){const a=colorRgb(h1),b=colorRgb(h2);const dr=a.r-b.r,dg=a.g-b.g,db=a.b-b.b;return Math.sqrt(dr*dr+dg*dg+db*db);}
 function randomOppKitColId(playerColId){
   return randomOppKitColIdAvoid(playerColId,null);
 }
+// come sopra ma evita anche 'avoidColId' (es. l'ultimo colore avversario usato) per non ripeterlo
 function randomOppKitColIdAvoid(playerColId,avoidColId){
   const myKc=KIT_COLORS.find(function(k){return k.id===playerColId;})||KIT_COLORS[0];
+  // escludi: colore del giocatore, colori troppo simili al mio, e (se possibile) l'ultimo avversario
   let pool=KIT_COLORS.filter(function(k){
     if(k.id===playerColId)return false;
     if(colorDistance(k.c,myKc.c)<90)return false;
     if(avoidColId&&k.id===avoidColId)return false;
     return true;
   });
+  // fallback progressivi se il filtro e' troppo restrittivo
   if(pool.length===0)pool=KIT_COLORS.filter(function(k){return k.id!==playerColId&&colorDistance(k.c,myKc.c)>=90;});
   if(pool.length===0)pool=KIT_COLORS.filter(function(k){return k.id!==playerColId;});
   return pool[rngInt(0,pool.length-1)].id;
 }
+// colori "abbastanza distinti" da un hex di riferimento
 function colorsDistinctFrom(hex,minDist){
   return KIT_COLORS.filter(function(k){return colorDistance(k.c,hex)>=minDist;});
 }
+// Genera una spec maglia per l'avversario:
+//  - pattern casuale (righe ~40%, tinta unita ~60%)
+//  - abbastanza diversa dai colori della mia maglia
+//  - firma (sig) diversa dalla mia e da 'avoidSig' (ultima avversaria) per non ripetersi
 function randomOppKitSpec(myKitSpec, avoidSig){
   const mySig=kitSig(myKitSpec);
   const myPrimHex=hexForColId(myKitSpec?myKitSpec.c1:"blue");
@@ -386,31 +465,41 @@ function randomOppKitSpec(myKitSpec, avoidSig){
       if(sig!==mySig&&sig!==avoidSig)return spec;
     }
   }
+  // fallback: una tinta unita qualsiasi diversa dal mio colore
   const fb=KIT_COLORS.filter(function(k){return k.id!==(myKitSpec?myKitSpec.c1:null);});
   const c=fb[rngInt(0,fb.length-1)];
   return {pattern:"solid",c1:c.id,c2:c.id};
 }
+// ================= INTERNATIONAL CUP =================
+// nomi random per le 15 squadre avversarie della coppa
 const CUP_NAME_A_EN=["Royal","United","Athletic","Sporting","Dynamo","Inter","Real","Olympic","Northern","Southern","Eastern","Western","Golden","Silver","Iron","Crystal","Thunder","Phoenix","Cosmos","Galaxy"];
 const CUP_NAME_A_IT=["Reale","Unione","Atletico","Sportiva","Dinamo","Inter","Real","Olimpica","Nord","Sud","Est","Ovest","Dorata","Argento","Ferrea","Cristallo","Tuono","Fenice","Cosmos","Galassia"];
 const CUP_NAME_B_EN=["City","Rovers","Wanderers","FC","Stars","Lions","Eagles","Rangers","Legion","Union","Kings","Titans","Wolves","Hawks","Dragons"];
 const CUP_NAME_B_IT=["City","Vagabondi","Erranti","FC","Stelle","Leoni","Aquile","Rangers","Legione","Unione","Re","Titani","Lupi","Falchi","Draghi"];
+// premi per turno vinto (ottavi,quarti,semi,finale)
 const CUP_PRIZES=[300,500,800,1500];
+// ogni quante giornate di campionato scatta un turno di coppa
 const CUP_MATCH_EVERY=5;
 function makeCupTeam(idx){
   const ai=rngInt(0,CUP_NAME_A_EN.length-1),bi=rngInt(0,CUP_NAME_B_EN.length-1);
   const spec=randomOppKitSpec({pattern:"solid",c1:"gray",c2:"gray"},null);
   return {en:CUP_NAME_A_EN[ai]+" "+CUP_NAME_B_EN[bi],it:CUP_NAME_A_IT[ai]+" "+CUP_NAME_B_IT[bi],uid:"CUP"+idx,kitSpec:spec,strength:rngRange(0.86,1.12)};
 }
+// crea un nuovo torneo a 16 (io = indice 0)
 function startInternationalCup(){
   const teams=[{en:"__ME__",it:"__ME__",uid:career.playerUid,me:true}];
   for(let i=1;i<16;i++)teams.push(makeCupTeam(i));
+  // ottavi: 8 match (0v1,2v3,...) - metto la mia al primo slot
   const r0=[];for(let i=0;i<16;i+=2)r0.push({a:i,b:i+1,winner:-1});
   career.cup={active:true,teams:teams,rounds:[r0],round:0,alive:true,done:false,champion:-1,nextCupAt:1};
 }
 function cupTeamName(t){ if(!t)return "?"; if(t.me)return teamName(playerTeamObj()); return (lang==="it"?t.it:t.en); }
 function cupRoundTitle(r){ const it=["OTTAVI","QUARTI","SEMIFINALE","FINALE"],en=["ROUND OF 16","QUARTER-FINALS","SEMI-FINAL","FINAL"]; return (lang==="it"?it[r]:en[r])||""; }
+// il match della mia squadra nel round corrente (o null se eliminata/finita)
 function cupMyMatch(){ if(!career.cup||!career.cup.alive||career.cup.done)return null; const rd=career.cup.rounds[career.cup.round];if(!rd)return null; for(const m of rd){ if(m.winner<0&&(career.cup.teams[m.a].me||career.cup.teams[m.b].me))return m; } return null; }
+// l'avversario della mia partita di coppa corrente
 function cupMyOpponent(){ const m=cupMyMatch();if(!m)return null; const meA=career.cup.teams[m.a].me; return career.cup.teams[meA?m.b:m.a]; }
+// simula gli altri match del round e costruisce il round successivo; applica esito mio
 function cupResolveRound(myWon){
   const cup=career.cup;const rd=cup.rounds[cup.round];
   for(const m of rd){ if(m.winner>=0)continue;
@@ -418,7 +507,9 @@ function cupResolveRound(myWon){
     if(isMine){ const meA=cup.teams[m.a].me; m.winner=myWon?(meA?m.a:m.b):(meA?m.b:m.a); if(!myWon)cup.alive=false; }
     else { const sa=cup.teams[m.a].strength||1,sb=cup.teams[m.b].strength||1; m.winner=(rng()<sa/(sa+sb))?m.a:m.b; }
   }
+  // premio se ho vinto
   if(myWon){ career.budget=(career.budget||0)+(CUP_PRIZES[cup.round]||0); }
+  // costruisci round successivo o chiudi
   if(rd.length===1){ cup.done=true; cup.champion=rd[0].winner; if(cup.teams[cup.champion]&&cup.teams[cup.champion].me){career.cupWins=(career.cupWins||0)+1;} }
   else { const nr=[];for(let i=0;i<rd.length;i+=2){nr.push({a:rd[i].winner,b:rd[i+1].winner,winner:-1});} cup.rounds.push(nr);cup.round++; }
   saveCareer();
@@ -433,17 +524,22 @@ function makePlayer(team,rd,num){return {team:team,role:rd.role,num:num,fx:rd.fx
 function teamKit(team){return team===0?playerKit:oppKit;}
 function leagueLevelForMatch(){ return matchMode==="career"?career.leagueLevel:selLeagueIdx; }
 function careerStrengthMod(){ return (matchMode==="career"&&career&&typeof career.strengthMod==="number")?career.strengthMod:1.0; }
+// morale 0..100 -> moltiplicatore 0.94..1.06 (50 = neutro 1.0)
 function moraleMult(){ if(matchMode!=="career"||!career||typeof career.morale!=="number")return 1.0; return 0.94+(career.morale/100)*0.12; }
+// bonus allenamento +8% ai giocatori del reparto allenato (solo in carriera, solo la mia squadra)
 function trainingMultForRole(role){ if(matchMode!=="career"||!career||!career.training)return 1.0; if(career.training===role)return 1.08; return 1.0; }
+// forza rosa per ruolo (0..100) -> moltiplicatore. 58 (base) ~1.0, 100 ~1.20, 0 ~0.90
 function squadMult(role){
   if(matchMode!=="career"||!career||!career.squad)return 1.0;
   const key=(role==="gk")?"gk":(role==="def")?"def":(role==="mid")?"mid":(role==="att")?"att":"mid";
   const v=(typeof career.squad[key]==="number")?career.squad[key]:SQUAD_START;
-  return 0.90+(v/100)*0.30;
+  return 0.90+(v/100)*0.30; // 0->0.90 ; 100->1.20
 }
-const OPP_MULT_BY_LEAGUE=[0.82,0.90,0.98];
+// forza base degli avversari per lega: Regional < Interregional < National.
+// In coppa (partite piu' prestigiose) uso il livello top. Sostituisce la vecchia OPP_AI_MULT fissa.
+const OPP_MULT_BY_LEAGUE=[0.82,0.90,0.98]; // Regional, Interregional, National
 function oppStrengthMult(){
-  if(cupMatch)return OPP_MULT_BY_LEAGUE[2]+0.02;
+  if(cupMatch)return OPP_MULT_BY_LEAGUE[2]+0.02; // coppa internazionale: avversari toste
   const lvl=(matchMode==="career"&&career)?career.leagueLevel:selLeagueIdx;
   return OPP_MULT_BY_LEAGUE[Math.max(0,Math.min(2,lvl))]||OPP_AI_MULT;
 }
@@ -457,6 +553,7 @@ function resetFormation(kickTeam){
   slide.active=false; slide.ms=0; aHoldMs=0; bHoldMs=0; aPressedFrame=false; bPressedFrame=false; passTarget=-1; spNoOffside=false; cornerNoOffside=false; cornerNoOffsideTeam=-1; spAnnounce=false; spAnnounceMs=0; oppSetPieceMs=0; oppSetPieceKicker=-1; oppSetPieceKind=""; aiHoldMs=0; aiHoldOwner=-1;
   camY=Math.max(VIEW_SPAN/2,Math.min(FIELD_H-VIEW_SPAN/2,ball.y));
 }
+// prepara la partita. home/away sono oggetti team; kit gia calcolati in playerKit/oppKit.
 function setupMatch(){
   scoreT0=0; scoreT1=0; matchHalf=1; matchElapsedMs=0; goalFlashMs=0; halfBreakMs=0; showInfoOverlay=false; playerSide=0; awaitingKick=false; awaitKicker=-1; aiHoldMs=0; aiHoldOwner=-1;
   opponentFormation=randomFormation(); const myForm=buildFormation(playerFormation),oppForm=buildFormation(opponentFormation);
@@ -475,7 +572,7 @@ function updateMatch(dt){
   if(oppSetPieceMs>0){
     oppSetPieceMs-=dt;const k=oppSetPieceKicker;
     if(k>=0&&players[k]){const b=players[k];ball.owner=k;ball.x=b.x;ball.y=b.y+attackDir(b.team)*7;ball.vx=0;ball.vy=0;ball.high=false;}
-    if(oppSetPieceMs<=0){oppSetPieceMs=0;const k2=oppSetPieceKicker,kind=oppSetPieceKind;oppSetPieceKicker=-1;oppSetPieceKind="";if(k2>=0&&players[k2]){const team=players[k2].team;ball.owner=k2;spNoOffside=true;if(kind==="penalty"){shootBall(team,0.95);}else if(kind==="corner"){cornerNoOffside=true;if(rng()<0.6)crossBall(team,0.85);else passForward(team);}else if(kind==="goalkick"){if(rng()<0.5)crossBall(team,0.9);else passForward(team);}else if(kind==="freekick"){const gy=targetGoalY(team);const distGoal=Math.abs(players[k2].y-gy);if(distGoal<FIELD_H*0.30){shootBall(team,0.9);}else{crossBall(team,0.9);}}else{passForward(team);if(ball.owner===k2){passBall(team);}}}aiHoldMs=0;aiHoldOwner=-1;}
+    if(oppSetPieceMs<=0){oppSetPieceMs=0;const k2=oppSetPieceKicker,kind=oppSetPieceKind;oppSetPieceKicker=-1;oppSetPieceKind="";if(k2>=0&&players[k2]){const team=players[k2].team;ball.owner=k2;spNoOffside=true;if(kind==="penalty"){shootBall(team,0.95);}else if(kind==="corner"){cornerNoOffside=true;if(rng()<0.6)crossBall(team,0.85);else passForward(team);}else if(kind==="goalkick"){if(rng()<0.5)crossBall(team,0.9);else passForward(team);}else if(kind==="freekick"){const gy=targetGoalY(team);const distGoal=Math.abs(players[k2].y-gy);if(distGoal<FIELD_H*0.30){shootBall(team,0.9);}else{crossBall(team,0.9);}}else{/* offside, throwin, kickoff: passa SEMPRE, mai corre col pallone */passForward(team);if(ball.owner===k2){passBall(team);}}}aiHoldMs=0;aiHoldOwner=-1;}
     return;
   }
   matchElapsedMs+=dt; const nearGoal=Math.min(ball.x,FIELD_W-ball.x)/(FIELD_W/2); updateCrowdSound(1-nearGoal);
@@ -573,8 +670,8 @@ function forceAiKickIfStalled(){
   else{passForward(team);}
 }
 function isOffside(team,receiverIdx,passerIdx){
-  if(spNoOffside)return false;
-  if(cornerNoOffside)return false;
+  if(spNoOffside)return false; // niente fuorigioco sul primo tocco dopo una battuta (corner ecc.)
+  if(cornerNoOffside)return false; // niente fuorigioco per tutta l'azione nata da un corner
   if(receiverIdx<0||!players[receiverIdx])return false;const r=players[receiverIdx];if(r.role==="gk")return false;
   const dir=attackDir(team);const goalY=targetGoalY(team);const halfY=FIELD_H/2;
   const inAttackHalf=(dir<0)?(r.y<halfY):(r.y>halfY);if(!inAttackHalf)return false;
@@ -585,6 +682,8 @@ function isOffside(team,receiverIdx,passerIdx){
   const beyond=(goalY-r.y)*dir;const defBeyond=(goalY-secondLastY)*dir;
   const isOff=beyond<defBeyond-4;
   if(!isOff)return false;
+  // PUNTO 2: per la MIA squadra riduco del 20% la possibilita di fuorigioco
+  // (il 20% delle volte il fuorigioco NON viene fischiato).
   if(team===0&&rng()<0.20)return false;
   return true;
 }
@@ -607,6 +706,7 @@ function updateAI(){
     let tx,ty;let goDirect=false;let goingUp=false;
     if(owner&&i===ball.owner){
       const goalY=targetGoalY(p.team);const drive=aggressive?70:45;
+      // EVASIONE: il portatore sterza lateralmente per schivare gli avversari vicini davanti a lui
       const evadeX=dribbleAvoidX(p);
       tx=p.x+(FIELD_W/2-p.x)*0.03+evadeX;ty=p.y+dir*drive;moveToward(p,tx,ty,spd*(aggressive?1.06:1.0));ball.x=p.x;ball.y=p.y+dir*7;
       const distGoal=Math.abs(goalY-p.y);const shootRange=aggressive?FIELD_H*0.22:FIELD_H*0.30;const shootChance=aggressive?0.13:0.05;const passFwdChance=aggressive?0.10:0.02;
@@ -616,11 +716,16 @@ function updateAI(){
     if(!myTeamHasBall&&owner&&owner.team!==p.team){
       if(owner.role==="gk"){tx=homeX(p.team,p.fy);ty=homeY(p.team,p.fx);tx=Math.max(6,Math.min(FIELD_W-6,tx));ty=Math.max(6,Math.min(FIELD_H-6,ty));let mvx=tx-p.x,mvy=ty-p.y;const md0=Math.hypot(mvx,mvy)||1;const rep0=repulsion(p,i);mvx=mvx/md0+rep0.x*0.9;mvy=mvy/md0+rep0.y*0.9;const ml0=Math.hypot(mvx,mvy)||1;const arr0=(md0<6)?(md0/6):1;p.x+=(mvx/ml0)*spd*arr0;p.y+=(mvy/ml0)*spd*arr0;clampToField(p);continue;}
       const carrier=owner;const distCarrier=Math.hypot(carrier.x-p.x,carrier.y-p.y);const rank=closenessRank(p.team,i,carrier);const isChaser=rank<=chasersFor(p.team);const tackleRange=aggressive?CATCH_RADIUS+3:CATCH_RADIUS+4;const tackleChance=aggressive?0.13:0.24;
+      // PUNTO 2: quando la MIA squadra (team 0) attacca, il difensore avversario a contatto
+      // commette fallo con probabilita' 35% -> punizione/rigore a mio favore.
       if(aggressive&&carrier.team===0&&isChaser&&distCarrier<tackleRange+2&&p.kickCooldown===0&&rng()<0.35){p.kickCooldown=30;awardFoul(1,carrier.x,carrier.y);return;}
       if(isChaser&&distCarrier<tackleRange&&p.kickCooldown===0&&rng()<tackleChance){ball.owner=i;ball.vx=0;ball.vy=0;ball.high=false;carrier.kickCooldown=18;playSound(140,"square",0.06);continue;}
+      // PUNTO 3: se io (team 0) attacco, la DIFESA avversaria (team 1) si organizza:
+      //  2 difensori seguono le mie ali (dx/sx), 1 pressa il portatore, 1 arretra
+      //  verso il proprio portiere.
       if(aggressive && owner.team===0){
         const wingR=wingManForTeam(0,+1,ball.owner), wingL=wingManForTeam(0,-1,ball.owner);
-        const dRank=oppDefenderRank(p.team,i,carrier);
+        const dRank=oppDefenderRank(p.team,i,carrier); // 1=piu vicino al portatore ... 
         if(dRank===1){ tx=carrier.x; ty=carrier.y+attackDir(carrier.team)*6; goDirect=true; }
         else if(dRank===2 && wingR>=0){ tx=players[wingR].x; ty=players[wingR].y-attackDir(0)*22; }
         else if(dRank===3 && wingL>=0){ tx=players[wingL].x; ty=players[wingL].y-attackDir(0)*22; }
@@ -628,16 +733,21 @@ function updateAI(){
         else { tx=homeX(p.team,p.fy)+(ball.x-FIELD_W/2)*0.30; ty=homeY(p.team,p.fx)+(ball.y-homeY(p.team,p.fx))*0.18; }
       } else if(isChaser){tx=carrier.x;ty=carrier.y+attackDir(carrier.team)*6;goDirect=true;}
       else if(p.team===0&&p.role==="def"&&i===centralDefenderIdx(0)){
+        // PUNTO 1: il mio difensore centrale va incontro al portatore avversario
         tx=carrier.x;ty=carrier.y+attackDir(carrier.team)*6;goDirect=true;
       }
       else{tx=homeX(p.team,p.fy)+(ball.x-FIELD_W/2)*0.30;ty=homeY(p.team,p.fx)+(ball.y-homeY(p.team,p.fx))*0.18;}
     } else if(myTeamHasBall){
       const carrier=owner;const rankToCarrier=closenessRankExcluding(p.team,i,carrier,ball.owner);const dir2=attackDir(p.team);
       if(!aggressive){
+        // ---- LA MIA SQUADRA IN ATTACCO ----
+        // 1 compagno d'appoggio VICINO a me ma non attaccato, 1 sulla fascia
+        // destra, 1 sulla fascia sinistra; gli altri accompagnano piu bassi.
         const wingR=wingManForTeam(p.team,+1,ball.owner);const wingL=wingManForTeam(p.team,-1,ball.owner);
-        const lineY=oppDefenceLineY(p.team);
-        const midY=(carrier.y+lineY)/2;
-        const wingY=midY-dir2*(FIELD_H*0.03);
+        // meta' strada tra il portatore e la linea difensiva avversaria, appena PRIMA dei difensori
+        const lineY=oppDefenceLineY(p.team);            // Y della linea difensiva avversaria
+        const midY=(carrier.y+lineY)/2;                 // meta' strada tra me e la linea
+        const wingY=midY-dir2*(FIELD_H*0.03);           // appena prima dei difensori (dietro la linea)
         if(rankToCarrier===1){tx=carrier.x+(p.x<carrier.x?-70:70);ty=carrier.y+dir2*40;goingUp=true;}
         else if(i===wingR){tx=FIELD_W*0.88;ty=wingY;goingUp=true;}
         else if(i===wingL){tx=FIELD_W*0.12;ty=wingY;goingUp=true;}
@@ -669,16 +779,21 @@ function wingManForTeam(team,side,excludeIdx){
   for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role==="gk"||i===excludeIdx)continue;if(i===controlledIdx&&team===0)continue;const sideScore=(side>0)?q.x:(FIELD_W-q.x);const advScore=-Math.abs(q.y-goalY)*0.15;const score=sideScore+advScore;if(score>bestScore){bestScore=score;best=i;}}
   return best;
 }
+// rango del difensore (team, senza gk) per vicinanza al portatore avversario: 1=piu vicino
+// Sterzo laterale per schivare gli avversari vicini DAVANTI al portatore (verso la sua porta d'attacco).
+// Ritorna un offset X (px): positivo=vai a destra, negativo=vai a sinistra, per aggirare chi lo marca.
 function dribbleAvoidX(p){
   const dir=attackDir(p.team);let push=0;
   for(let j=0;j<players.length;j++){const q=players[j];if(q.team===p.team||q.role==="gk")continue;
-    const dy=(q.y-p.y)*dir;
-    if(dy<-10||dy>90)continue;
+    const dy=(q.y-p.y)*dir;               // >0 = il difensore e' davanti (verso la porta d'attacco)
+    if(dy<-10||dy>90)continue;            // considera solo chi e' davanti ed entro ~90px
     const dx=q.x-p.x;const adx=Math.abs(dx);
-    if(adx>60)continue;
-    const prox=Math.hypot(dx,dy)||1;const w=(90-dy)/90*(60-adx)/60;
+    if(adx>60)continue;                   // solo se lateralmente vicino (sulla mia traiettoria)
+    const prox=Math.hypot(dx,dy)||1;const w=(90-dy)/90*(60-adx)/60; // piu' vicino/frontale = piu' forte
+    // sterza dal lato opposto al difensore
     push+=(dx>=0?-1:1)*(28+40*w);
   }
+  // limita lo sterzo e tieni conto dei bordi campo
   push=Math.max(-70,Math.min(70,push));
   if(p.x+push<40)push=40-p.x; if(p.x+push>FIELD_W-40)push=(FIELD_W-40)-p.x;
   return push;
@@ -688,6 +803,8 @@ function oppDefenderRank(team,idx,carrier){
   for(let j=0;j<players.length;j++){if(j===idx)continue;const q=players[j];if(q.team!==team||q.role==="gk")continue;const d=Math.hypot(q.x-carrier.x,q.y-carrier.y);if(d<myD)rank++;}
   return rank;
 }
+// difensore CENTRALE della squadra 'team': il difensore (role def) piu' vicino al centro
+// del campo in orizzontale; a parità, il piu' arretrato. Ritorna indice o -1.
 function centralDefenderIdx(team){
   let best=-1,bestScore=Infinity;
   for(let i=0;i<players.length;i++){const q=players[i];if(q.team!==team||q.role!=="def")continue;if(i===controlledIdx&&team===0)continue;
@@ -696,11 +813,15 @@ function centralDefenderIdx(team){
   }
   return best;
 }
+// Y della linea difensiva avversaria (per 'team' che attacca): il penultimo difensore
+// avversario piu' arretrato rispetto alla porta che 'team' attacca.
 function oppDefenceLineY(team){
   const goalY=targetGoalY(team);const opp=[];
   for(let i=0;i<players.length;i++){if(players[i].team!==team&&players[i].role!=="gk")opp.push(players[i].y);}
   if(opp.length===0)return goalY;
+  // ordina per distanza dalla porta attaccata (piu' vicino alla porta = ultimo difensore)
   opp.sort(function(a,b){return Math.abs(a-goalY)-Math.abs(b-goalY);});
+  // uso il 2° difensore piu' arretrato come linea di riferimento (evita di stare oltre l'ultimo)
   return opp[Math.min(1,opp.length-1)];
 }
 function openLaneX(team,idx){const lanes=[FIELD_W*0.2,FIELD_W*0.5,FIELD_W*0.8];let best=FIELD_W/2,bestScore=-Infinity;const goalY=targetGoalY(team);for(let l=0;l<lanes.length;l++){const lx=lanes[l];let minOppDist=Infinity;for(let j=0;j<players.length;j++){const q=players[j];if(q.team===team)continue;const d=Math.hypot(q.x-lx,q.y-(goalY+(team===0?120:-120)));if(d<minOppDist)minOppDist=d;}if(minOppDist>bestScore){bestScore=minOppDist;best=lx;}}return best;}
@@ -712,6 +833,8 @@ function updateGoalkeeper(p){
   if(ball.owner<0&&movingTowardGoal){const dyToLine=(targetY-ball.y);const tHit=(Math.abs(ball.vy)>0.1)?(dyToLine/ball.vy):999;if(tHit>0&&tHit<120){const predX=ball.x+ball.vx*tHit;targetX=Math.max(FIELD_W/2-GOAL_W/2-10,Math.min(FIELD_W/2+GOAL_W/2+10,predX));}else{targetX=Math.max(FIELD_W/2-GOAL_W/2,Math.min(FIELD_W/2+GOAL_W/2,ball.x));}}
   else{const inOwnHalf=(goalY===0)?(ball.y<FIELD_H*0.4):(ball.y>FIELD_H*0.6);if(inOwnHalf){targetX=Math.max(FIELD_W/2-GOAL_W/2,Math.min(FIELD_W/2+GOAL_W/2,ball.x));}}
   const gkSpd=movingTowardGoal?GK_SPEED*2.0:GK_SPEED;moveToward(p,targetX,targetY,gkSpd);
+  // PUNTO 1: se un avversario col pallone e' a contatto col portiere, il portiere
+  // vince il contrasto nel 70% dei casi e prende la palla.
   if(ball.owner>=0&&players[ball.owner]&&players[ball.owner].team!==p.team){
     const carrier=players[ball.owner];
     if(Math.hypot(carrier.x-p.x,carrier.y-p.y)<CATCH_RADIUS+9&&p.kickCooldown===0){
@@ -745,7 +868,7 @@ function restartFromOut(team,x,y,kind){
   for(let i=0;i<players.length;i++){const p=players[i];if(p.team!==team||p.role==="gk")continue;const d=Math.hypot(p.x-ball.x,p.y-ball.y);if(d<bestD){bestD=d;best=i;}}
   if(best>=0){players[best].x=ball.x;players[best].y=ball.y;players[best].kickCooldown=0;ball.owner=best;ball.lastTouch=team;controlledIfMine(best,team);beginSetPiece(kind,best,team);}
   if(kind==="corner"){
-    cornerNoOffside=true;
+    cornerNoOffside=true; // niente fuorigioco per l'azione nata dal corner (mio o avversario)
     cornerNoOffsideTeam=team;
     const goalY=targetGoalY(team);const dir=attackDir(team);const cornerX=ball.x,cornerY=ball.y;const towardCenter=(cornerX<FIELD_W/2)?1:-1;
     const spots=[{x:cornerX+towardCenter*(FIELD_W*0.10),y:cornerY-dir*(FIELD_H*0.02)},{x:cornerX+towardCenter*(FIELD_W*0.18),y:cornerY-dir*(FIELD_H*0.05)},{x:FIELD_W*0.42,y:goalY+dir*(FIELD_H*0.045)},{x:FIELD_W*0.58,y:goalY+dir*(FIELD_H*0.045)}];
@@ -769,7 +892,7 @@ function beginSetPiece(kind,kickerIdx,team){
 }
 function executeSetPiece(action){
   awaitingKick=false;spAnnounce=false;spAnnounceMs=0;const kicker=awaitKicker;awaitKicker=-1;if(kicker<0||!players[kicker])return;ball.owner=kicker;
-  spNoOffside=true;
+  spNoOffside=true; // niente fuorigioco sul primo tocco dopo una battuta (corner, rimessa, rinvio, punizione)
   const aim=(move.up||move.down||move.left||move.right)?{x:lastDir.x,y:lastDir.y}:null;
   if(awaitKind==="goalkick"){if(action==="a"){crossBall(players[kicker].team,1.0,aim);}else{passBall(players[kicker].team,aim);}}
   else if(awaitKind==="penalty"){shootBall(players[kicker].team,action==="a"?1.0:0.5,aim);}
@@ -786,18 +909,21 @@ function awardFoul(foulingTeam,fx,fy){
   const kind=(inBoxY&&inBoxX)?"penalty":"freekick";playWhistle();beginSetPiece(kind,kickerIdx,victimTeam);
 }
 function controlledIfMine(idx,team){if(team===0)controlledIdx=idx;}
+// Recupero al contatto: se il portatore e' avversario e un mio giocatore di movimento
+// lo tocca, gli ruba la palla (probabilita' alta). Evita che l'avversario "attraversi".
 function contactSteal(){
-  const o=ball.owner;if(o<0)return;const carrier=players[o];if(!carrier||carrier.team!==1)return;
+  const o=ball.owner;if(o<0)return;const carrier=players[o];if(!carrier||carrier.team!==1)return; // solo se ha palla l'avversario (team 1)
   if(carrier.kickCooldown>0)return;
-  const R=CATCH_RADIUS+7;
+  const R=CATCH_RADIUS+7; // raggio di contatto
   let best=-1,bestD=Infinity;
   for(let i=0;i<players.length;i++){const p=players[i];if(p.team!==0||p.role==="gk"||p.kickCooldown>0)continue;const d=Math.hypot(p.x-carrier.x,p.y-carrier.y);if(d<R&&d<bestD){bestD=d;best=i;}}
   if(best<0)return;
+  // probabilita' di recupero al contatto: alta per il giocatore controllato, buona per gli altri
   const isMine=(best===controlledIdx);
   const chance=isMine?0.9:0.5;
   if(rng()<chance){
     ball.owner=best;ball.vx=0;ball.vy=0;ball.z=0;ball.vz=0;ball.high=false;ball.lastTouch=0;
-    carrier.kickCooldown=22;
+    carrier.kickCooldown=22; // il portatore appena derubato non recupera subito
     playSound(150,"square",0.06);
   }
 }
@@ -816,6 +942,7 @@ function resumeSecondHalf(){resetFormation(kickoffTeam);state="COUNTDOWN";countd
 function finishMatch(){state="FULLTIME";updateCrowdSound(0);playWhistle();}
 function afterMatch(){
   if(cupMatch){
+    // partita di International Cup: gara secca. Pareggio -> rigori.
     const myG=playerIsHome?scoreHomeVal():scoreAwayVal();
     const opG=playerIsHome?scoreAwayVal():scoreHomeVal();
     if(myG===opG){ startPenaltyShootout("cup"); return; }
@@ -824,6 +951,7 @@ function afterMatch(){
   }
   if(matchMode==="career"){
     let my,opp; if(playerIsHome){my=scoreHomeVal();opp=scoreAwayVal();}else{my=scoreAwayVal();opp=scoreHomeVal();}
+    // in careerRecordResult passo sempre (mieiGol, golAvversario)
     careerRecordResult(playerIsHome?scoreHomeVal():scoreAwayVal(), playerIsHome?scoreAwayVal():scoreHomeVal());
     const lg=curLeague();
     if(leagueDone(lg)){ finishSeason(); state="PROMO"; }
@@ -832,17 +960,21 @@ function afterMatch(){
     if(scoreHomeVal()===scoreAwayVal()){state="DRAWCHOICE";menuIndex=0;}else{backToMenu();}
   }
 }
+// conclude la partita di coppa: risolve il round, programma il prossimo turno, torna al tabellone
 function cupFinishMatch(myWon){
   cupResolveRound(myWon);
   cupMatch=false;
+  // programma il prossimo turno di coppa qualche giornata piu' avanti
   if(career.cup&&career.cup.alive&&!career.cup.done){
     const lg=curLeague();
     career.cup.nextCupAt=(lg.round+1)+CUP_MATCH_EVERY;
     saveCareer();
   }
-  state="CUP";
+  state="CUP"; // mostra il tabellone aggiornato
 }
+// prepara i kit per una partita di carriera (avversario: colore casuale != giocatore)
 function prepMatchKits(){
+  // spec della mia maglia
   let mySpec;
   if(matchMode==="career"){ mySpec=career.kitSpec||{pattern:"solid",c1:career.kitColId||"blue",c2:career.kitColId||"blue"}; }
   else { mySpec=(playerKit&&playerKit.__spec)?playerKit.__spec:{pattern:(playerKit&&playerKit.pattern)||"solid",c1:(playerKit&&playerKit.colId)||"blue",c2:(playerKit&&playerKit.colId)||"blue"}; }
@@ -851,13 +983,17 @@ function prepMatchKits(){
   oppKit=kitFromSpec(oppSpec);
   lastOppKitSig=kitSig(oppSpec);
 }
+// avvia la partita del giocatore in carriera (dalla giornata corrente)
 function startCareerMatch(){
   const lg=curLeague();
+  // avanza oltre le giornate in cui la mia squadra riposa (BYE), simulando le altre
   let guard=0;
   while(!leagueDone(lg)&&!playerFixture()&&guard<30){ simOthersInRound(lg); lg.round++; guard++; }
   saveCareer();
+  // INTERNATIONAL CUP: se attiva e viva, e siamo arrivati alla giornata del turno di coppa,
+  // gioco PRIMA la partita di coppa (poi, al prossimo "Gioca", la partita di campionato).
   if(career.cup&&career.cup.active&&career.cup.alive&&!career.cup.done){
-    const dayNow=lg.round+1;
+    const dayNow=lg.round+1; // giornata di campionato corrente (1-based)
     if(dayNow>=(career.cup.nextCupAt||1)&&cupMyMatch()){ startCupMatch(); return; }
   }
   cupMatch=false;
@@ -869,6 +1005,7 @@ function startCareerMatch(){
   prepMatchKits();
   openFormationSelect();
 }
+// avvia la partita di International Cup contro l'avversario del turno corrente
 function startCupMatch(){
   const opp=cupMyOpponent(); if(!opp){cupMatch=false;startCareerMatch();return;}
   cupMatch=true; playerIsHome=true;
@@ -876,6 +1013,7 @@ function startCupMatch(){
   homeTeamObj={en:teamName(me),it:teamName(me),uid:career.playerUid};
   awayTeamObj={en:opp.en,it:opp.it,uid:opp.uid};
   pendingOppObj=awayTeamObj;
+  // kit: io la mia maglia, avversario la sua spec di coppa
   const mySpec=career.kitSpec||{pattern:"solid",c1:career.kitColId||"blue",c2:career.kitColId||"blue"};
   playerKit=kitFromSpec(mySpec);
   oppKit=kitFromSpec(opp.kitSpec||{pattern:"solid",c1:"red",c2:"red"});
@@ -899,6 +1037,7 @@ function pressAction(action){
     case "MANAGEMENT": navManagement(action); break;
     case "STADIUM": navStadium(action); break;
     case "SQUAD": navSquad(action); break;
+    case "MARKET": navMarket(action); break;
     case "CUP": navCup(action); break;
     case "PROMO": navPromo(action); break;
     case "PENALTY": penaltyInput(action); break;
@@ -943,6 +1082,7 @@ function navModeSelect(action){
   }
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
 }
+// menu Continua/Nuova carriera
 function careerStartItems(){return hasSave?["continueCareer","newCareer","rules"]:["newCareer","rules"];}
 function navCareerStart(action){
   if(maybeLangToggle(action))return;const items=careerStartItems();
@@ -954,13 +1094,16 @@ function navCareerStart(action){
   } else if(action==="b"){state="MODE_SELECT";menuIndex=0;}
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
 }
+// scorrimento schermata regole
 function navRules(action){
   if(maybeLangToggle(action))return;
   if(action==="down"){rulesScroll++;playSound(400,"square",0.03);}
   else if(action==="up"){rulesScroll--;if(rulesScroll<0)rulesScroll=0;playSound(400,"square",0.03);}
   else if(action==="b"||action==="start"){playSound(500,"square",0.06);state="CAREER_START";}
 }
+// inizio nuova carriera: scegli squadra tra la Regional League (livello 0)
 let pendingCareerTeamUid=null;
+// editor maglia (carriera): step 0=pattern, 1=colore1, 2=colore2
 let kitStep=0, kitPattern="solid", kitC1="blue", kitC2="red";
 let selLeagueIdx=0,oppLeagueIdx=0,leagueSelForOpp=false;
 function navLeagueSelect(action){
@@ -976,10 +1119,11 @@ function navLeagueSelect(action){
   if(menuIndex<0)menuIndex=n-1;if(menuIndex>=n)menuIndex=0;
 }
 function startCareerFlow(){ matchMode="career"; state="TEAM_SELECT"; menuIndex=0; }
+// elenco squadre da mostrare in TEAM_SELECT
 function teamSelectList(){
-  if(matchMode==="career"){
+  if(matchMode==="career"){ // nuova carriera: Regional League def
     return LEAGUE_DEFS[0].teams.map(function(pair,i){return {en:pair[0],it:pair[1],uid:"L0-"+i};});
-  } else {
+  } else { // amichevole: squadre della lega selezionata
     const d=selLeagueIdx;return LEAGUE_DEFS[d].teams.map(function(pair,i){return {en:pair[0],it:pair[1],uid:"L"+d+"-"+i};});
   }
 }
@@ -1002,14 +1146,16 @@ function navKit(action){
   } else if(action==="b"){state="TEAM_SELECT";menuIndex=0;}
   if(menuIndex<0)menuIndex+=total;if(menuIndex>=total)menuIndex-=total;
 }
+// editor maglia in carriera: step 0=pattern, 1=colore1, 2=colore2 (solo se righe)
 function navKitCareer(action){
   const total=KIT_COLORS.length;const cols=2;
-  if(kitStep===0){
+  if(kitStep===0){ // scelta pattern: 0=tinta unita, 1=righe
     if(action==="up"||action==="down"){menuIndex=(menuIndex===0)?1:0;playSound(400,"square",0.04);}
     else if(action==="a"){kitPattern=(menuIndex===0)?"solid":"stripes";playSound(650,"square",0.08);kitStep=1;menuIndex=0;}
     else if(action==="b"){state="TEAM_SELECT";menuIndex=0;}
     return;
   }
+  // step 1 o 2: scelta colore da griglia
   if(action==="left"){menuIndex--;playSound(400,"square",0.04);}
   else if(action==="right"){menuIndex++;playSound(400,"square",0.04);}
   else if(action==="up"){menuIndex-=cols;playSound(400,"square",0.04);}
@@ -1019,7 +1165,7 @@ function navKitCareer(action){
       kitC1=col;
       if(kitPattern==="stripes"){kitStep=2;menuIndex=0;}
       else{ finalizeCareerKit({pattern:"solid",c1:col,c2:col}); }
-    } else {
+    } else { // step 2: secondo colore delle righe (deve differire dal primo)
       if(col===kitC1){playSound(180,"square",0.08);}else{kitC2=col;finalizeCareerKit({pattern:"stripes",c1:kitC1,c2:kitC2});}
     }
   }
@@ -1027,6 +1173,7 @@ function navKitCareer(action){
   if(menuIndex<0)menuIndex+=total;if(menuIndex>=total)menuIndex-=total;
 }
 function finalizeCareerKit(spec){ seedRng(Date.now()>>>0); startNewCareer(0,pendingCareerTeamUid,spec); goToManagement(); }
+// avversario per amichevole: qualsiasi squadra != scelta
 function singleOppList(){const d=oppLeagueIdx;const out=[];LEAGUE_DEFS[d].teams.forEach(function(pair,i){const uid="L"+d+"-"+i;if(homeTeamObj&&uid===homeTeamObj.uid)return;out.push({en:pair[0],it:pair[1],uid:uid});});return out;}
 function navOpponent(action){
   if(maybeLangToggle(action))return;const list=singleOppList();
@@ -1048,15 +1195,16 @@ function navFormation(action){
   if(formationIndex<0)formationIndex=FORMATION_NAMES.length-1;if(formationIndex>=FORMATION_NAMES.length)formationIndex=0;
 }
 function goToManagement(){
+  // International Cup: se sbloccata (National vinta) genera un nuovo torneo una volta per stagione
   if(career&&career.intlCupUnlocked&&career.cupSeason!==career.season){
     startInternationalCup();
     career.cupSeason=career.season;
-    career.cup.nextCupAt=1;
+    career.cup.nextCupAt=1; // primo turno gia' dalla prima giornata utile
     saveCareer();
   }
   state="MANAGEMENT";menuIndex=0;
 }
-function managementItems(){ const base=["playMatch","stadium","squad","training","calendar","standings","history","exitToMenu"]; if(career&&career.cup&&career.cup.active){ base.splice(1,0,"intlCup"); } return base; }
+function managementItems(){ const base=["playMatch","stadium","squad","market","training","calendar","standings","history","exitToMenu"]; if(career&&career.cup&&career.cup.active){ base.splice(1,0,"intlCup"); } return base; }
 function navManagement(action){
   if(maybeLangToggle(action))return;
   const items=managementItems();
@@ -1065,7 +1213,8 @@ function navManagement(action){
     if(c==="playMatch"){startCareerMatch();}
     else if(c==="intlCup"){state="CUP";}
     else if(c==="stadium"){state="STADIUM";}
-    else if(c==="squad"){state="SQUAD";menuIndex=0;}
+    else if(c==="squad"){state="SQUAD";}
+    else if(c==="market"){state="MARKET";menuIndex=0;}
     else if(c==="training"){state="TRAINING";menuIndex=0;}
     else if(c==="calendar"){state="CALENDAR";}
     else if(c==="standings"){state="STANDINGS";}
@@ -1074,6 +1223,7 @@ function navManagement(action){
   }
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
 }
+// ---- STADIO ----
 function stadiumCanUpgrade(){ const next=(career.stadiumTier||0)+1; if(next>=STADIUM_TIERS.length)return false; return STADIUM_TIERS[next].minLeague<=career.leagueLevel; }
 function stadiumNextLocked(){ const next=(career.stadiumTier||0)+1; if(next>=STADIUM_TIERS.length)return false; return STADIUM_TIERS[next].minLeague>career.leagueLevel; }
 function navStadium(action){
@@ -1081,20 +1231,30 @@ function navStadium(action){
   if(action==="a"){ const next=(career.stadiumTier||0)+1; if(next<STADIUM_TIERS.length&&STADIUM_TIERS[next].minLeague<=career.leagueLevel){ const cost=STADIUM_TIERS[next].cost; if((career.budget||0)>=cost){career.budget-=cost;career.stadiumTier=next;saveCareer();playSound(760,"square",0.12);}else{playSound(180,"square",0.1);} } }
   else if(action==="b"||action==="start"){playSound(500,"square",0.06);goToManagement();}
 }
+// ---- INTERNATIONAL CUP: navigazione tabellone ----
 function navCup(action){
   if(maybeLangToggle(action))return;
   if(action==="a"){ if(cupMyMatch()&&career.cup.alive&&!career.cup.done){ playSound(650,"square",0.08); startCupMatch(); } }
   else if(action==="b"||action==="start"){playSound(500,"square",0.06);goToManagement();}
 }
+// ---- ROSA (sola visualizzazione) ----
 function squadItems(){return ["gk","def","mid","att"];}
 function squadKeyLabel(k){return k==="gk"?t("secGk"):k==="def"?t("secDef"):k==="mid"?t("secMid"):t("secAtt");}
 function navSquad(action){
+  if(maybeLangToggle(action))return;
+  if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
+  else if(action==="a"||action==="start"||action==="b"){playSound(500,"square",0.06);goToManagement();}
+  const n=squadItems().length;if(menuIndex<0)menuIndex=n-1;if(menuIndex>=n)menuIndex=0;
+}
+// ---- CALCIO MERCATO (acquisti, solo a finestra aperta) ----
+function navMarket(action){
   if(maybeLangToggle(action))return;const items=squadItems();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
-  else if(action==="a"){
-    const k=items[(menuIndex+items.length)%items.length];const v=career.squad[k];
-    if(v>=100){playSound(180,"square",0.1);}
-    else{const cost=marketCost(v);if((career.budget||0)>=cost){career.budget-=cost;career.squad[k]=marketNextValue(v);saveCareer();playSound(760,"square",0.1);}else{playSound(180,"square",0.1);}}
+  else if(action==="a"){ // acquista +5% sul reparto selezionato (solo se il mercato e' aperto)
+    if(!marketWindowOpen()){playSound(180,"square",0.12);}
+    else{const k=items[(menuIndex+items.length)%items.length];const v=career.squad[k];
+      if(v>=100){playSound(180,"square",0.1);}
+      else{const cost=marketCost(v);if((career.budget||0)>=cost){career.budget-=cost;career.squad[k]=marketNextValue(v);saveCareer();playSound(760,"square",0.1);}else{playSound(180,"square",0.1);}}}
   }
   else if(action==="b"||action==="start"){playSound(500,"square",0.06);goToManagement();}
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
@@ -1122,12 +1282,13 @@ function navPromo(action){
     else{goToManagement();}
   }
 }
+// vittoria National: 2 scelte
 function careerWinItems(){return ["continueCareerOpt","newCareerOpt"];}
 function navCareerWin(action){
   const items=careerWinItems();
   if(action==="up"){menuIndex--;playSound(400,"square",0.04);}else if(action==="down"){menuIndex++;playSound(400,"square",0.04);}
   else if(action==="a"||action==="start"){const c=items[(menuIndex+items.length)%items.length];playSound(650,"square",0.08);
-    if(c==="continueCareerOpt"){goToManagement();}
+    if(c==="continueCareerOpt"){goToManagement();} // prosegue: stagione gia' avanzata in finishSeason
     else{deleteCareer();backToMenu();}
   }
   if(menuIndex<0)menuIndex=items.length-1;if(menuIndex>=items.length)menuIndex=0;
@@ -1142,6 +1303,7 @@ function navPause(action){
   if(pauseIndex<0)pauseIndex=items.length-1;if(pauseIndex>=items.length)pauseIndex=0;
 }
 function backToMenu(){playSound(250,"square",0.15);updateCrowdSound(0);state="MODE_SELECT";menuIndex=0;matchMode="single";}
+// rigori (amichevole in pari)
 function startPenaltyShootout(after){pk={after:after,myScore:0,oppScore:0,round:1,turn:"player",phase:"aim",msg:"",gkSide:0,shotSide:0,scored:false,playerShots:0,oppShots:0};state="PENALTY";playWhistle();}
 let pk=null;
 function penaltyInput(action){
@@ -1212,6 +1374,7 @@ function draw(){
     case "MANAGEMENT": return drawManagement();
     case "STADIUM": return drawStadium();
     case "SQUAD": return drawSquad();
+    case "MARKET": return drawMarket();
     case "CUP": return drawCup();
     case "PROMO": return drawPromo();
     case "CAREERWIN": return drawCareerWin();
@@ -1228,12 +1391,13 @@ function draw(){
   if(oppSetPieceMs>0&&state==="PLAYING")drawOppSetPieceWait();
   if(showInfoOverlay&&state==="PLAYING")drawInfoOverlay(false);
 }
+// ---- SPALTI variabili per lega: 0=pochi spett, 1=piu spett, 2=spalti pieni ----
 function drawScene(){const lvl=leagueLevelForMatch();drawStands(lvl);drawPitch();drawSideStands(lvl);drawGoal(0);drawGoal(FIELD_H);const camTop=camY-VIEW_SPAN/2-40,camBot=camY+VIEW_SPAN/2+40;const ents=[];for(let i=0;i<players.length;i++){if(players[i].y<camTop||players[i].y>camBot)continue;ents.push({y:players[i].y,kind:"player",ref:players[i],idx:i});}ents.push({y:ball.y,kind:"ball",ref:ball});ents.sort(function(a,b){return a.y-b.y;});ents.forEach(function(e){if(e.kind==="player"){drawFootballer(e.ref,e.idx===controlledIdx&&e.ref.team===0);}else{drawBall(e.ref);}});drawHUD();}
 function drawStands(lvl){
   const grad=ctx.createLinearGradient(0,0,0,VIEW.top);grad.addColorStop(0,"#6ab0e8");grad.addColorStop(1,"#b8dcf4");ctx.fillStyle=grad;ctx.fillRect(0,0,320,VIEW.top);
-  if(lvl>=2){
+  if(lvl>=2){ // National: spalti pieni
     px(0,VIEW.top-26,320,26,"#33323a");for(let i=0;i<160;i++){const sx=(i*79)%320,sy=VIEW.top-24+((i*37)%22);const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a"];px(sx,sy,2,2,cols[i%cols.length]);}px(0,VIEW.top-3,320,3,"#e8e8e8");
-  } else {
+  } else { // erba/recinzione dietro la porta lontana
     px(0,VIEW.top-6,320,6,"#1f6f2c");px(0,VIEW.top-2,320,2,"#e8e8e8");
     const n=(lvl===1)?18:7;for(let i=0;i<n;i++){const sx=(i*(lvl===1?17:43)+8)%312;const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a","#e0902a"];px(sx,VIEW.top-9,2,4,cols[i%cols.length]);px(sx,VIEW.top-5,2,3,"#3a2a1a");}
   }
@@ -1241,13 +1405,14 @@ function drawStands(lvl){
 function drawSideStands(lvl){
   const top=VIEW.top,bot=VIEW.bottom;const wob=Math.floor(splashTime/350)%2;
   function s2w(sy){const df=(sy-top)/(bot-top);return (camY-VIEW_SPAN/2)+df*VIEW_SPAN;}
-  if(lvl>=2){
+  if(lvl>=2){ // spalti colorati pieni (come originale)
     const cols=["#d85a5a","#5a7ac8","#e8d85a","#f0f0f0","#5ac87a","#e0902a","#c060c0"];
     for(let side=0;side<2;side++){for(let sy=top;sy<bot;sy+=4){const wy=s2w(sy);const leftEdge=worldToScreen(0,wy).x,rightEdge=worldToScreen(FIELD_W,wy).x;let x0,x1;if(side===0){x1=leftEdge-16;x0=0;}else{x1=320;x0=rightEdge+16;}if(x1-x0<3)continue;const g=(Math.floor(sy/8)%2===0)?"#34333d":"#2b2a33";px(x0,sy,x1-x0,4,g);for(let x=x0+2;x<x1-2;x+=5){const c=cols[((x*3+sy+wob)>>>0)%cols.length];px(x,sy+((x+sy)%2?1:0),3,3,c);}}for(let sy=top;sy<bot;sy+=2){const wy=s2w(sy);const edge=(side===0)?worldToScreen(0,wy).x-10:worldToScreen(FIELD_W,wy).x+8;px(edge,sy,2,2,"#c8ccd4");}}
     return;
   }
+  // livelli base/intermedio: bordo erboso + qualche spettatore sparso
   const cols=["#c85a5a","#5a7ac8","#d8c85a","#e8e8e8","#5ac87a","#e0902a"];
-  const step=(lvl===1)?26:60;
+  const step=(lvl===1)?26:60; // meno spettatori nel base
   for(let side=0;side<2;side++){
     for(let sy=top;sy<bot;sy+=4){const wy=s2w(sy);const leftEdge=worldToScreen(0,wy).x,rightEdge=worldToScreen(FIELD_W,wy).x;let x0,x1;if(side===0){x1=leftEdge-6;x0=Math.max(0,x1-14);}else{x0=rightEdge+6;x1=Math.min(320,x0+14);}if(x1-x0<3)continue;px(x0,sy,x1-x0,4,"#2f7a38");}
     for(let sy=top+8;sy<bot;sy+=step){const wy=s2w(sy);const edge=(side===0)?worldToScreen(0,wy).x-10:worldToScreen(FIELD_W,wy).x+6;const c=cols[((sy+side*7+wob)>>>0)%cols.length];px(edge,sy-3,3,3,c);px(edge,sy,3,3,"#3a2a1a");}
@@ -1259,6 +1424,7 @@ function drawGoal(goalY){const xL=FIELD_W/2-GOAL_W/2,xR=FIELD_W/2+GOAL_W/2;const
 function drawFootballer(p,isControlled){const s=worldToScreen(p.x,p.y);const u=s.scale*0.92;const cx=s.x,footY=s.y;const kit=(p.role==="gk")?GK_KIT:teamKit(p.team);ctx.fillStyle="rgba(0,0,0,0.28)";ctx.beginPath();ctx.ellipse(cx,footY,8*u,3*u,0,0,Math.PI*2);ctx.fill();if(isControlled&&slide.active){const dirX=(lastDir.x>=0)?1:-1;px(cx-10*u,footY-8*u,20*u,7*u,kit.c1);px(cx+dirX*8*u,footY-9*u,8*u,4*u,kit.short);px(cx+dirX*15*u,footY-9*u,4*u,3*u,"#1a1a1a");px(cx-dirX*10*u,footY-12*u,6*u,6*u,"#e8b890");return;}if(isControlled&&Math.floor(splashTime/200)%2===0){ctx.fillStyle="#ffe23a";const ay=footY-44*u;ctx.beginPath();ctx.moveTo(cx,ay+8);ctx.lineTo(cx-5,ay);ctx.lineTo(cx+5,ay);ctx.closePath();ctx.fill();}if(p._lx===undefined){p._lx=p.x;p._ly=p.y;p._anim=0;}const moved=Math.hypot(p.x-p._lx,p.y-p._ly);p._lx=p.x;p._ly=p.y;const running=moved>0.25;if(running){p._anim=(p._anim+moved*0.20)%(Math.PI*2);}const swing=running?Math.sin(p._anim):0;const legF=swing*6*u,armF=-swing*5.5*u,bob=running?Math.abs(Math.cos(p._anim))*3*u:0;px(cx-5*u,footY-14*u-bob,4*u,10*u+legF,kit.sock);px(cx+1*u,footY-14*u-bob,4*u,10*u-legF,kit.sock);px(cx-6*u,footY-20*u-bob,5*u,8*u,kit.short);px(cx+1*u,footY-20*u-bob,5*u,8*u,kit.short);px(cx-6*u+swing*4*u,footY-4*u,5*u,3*u,"#1a1a1a");px(cx+1*u-swing*4*u,footY-4*u,5*u,3*u,"#1a1a1a");drawShirt(cx,footY-32*u-bob,12*u,14*u,kit);px(cx-8*u,footY-31*u-bob+armF,2*u,9*u,kit.c1);px(cx+6*u,footY-31*u-bob-armF,2*u,9*u,kit.c1);px(cx-3*u,footY-40*u-bob,6*u,6*u,"#e8b890");px(cx-3*u,footY-40*u-bob,6*u,2*u,"#3a2a1a");}
 function drawShirt(x,y,w,h,kit){const left=x-w/2;if(kit.pattern==="stripes"){const n=4;const sw=w/n;for(let i=0;i<n;i++){ctx.fillStyle=(i%2===0)?kit.c1:(kit.c2||kit.c1);ctx.fillRect(left+i*sw,y,Math.ceil(sw),h);}}else{ctx.fillStyle=kit.c1;ctx.fillRect(left,y,w,h);}ctx.fillStyle=shade(kit.c1,-30);ctx.fillRect(x-2,y,4,2);}
 function drawBall(b){const s=worldToScreen(b.x,b.y);const r=6.2*s.scale;const bx=s.x;const z=b.z||0;const lift=z*0.9*s.scale;const by=s.y-lift;const shadowScale=1/(1+z*0.03);ctx.fillStyle="rgba(0,0,0,0.30)";ctx.beginPath();ctx.ellipse(s.x,s.y,r*shadowScale,r*0.4*shadowScale,0,0,Math.PI*2);ctx.fill();const rr=r*(1+z*0.01);ctx.fillStyle="rgba(255,235,80,0.35)";ctx.beginPath();ctx.arc(bx,by,rr*1.7,0,Math.PI*2);ctx.fill();ctx.fillStyle="#111";ctx.beginPath();ctx.arc(bx,by,rr+1,0,Math.PI*2);ctx.fill();ctx.fillStyle="#ffffff";ctx.beginPath();ctx.arc(bx,by,rr,0,Math.PI*2);ctx.fill();ctx.fillStyle="#111";ctx.beginPath();ctx.arc(bx,by,rr*0.42,0,Math.PI*2);ctx.fill();}
+function homeName(){return teamName(playerIsHome?homeTeamObj:homeTeamObj);}
 function matchHomeName(){return teamName(homeTeamObj);}
 function matchAwayName(){return teamName(awayTeamObj);}
 function drawHUD(){ctx.fillStyle="#101010";ctx.fillRect(0,0,320,30);ctx.textAlign="left";ctx.font="bold 10px monospace";ctx.fillStyle="#8ecdff";ctx.fillText(abbr(matchHomeName()),6,12);ctx.fillStyle="#fff";ctx.textAlign="center";ctx.font="bold 13px monospace";ctx.fillText(scoreHomeVal()+" - "+scoreAwayVal(),160,13);ctx.textAlign="right";ctx.font="bold 10px monospace";ctx.fillStyle="#ff9a9a";ctx.fillText(abbr(matchAwayName()),314,12);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 9px monospace";const remain=Math.max(0,HALF_MS-matchElapsedMs);const hl=(matchHalf===1)?t("firstHalf"):t("secondHalf");ctx.fillText(hl+"  "+fmtTime(remain),160,26);ctx.textAlign="left";}
@@ -1279,6 +1445,7 @@ function drawSplash(){const bands=["#0e2a4a","#164a7a","#2a70a8","#3a90c8","#6ab
 function drawMenuList(titleKey,items,idx,extraY){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#dc0000";ctx.font="bold 20px monospace";ctx.fillText(t("title"),160,40);ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t(titleKey),160,72);ctx.font="bold 16px monospace";items.forEach(function(key,i){const label=(key==="musicToggle")?t(musicOn?"musicOn":"musicOff"):t(key),y=(extraY||120)+i*34;if(i===idx){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});ctx.fillStyle="#7ad0ff";ctx.font="bold 9px monospace";ctx.fillText(t("langLabel")+": "+lang.toUpperCase()+"  ("+t("toggleLangHint")+")",160,300);ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navChoose"),160,314);ctx.textAlign="left";}
 function drawModeSelect(){drawMenuList("title",modeItems(),(menuIndex%modeItems().length+modeItems().length)%modeItems().length,130);drawBigFootballer(160,258,1.3,AZZURRO_KIT,"idle");}
 function drawCareerStart(){drawMenuList("career",careerStartItems(),(menuIndex%careerStartItems().length+careerStartItems().length)%careerStartItems().length,150);}
+// costruisce l'elenco di righe (con a capo automatico) del testo regole
 function buildRulesLines(){
   const src=RULES_TEXT[lang]||RULES_TEXT.en;const maxW=296;const out=[];
   ctx.font="bold 9px monospace";
@@ -1300,10 +1467,12 @@ function drawRules(){
   ctx.textAlign="left";ctx.font="bold 9px monospace";
   for(let r=0;r<visible&&(rulesScroll+r)<lines.length;r++){
     const ln=lines[rulesScroll+r];const y=top+8+r*lh;
+    // titoli/sezioni in giallo, resto bianco
     const isHead=(ln.indexOf(":")>=0&&ln.length<22)||ln.indexOf("COME SI GIOCA")===0||ln.indexOf("HOW TO PLAY")===0||ln==="COMANDI:"||ln==="CONTROLS:";
     ctx.fillStyle=isHead?"#ffe23a":"#dfe8f0";
     ctx.fillText(ln,12,y);
   }
+  // indicatori di scorrimento
   ctx.textAlign="center";ctx.fillStyle="#00e5ff";ctx.font="bold 10px monospace";
   if(rulesScroll>0)ctx.fillText("\u25B2",160,32);
   if(rulesScroll<maxScroll)ctx.fillText("\u25BC",160,300);
@@ -1317,6 +1486,7 @@ function drawKitSelect(){
   ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseKit"),160,24);const cols=2,colX=[70,190];const sel=((menuIndex%KIT_COLORS.length)+KIT_COLORS.length)%KIT_COLORS.length;KIT_COLORS.forEach(function(kc,i){const col=i%cols,row=Math.floor(i/cols),x=colX[col],cy=56+row*38;px(x,cy-10,18,16,kc.c);ctx.strokeStyle=(i===sel)?"#ffe23a":"#000";ctx.lineWidth=(i===sel)?2:1;ctx.strokeRect(x,cy-10,18,16);ctx.textAlign="left";ctx.font="bold 9px monospace";ctx.fillStyle=(i===sel)?"#ffe23a":"#ddd";ctx.fillText(colorName(kc),x+24,cy+2);});ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";
 }
 function drawKitPreview(cx,cy,scale,spec){
+  // maglietta di anteprima (rettangolo): tinta unita o righe
   const w=44*scale,h=48*scale,left=cx-w/2,top=cy-h/2;
   if(spec.pattern==="stripes"){const n=4,sw=w/n;for(let i=0;i<n;i++){ctx.fillStyle=(i%2===0)?hexForColId(spec.c1):hexForColId(spec.c2);ctx.fillRect(left+i*sw,top,Math.ceil(sw),h);}}
   else{ctx.fillStyle=hexForColId(spec.c1);ctx.fillRect(left,top,w,h);}
@@ -1326,17 +1496,21 @@ function drawKitSelectCareer(){
   ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseKit"),160,22);
   if(kitStep===0){
+    // scelta stile
     ctx.fillStyle="#8ecdff";ctx.font="bold 11px monospace";ctx.fillText(t("kitStyle"),160,52);
     const opts=[t("kitSolid"),t("kitStripes")];ctx.font="bold 16px monospace";
     for(let i=0;i<2;i++){const y=110+i*40;if(i===menuIndex){ctx.fillStyle="#00e5ff";ctx.fillText("> "+opts[i]+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(opts[i],160,y);}}
+    // anteprima
     const prevSpec=(menuIndex===0)?{pattern:"solid",c1:"blue",c2:"blue"}:{pattern:"stripes",c1:"blue",c2:"red"};
     drawKitPreview(160,225,1.0,prevSpec);
     ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,308);ctx.textAlign="left";return;
   }
+  // step 1/2: griglia colori
   const label=(kitPattern==="solid")?t("kitColorSingle"):(kitStep===1?t("kitColor1"):t("kitColor2"));
   ctx.fillStyle="#8ecdff";ctx.font="bold 11px monospace";ctx.fillText(label,160,40);
   const cols=2,colX=[54,158];const sel=((menuIndex%KIT_COLORS.length)+KIT_COLORS.length)%KIT_COLORS.length;
   KIT_COLORS.forEach(function(kc,i){const col=i%cols,row=Math.floor(i/cols),x=colX[col],cy=58+row*30;px(x,cy-9,16,14,kc.c);const isTaken=(kitStep===2&&kc.id===kitC1);ctx.strokeStyle=(i===sel)?"#ffe23a":(isTaken?"#883333":"#000");ctx.lineWidth=(i===sel)?2:1;ctx.strokeRect(x,cy-9,16,14);ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle=isTaken?"#663333":((i===sel)?"#ffe23a":"#ddd");ctx.fillText(colorName(kc),x+20,cy+1);});
+  // anteprima corrente
   let prev;
   if(kitPattern==="solid"){prev={pattern:"solid",c1:KIT_COLORS[sel].id,c2:KIT_COLORS[sel].id};}
   else if(kitStep===1){prev={pattern:"stripes",c1:KIT_COLORS[sel].id,c2:kitC2};}
@@ -1348,6 +1522,7 @@ function drawOpponentSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);
 function drawFormationSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseFormation"),160,24);ctx.fillStyle="#ffffff";ctx.font="bold 11px monospace";ctx.fillText(teamName(playerTeamObjOrSingle()),160,42);ctx.font="bold 13px monospace";FORMATION_NAMES.forEach(function(name,i){const y=70+i*24;ctx.textAlign="left";ctx.fillStyle=(i===formationIndex)?"#ffe23a":"#ffffff";ctx.fillText((i===formationIndex?"> ":"  ")+name,40,y);});drawFormationPreview(FORMATION_NAMES[formationIndex],210,66,90,180);ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,306);ctx.textAlign="left";}
 function playerTeamObjOrSingle(){return matchMode==="career"?playerTeamObj():homeTeamObj;}
 function drawFormationPreview(name,bx,by,bw,bh){px(bx,by,bw,bh,"#279a3d");ctx.strokeStyle="rgba(255,255,255,0.7)";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.beginPath();ctx.moveTo(bx,by+bh/2);ctx.lineTo(bx+bw,by+bh/2);ctx.stroke();ctx.beginPath();ctx.arc(bx+bw/2,by+bh/2,10,0,Math.PI*2);ctx.stroke();const form=buildFormation(name);const kc=(matchMode==="career")?careerKit():(playerKit||AZZURRO_KIT);form.forEach(function(pl){const px_=bx+pl.fy*bw,py_=by+bh-(pl.fx*bh*1.8);ctx.fillStyle=(pl.role==="gk")?"#ffe23a":kc.c1;ctx.beginPath();ctx.arc(px_,Math.max(by+4,Math.min(by+bh-4,py_)),3,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#000";ctx.stroke();});}
+// ---- CALENDARIO: prossime N partite del giocatore ----
 function upcomingPlayerMatches(maxN){
   const lg=curLeague();const out=[];
   for(let r=lg.round;r<lg.fixtures.length&&out.length<maxN;r++){
@@ -1376,6 +1551,7 @@ function drawCalendar(){
   }
   ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,314);ctx.textAlign="left";
 }
+// ---- STORICO STAGIONI ----
 function historyOutcomeText(o){
   if(o==="promoted")return t("promoted");
   if(o==="relegated")return t("relegated");
@@ -1393,6 +1569,7 @@ function drawHistory(){
   ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("history"),160,24);
   const h=(career&&career.history)?career.history:[];
   if(h.length===0){ctx.fillStyle="#aaa";ctx.font="bold 10px monospace";ctx.fillText(t("noHistory"),160,120);ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("continueA"),160,300);ctx.textAlign="left";return;}
+  // intestazione colonne
   ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle="#8ecdff";
   ctx.fillText(t("season"),8,40);ctx.fillText("Lega",56,40);ctx.textAlign="right";ctx.fillText(t("pos"),150,40);ctx.textAlign="left";ctx.fillText("Esito",166,40);
   const rows=h.slice().reverse();const maxRows=15;const rowH=17,top=56;
@@ -1415,6 +1592,7 @@ function drawTraining(){
   ctx.fillStyle="#00ff88";ctx.font="bold 9px monospace";ctx.fillText("+8% "+(lang==="it"?"al reparto per la prossima partita":"to the line for next match"),160,250);
   ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,300);ctx.textAlign="left";
 }
+// ---- CLASSIFICA ----
 function drawStandings(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("standings"),160,13);
@@ -1422,6 +1600,7 @@ function drawStandings(){
   ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";
   const totalRounds=lg.fixtures.length;const cur=Math.min(lg.round,totalRounds);
   ctx.fillText(t(def.key)+"  -  "+t("matchDay")+" "+cur+"/"+totalRounds,160,26);
+  // intestazioni
   ctx.textAlign="left";ctx.font="bold 8px monospace";ctx.fillStyle="#8ecdff";
   const xN=6,xT=18,xPg=170,xW=194,xD=214,xL=234,xGf=262,xGs=286,xP=314;
   ctx.fillText("#",xN,40);ctx.fillText(t("colTeam"),xT,40);
@@ -1430,21 +1609,33 @@ function drawStandings(){
   for(let i=0;i<table.length;i++){const r=table[i];const tm=teamByUid(lg,r.uid);const y=top+i*rowH;const mine=(r.uid===career.playerUid);
     if(mine){ctx.fillStyle="rgba(255,226,58,0.14)";ctx.fillRect(2,y-9,316,rowH-3);}
     ctx.fillStyle=mine?"#ffe23a":"#dddddd";ctx.textAlign="left";ctx.fillText((i+1)+"",xN,y);
-    ctx.fillText(teamName(tm),xT,y);
+    const nm=teamName(tm);ctx.fillText(nm,xT,y);
     ctx.textAlign="right";ctx.fillText(r.pg+"",xPg,y);ctx.fillText(r.v+"",xW,y);ctx.fillText(r.n+"",xD,y);ctx.fillText(r.s+"",xL,y);ctx.fillText(r.gf+"",xGf,y);ctx.fillText(r.gs+"",xGs,y);
     ctx.fillStyle=mine?"#ffe23a":"#00ff88";ctx.fillText(r.pts+"",xP,y);ctx.textAlign="left";
   }
   ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("continueA"),160,315);ctx.textAlign="left";
 }
+// ---- DIRIGENZA (edificio 8-bit per lega) ----
 function drawBuildingIcon(cx,cy,lvl){
-  if(lvl===0){px(cx-14,cy-6,28,18,"#c98a4a");px(cx-16,cy-6,32,3,"#8a5a2b");ctx.fillStyle="#7a3020";ctx.beginPath();ctx.moveTo(cx-18,cy-6);ctx.lineTo(cx,cy-22);ctx.lineTo(cx+18,cy-6);ctx.closePath();ctx.fill();px(cx-4,cy+2,8,10,"#5a3a1a");px(cx-11,cy-2,6,6,"#bfe0ff");px(cx+5,cy-2,6,6,"#bfe0ff");}
-  else if(lvl===1){px(cx-16,cy-30,32,42,"#b08a5a");px(cx-18,cy-30,36,3,"#7a3020");for(let f=0;f<3;f++){const fy=cy-26+f*14;px(cx-12,fy,7,7,"#bfe0ff");px(cx+5,fy,7,7,"#bfe0ff");}px(cx-4,cy+2,8,10,"#5a3a1a");}
-  else{px(cx-14,cy-46,28,58,"#8fa0b8");px(cx-16,cy-46,32,3,"#5a6a80");for(let f=0;f<7;f++){const fy=cy-42+f*8;px(cx-10,fy,5,5,"#ffe28a");px(cx-2,fy,5,5,"#bfe0ff");px(cx+6,fy,5,5,"#ffe28a");}px(cx-4,cy+4,8,8,"#3a4658");}
+  if(lvl===0){ // casetta piccola
+    px(cx-14,cy-6,28,18,"#c98a4a");px(cx-16,cy-6,32,3,"#8a5a2b");
+    ctx.fillStyle="#7a3020";ctx.beginPath();ctx.moveTo(cx-18,cy-6);ctx.lineTo(cx,cy-22);ctx.lineTo(cx+18,cy-6);ctx.closePath();ctx.fill();
+    px(cx-4,cy+2,8,10,"#5a3a1a");px(cx-11,cy-2,6,6,"#bfe0ff");px(cx+5,cy-2,6,6,"#bfe0ff");
+  } else if(lvl===1){ // casa grande 3 piani
+    px(cx-16,cy-30,32,42,"#b08a5a");px(cx-18,cy-30,36,3,"#7a3020");
+    for(let f=0;f<3;f++){const fy=cy-26+f*14;px(cx-12,fy,7,7,"#bfe0ff");px(cx+5,fy,7,7,"#bfe0ff");}
+    px(cx-4,cy+2,8,10,"#5a3a1a");
+  } else { // palazzo/grattacielo
+    px(cx-14,cy-46,28,58,"#8fa0b8");px(cx-16,cy-46,32,3,"#5a6a80");
+    for(let f=0;f<7;f++){const fy=cy-42+f*8;px(cx-10,fy,5,5,"#ffe28a");px(cx-2,fy,5,5,"#bfe0ff");px(cx+6,fy,5,5,"#ffe28a");}
+    px(cx-4,cy+4,8,8,"#3a4658");
+  }
 }
 function drawManagement(){
   ctx.fillStyle="#12203a";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("management"),160,16);
   const lg=curLeague();const def=LEAGUE_DEFS[lg.defIdx];const me=playerTeamObj();
+  // edificio + nome squadra
   drawBuildingIcon(50,72,career.leagueLevel);
   ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 10px monospace";
   ctx.fillText(teamName(me),88,44);
@@ -1452,49 +1643,55 @@ function drawManagement(){
   ctx.fillStyle="#ffd84a";ctx.font="bold 8px monospace";ctx.fillText(t("seasonN")+" "+career.season,88,70);
   ctx.fillStyle="#8effc0";ctx.fillText(t("budget")+": $"+(career.budget||0),160,58);
   ctx.fillStyle="#c8b0ff";ctx.fillText(stadiumName(career.stadiumTier||0),160,70);
+  // barra MORALE
   ctx.fillStyle="#8ecdff";ctx.font="bold 8px monospace";ctx.fillText(t("morale"),88,84);
   const bx=132,bw=110,bh=7,by=78;const mor=Math.max(0,Math.min(100,career.morale||50));
   px(bx,by,bw,bh,"#20304a");const fillW=Math.round(bw*mor/100);const mc=(mor>=66)?"#00ff88":(mor>=33)?"#f2c11e":"#ff6060";px(bx,by,fillW,bh,mc);ctx.strokeStyle="#0a1424";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);
   ctx.textAlign="left";ctx.fillStyle="#ffffff";ctx.font="bold 8px monospace";ctx.fillText(mor+"",bx+bw+6,by+7);
+  // obiettivo + allenamento impostato + bonus/malus
   ctx.textAlign="center";ctx.fillStyle="#ff9a9a";ctx.font="bold 8px monospace";
   ctx.fillText(t("objective")+": "+objectiveText(career.objective),160,102);
   const trLabel=career.training?(career.training==="def"?t("trainDef"):career.training==="mid"?t("trainMid"):t("trainAtt")):t("trainNone");
   ctx.fillStyle=career.training?"#00ff88":"#8888aa";ctx.fillText(t("trainedNext")+" "+trLabel,160,114);
   if(career.strengthMod>1.001){ctx.fillStyle="#00ff88";ctx.fillText(t("bonusNext"),160,126);}
   else if(career.strengthMod<0.999){ctx.fillStyle="#ff6060";ctx.fillText(t("malusNext"),160,126);}
+  // opzioni (6 voci)
   const items=managementItems();ctx.textAlign="center";ctx.font="bold 11px monospace";
   const sel=((menuIndex%items.length)+items.length)%items.length;
   items.forEach(function(key,i){const y=142+i*19;const label=(key==="playMatch")?t("playMatch"):t(key);if(i===sel){ctx.fillStyle="#00e5ff";ctx.fillText("> "+label+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.fillText(label,160,y);}});
   ctx.fillStyle="#00ff88";ctx.font="bold 7px monospace";ctx.fillText("* "+t("autoSave")+" *",160,314);ctx.textAlign="left";
 }
+// ---- STADIO: 8 illustrazioni 8-bit (tier 0..7) ----
 function drawStadiumIcon(cx,cy,tier){
+  // base campo verde + tribune che crescono col tier
   function stand(x,y,w,h,c){px(x,y,w,h,c);}
+  // prato
   px(cx-30,cy+6,60,12,"#2fa845");px(cx-30,cy+6,60,2,"#ffffff");
-  if(tier===0){
+  if(tier===0){ // regionale: due gradinate basse
     stand(cx-38,cy-2,12,10,"#8a5a2b");stand(cx+26,cy-2,12,10,"#8a5a2b");
     for(let i=0;i<3;i++){px(cx-36+i*4,cy,2,2,"#d85a5a");px(cx+28+i*4,cy,2,2,"#5a7ac8");}
-  } else if(tier===1){
+  } else if(tier===1){ // regionale 2a: gradinate un po' piu' alte + colori
     stand(cx-40,cy-6,14,14,"#9a6a3b");stand(cx+26,cy-6,14,14,"#9a6a3b");
     for(let r=0;r<2;r++)for(let i=0;i<3;i++){px(cx-38+i*4,cy-4+r*4,2,2,["#d85a5a","#5a7ac8","#e8d85a"][i]);px(cx+28+i*4,cy-4+r*4,2,2,["#5ac87a","#e0902a","#c060c0"][i]);}
-  } else if(tier===2){
+  } else if(tier===2){ // interregionale: 3 lati coperti
     stand(cx-42,cy-8,16,16,"#7a7a86");stand(cx+26,cy-8,16,16,"#7a7a86");px(cx-30,cy-14,60,6,"#5a6a80");
     for(let r=0;r<3;r++)for(let i=0;i<3;i++){px(cx-40+i*5,cy-6+r*4,3,3,["#d85a5a","#5a7ac8","#e8d85a"][i]);px(cx+28+i*5,cy-6+r*4,3,3,["#5ac87a","#e0902a","#c060c0"][i]);}
-  } else if(tier===3){
+  } else if(tier===3){ // interregionale 2a: tetto continuo
     stand(cx-44,cy-10,18,18,"#6a7a88");stand(cx+26,cy-10,18,18,"#6a7a88");px(cx-34,cy-16,68,7,"#48586a");
     for(let r=0;r<3;r++)for(let i=0;i<3;i++){px(cx-42+i*5,cy-8+r*5,3,3,["#d85a5a","#5a7ac8","#e8d85a"][i]);px(cx+28+i*5,cy-8+r*5,3,3,["#5ac87a","#e0902a","#c060c0"][i]);}
-  } else if(tier===4){
+  } else if(tier===4){ // professionale: anello + torri faro
     stand(cx-46,cy-12,20,20,"#5a6a80");stand(cx+26,cy-12,20,20,"#5a6a80");px(cx-36,cy-18,72,8,"#3a4658");
     px(cx-48,cy-24,4,10,"#cccccc");px(cx+44,cy-24,4,10,"#cccccc");px(cx-49,cy-26,6,3,"#fff28a");px(cx+43,cy-26,6,3,"#fff28a");
     for(let r=0;r<4;r++)for(let i=0;i<3;i++){px(cx-44+i*6,cy-10+r*5,4,4,["#d85a5a","#5a7ac8","#e8d85a"][i]);px(cx+28+i*6,cy-10+r*5,4,4,["#5ac87a","#e0902a","#c060c0"][i]);}
-  } else if(tier===5){
+  } else if(tier===5){ // nazionale: grande anello chiuso
     px(cx-50,cy-20,100,34,"#4a586a");px(cx-40,cy-14,80,24,"#2fa845");px(cx-40,cy-14,80,2,"#ffffff");
     px(cx-52,cy-26,104,8,"#33404f");
     for(let r=0;r<3;r++)for(let i=0;i<6;i++){px(cx-48+i*8,cy-18+r*5,4,4,["#d85a5a","#5a7ac8","#e8d85a","#5ac87a","#e0902a","#c060c0"][i]);}
-  } else if(tier===6){
+  } else if(tier===6){ // nazionale 2a: anello + copertura chiara
     px(cx-52,cy-22,104,36,"#4a586a");px(cx-40,cy-14,80,24,"#2fa845");px(cx-40,cy-14,80,2,"#ffffff");
     px(cx-54,cy-30,108,10,"#c8ccd4");
     for(let r=0;r<4;r++)for(let i=0;i<6;i++){px(cx-48+i*8,cy-20+r*5,4,4,["#d85a5a","#5a7ac8","#e8d85a","#5ac87a","#e0902a","#c060c0"][i]);}
-  } else {
+  } else { // internazionale: stadio maestoso con tetto luminoso + fari
     px(cx-54,cy-24,108,40,"#3f4c5e");px(cx-40,cy-14,80,24,"#2fa845");px(cx-40,cy-14,80,2,"#ffffff");
     px(cx-56,cy-34,112,12,"#e8eef6");px(cx-56,cy-34,112,2,"#8ecbff");
     px(cx-58,cy-40,6,6,"#fff28a");px(cx+52,cy-40,6,6,"#fff28a");
@@ -1523,23 +1720,43 @@ function drawStadium(){
 }
 function drawSquad(){
   ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
-  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("squad")+" - "+t("market"),160,22);
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("squad"),160,22);
   ctx.fillStyle="#ffd84a";ctx.font="bold 10px monospace";ctx.fillText(t("budget")+": $"+(career.budget||0),160,40);
   const items=squadItems();const sel=((menuIndex%items.length)+items.length)%items.length;
   for(let i=0;i<items.length;i++){
-    const k=items[i];const v=career.squad[k];const y=70+i*46;const isSel=(i===sel);
+    const k=items[i];const v=career.squad[k];const y=72+i*48;const isSel=(i===sel);
+    ctx.textAlign="left";ctx.fillStyle=isSel?"#00e5ff":"#dddddd";ctx.font="bold 12px monospace";
+    ctx.fillText((isSel?"> ":"  ")+squadKeyLabel(k),16,y);
+    const bx=16,bw=230,bh=9,by=y+8;px(bx,by,bw,bh,"#20304a");const fw=Math.round(bw*v/100);const c=(v>=80)?"#00ff88":(v>=50)?"#f2c11e":"#ff9a9a";px(bx,by,fw,bh,c);ctx.strokeStyle="#0a1424";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);
+    ctx.fillStyle="#ffffff";ctx.font="bold 9px monospace";ctx.fillText(Math.round(v)+"/100",bx+bw+6,by+8);
+  }
+  ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";
+}
+function drawMarket(){
+  ctx.fillStyle="#0c1730";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
+  ctx.fillStyle="#f8d820";ctx.font="bold 15px monospace";ctx.fillText(t("marketMenu"),160,20);
+  const open=marketWindowOpen();
+  ctx.fillStyle=open?"#00ff88":"#ff6060";ctx.font="bold 10px monospace";ctx.fillText(open?t("marketOpen"):t("marketClosed"),160,36);
+  ctx.fillStyle="#8ecdff";ctx.font="bold 8px monospace";ctx.fillText(t("marketWindows"),160,48);
+  ctx.fillStyle="#ffd84a";ctx.font="bold 9px monospace";ctx.fillText(t("budget")+": $"+(career.budget||0),160,60);
+  const items=squadItems();const sel=((menuIndex%items.length)+items.length)%items.length;
+  for(let i=0;i<items.length;i++){
+    const k=items[i];const v=career.squad[k];const y=86+i*44;const isSel=(i===sel);
     ctx.textAlign="left";ctx.fillStyle=isSel?"#00e5ff":"#dddddd";ctx.font="bold 11px monospace";
     ctx.fillText((isSel?"> ":"  ")+squadKeyLabel(k),16,y);
     const bx=16,bw=180,bh=8,by=y+6;px(bx,by,bw,bh,"#20304a");const fw=Math.round(bw*v/100);const c=(v>=80)?"#00ff88":(v>=50)?"#f2c11e":"#ff9a9a";px(bx,by,fw,bh,c);ctx.strokeStyle="#0a1424";ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);
     ctx.fillStyle="#ffffff";ctx.font="bold 9px monospace";ctx.fillText(Math.round(v)+"/100",bx+bw+6,by+8);
     ctx.textAlign="right";
     if(v>=100){ctx.fillStyle="#ffd84a";ctx.fillText(t("maxSquad"),304,y);}
-    else{const cost=marketCost(v);const afford=(career.budget||0)>=cost;ctx.fillStyle=afford?"#8effc0":"#ff6060";ctx.fillText("$"+cost,304,y);}
+    else{const cost=marketCost(v);const afford=open&&(career.budget||0)>=cost;ctx.fillStyle=afford?"#8effc0":(open?"#ff6060":"#777");ctx.fillText("$"+cost,304,y);}
     ctx.textAlign="left";
   }
-  ctx.textAlign="center";ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t("buy5")+"   (+5%)",160,300);
+  ctx.textAlign="center";
+  if(open){ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";ctx.fillText(t("buy5")+"   (+5%)",160,300);}
+  else{ctx.fillStyle="#ff9a9a";ctx.font="bold 9px monospace";ctx.fillText(t("marketClosed"),160,300);}
   ctx.fillStyle="#666";ctx.fillText(t("navBack"),160,314);ctx.textAlign="left";
 }
+// ---- INTERNATIONAL CUP: tabellone ----
 function drawCup(){
   ctx.fillStyle="#0a1024";ctx.fillRect(0,0,320,320);ctx.textAlign="center";
   ctx.fillStyle="#ffd84a";ctx.font="bold 14px monospace";ctx.fillText(t("intlCup"),160,20);
@@ -1574,6 +1791,7 @@ function drawPromo(){
   ctx.fillStyle="#f8d820";ctx.font="bold 16px monospace";ctx.fillText(t("seasonEnd"),160,40);
   let msg,col;if(promoOutcome==="promoted"){msg=t("promoted");col="#00ff88";}else if(promoOutcome==="relegated"){msg=t("relegated");col="#ff6060";}else if(promoOutcome==="won"){msg=t("careerWin");col="#ffd84a";}else{msg=t("stayed");col="#e8e860";}
   ctx.fillStyle=col;ctx.font="bold 20px monospace";ctx.fillText(msg,160,140);
+  // esito obiettivo stagionale + bonus/malus
   if(objectiveActive){
     ctx.font="bold 12px monospace";ctx.fillStyle=objectiveMet?"#00ff88":"#ff6060";
     ctx.fillText(objectiveMet?t("objMet"):t("objFail"),160,172);
