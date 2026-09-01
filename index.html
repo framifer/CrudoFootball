@@ -186,49 +186,105 @@ function drawCrest(type,cx,cy,r,shape){
   ctx.save();shapePath(r-1);ctx.clip();
   const u=r/8; // unita' di scala per i pixel
   function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(cx+x*u,cy+y*u,w*u,h*u);}
-  if(type==="river"){ // sfondo chiaro + onde azzurre
-    rect(-8,-8,16,16,"#bfe0ff");for(let i=0;i<3;i++){rect(-7,-4+i*4,14,2,"#1b6ec2");rect(-5,-3+i*4,3,1,"#8ecbff");rect(2,-3+i*4,3,1,"#8ecbff");}
-  } else if(type==="willow"){ // salice: tronco + chioma cadente
-    rect(-8,-8,16,16,"#dff0d8");rect(-1,-1,2,8,"#7a4a24");for(let i=0;i<5;i++){rect(-6+i*3,-6,2,7,"#2fa845");}
-  } else if(type==="fish"){ // pesce
-    rect(-8,-8,16,16,"#bfe0ff");rect(-5,-2,8,4,"#e0902a");rect(3,-3,3,6,"#e0902a");rect(-6,-1,2,2,"#e0902a");rect(-3,-1,1,1,"#111");
-  } else if(type==="gate"){ // porta/arco antico
-    rect(-8,-8,16,16,"#eadfc8");rect(-6,-3,3,9,"#8a5a2b");rect(3,-3,3,9,"#8a5a2b");rect(-6,-5,12,3,"#8a5a2b");rect(-3,-2,6,8,"#5a3a1a");
-  } else if(type==="gear"){ // ingranaggio
-    rect(-8,-8,16,16,"#d0d4da");for(let a=0;a<8;a++){const ang=a*Math.PI/4;const gx=Math.cos(ang)*6,gy=Math.sin(ang)*6;rect(gx-1,gy-1,2,2,"#5a6a80");}rect(-4,-4,8,8,"#7a7a86");rect(-1.5,-1.5,3,3,"#d0d4da");
-  } else if(type==="forest"){ // bosco fitto (piu alberi)
-    rect(-8,-8,16,16,"#dff0d8");const tx=[-5,0,5];for(let k=0;k<3;k++){ctx.fillStyle="#1f7a34";ctx.beginPath();ctx.moveTo(cx+tx[k]*u,cy-6*u);ctx.lineTo(cx+(tx[k]-3)*u,cy+3*u);ctx.lineTo(cx+(tx[k]+3)*u,cy+3*u);ctx.closePath();ctx.fill();rect(tx[k]-0.5,3,1,3,"#7a4a24");}
-  } else if(type==="lighthouse"){ // faro
-    rect(-8,-8,16,16,"#bfe0ff");rect(-2,-6,4,12,"#f0f0f0");rect(-2,-4,4,2,"#d81e2c");rect(-2,0,4,2,"#d81e2c");rect(-3,-8,6,2,"#ffe23a");rect(-6,-7,3,2,"#ffe23a");rect(3,-7,3,2,"#ffe23a");
-  } else if(type==="anchor"){ // ancora
-    rect(-8,-8,16,16,"#bfe0ff");rect(-1,-6,2,11,"#5a6a80");rect(-3,-7,6,2,"#5a6a80");rect(-6,3,2,2,"#5a6a80");rect(4,3,2,2,"#5a6a80");rect(-6,3,12,1,"#5a6a80");
-  } else if(type==="wheat"){ // spighe di grano
-    rect(-8,-8,16,16,"#f2e2b0");rect(-1,-2,2,8,"#c8961e");for(let i=0;i<4;i++){rect(-4,-6+i*2,3,1,"#e0b030");rect(1,-6+i*2,3,1,"#e0b030");}
-  } else if(type==="wave"){ // onda del mare
-    rect(-8,-8,16,16,"#bfe0ff");for(let i=0;i<3;i++){rect(-7,0+i*3,14,2,"#1b6ec2");}rect(-7,-3,14,3,"#8ecbff");
-  } else if(type==="mountain"){ // montagna con neve
-    rect(-8,-8,16,16,"#cfe6f5");ctx.fillStyle="#6a7a88";ctx.beginPath();ctx.moveTo(cx-6*u,cy+5*u);ctx.lineTo(cx,cy-5*u);ctx.lineTo(cx+6*u,cy+5*u);ctx.closePath();ctx.fill();ctx.fillStyle="#ffffff";ctx.beginPath();ctx.moveTo(cx-2*u,cy-1*u);ctx.lineTo(cx,cy-5*u);ctx.lineTo(cx+2*u,cy-1*u);ctx.closePath();ctx.fill();
-  } else if(type==="lake"){ // lago tra rive
-    rect(-8,-8,16,16,"#dff0d8");rect(-7,-2,14,6,"#1b6ec2");rect(-5,-1,10,1,"#8ecbff");rect(-7,-4,14,2,"#2fa845");
-  } else if(type==="brook"){ // ruscello (linea sinuosa)
-    rect(-8,-8,16,16,"#dff0d8");for(let i=0;i<4;i++){rect(-6+i*3,-5+i*3,3,2,"#1b6ec2");}
-  } else if(type==="tower"){ // torre/edificio
-    rect(-8,-8,16,16,"#dfe3ea");rect(-3,-6,6,12,"#8fa0b8");rect(-5,-6,10,2,"#5a6a80");rect(-2,-3,2,2,"#ffe28a");rect(1,-3,2,2,"#ffe28a");rect(-2,1,2,2,"#ffe28a");
-  } else if(type==="sun"){ // sole (baia soleggiata)
-    rect(-8,-8,16,16,"#bfe0ff");ctx.fillStyle="#f2c11e";ctx.beginPath();ctx.arc(cx,cy-1*u,4*u,0,Math.PI*2);ctx.fill();for(let a=0;a<8;a++){const ang=a*Math.PI/4;rect(Math.cos(ang)*6-0.5,-1+Math.sin(ang)*6-0.5,1,1,"#f2c11e");}
-  } else if(type==="crown"){ // corona (accademia della capitale)
-    rect(-8,-8,16,16,"#3a2f5a");rect(-6,0,12,4,"#f2c11e");ctx.fillStyle="#f2c11e";for(let k=0;k<3;k++){const bx=-6+k*5;ctx.beginPath();ctx.moveTo(cx+bx*u,cy+0*u);ctx.lineTo(cx+(bx+2)*u,cy-4*u);ctx.lineTo(cx+(bx+4)*u,cy+0*u);ctx.closePath();ctx.fill();}
-  } else if(type==="city"){ // grattacieli (metropolitana)
-    rect(-8,-8,16,16,"#cfe0f0");rect(-6,-2,3,8,"#6a7a88");rect(-1,-6,3,12,"#8fa0b8");rect(4,0,3,6,"#6a7a88");rect(-5,-1,1,1,"#ffe28a");rect(0,-4,1,1,"#ffe28a");rect(5,1,1,1,"#ffe28a");
-  } else if(type==="tree"){ // albero (parco/foresta)
-    rect(-8,-8,16,16,"#dff0d8");rect(-1,1,2,5,"#7a4a24");ctx.fillStyle="#1f7a34";ctx.beginPath();ctx.arc(cx,cy-2*u,5*u,0,Math.PI*2);ctx.fill();
-  } else if(type==="valley"){ // valle (due versanti a V)
-    rect(-8,-8,16,16,"#cfe6f5");ctx.fillStyle="#2fa845";ctx.beginPath();ctx.moveTo(cx-7*u,cy-5*u);ctx.lineTo(cx,cy+5*u);ctx.lineTo(cx-7*u,cy+5*u);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(cx+7*u,cy-5*u);ctx.lineTo(cx,cy+5*u);ctx.lineTo(cx+7*u,cy+5*u);ctx.closePath();ctx.fill();
-  } else if(type==="dirE"||type==="dirW"||type==="dirN"||type==="dirS"){ // stemma direzionale con lettera (dipende dalla lingua)
+  if(type==="river"){ // fiume: sfondo cielo/erba + corso d'acqua con riflessi
+    rect(-8,-8,16,8,"#bfe0ff");rect(-8,0,16,8,"#2fa845");
+    for(let i=0;i<4;i++){rect(-8,-6+i*4,16,2,"#1b6ec2");rect(-6,-6+i*4,3,1,"#8ecbff");rect(0,-6+i*4,3,1,"#8ecbff");rect(4,-6+i*4,2,1,"#cfeaff");}
+  } else if(type==="willow"){ // salice piangente: tronco + rami cadenti
+    rect(-8,-8,16,16,"#dff0d8");rect(-1,0,2,7,"#7a4a24");rect(-2,6,4,1,"#5a3418");
+    ctx.fillStyle="#2fa845";ctx.beginPath();ctx.arc(cx,cy-3*u,5*u,Math.PI,0);ctx.fill();
+    for(let i=0;i<6;i++){rect(-6+i*2.4,-3,1,7,"#1f7a34");}
+  } else if(type==="fish"){ // pesce: corpo, coda, occhio, pinna, bolle
+    rect(-8,-8,16,16,"#bfe0ff");
+    ctx.fillStyle="#e0902a";ctx.beginPath();ctx.ellipse(cx-1*u,cy,5*u,3*u,0,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.moveTo(cx+3*u,cy);ctx.lineTo(cx+6*u,cy-3*u);ctx.lineTo(cx+6*u,cy+3*u);ctx.closePath();ctx.fill();
+    rect(-2,-4,2,2,"#e0902a");rect(-4,-1,1,1,"#111");rect(1,-1,3,1,"#c8781a");
+    rect(-5,4,1,1,"#8ecbff");rect(3,-5,1,1,"#8ecbff");
+  } else if(type==="gate"){ // porta antica: arco + due torri + battenti
+    rect(-8,-8,16,16,"#eadfc8");
+    rect(-7,-4,3,10,"#9a6a3b");rect(4,-4,3,10,"#9a6a3b");rect(-7,-6,3,2,"#7a4a24");rect(4,-6,3,2,"#7a4a24");
+    ctx.fillStyle="#7a4a24";ctx.beginPath();ctx.arc(cx,cy-2*u,4*u,Math.PI,0);ctx.fill();rect(-4,-2,8,8,"#7a4a24");
+    rect(-3,0,2,6,"#4a2c14");rect(1,0,2,6,"#4a2c14");rect(-0.5,-2,1,8,"#3a2410");
+  } else if(type==="gear"){ // ingranaggio: denti + mozzo + foro
+    rect(-8,-8,16,16,"#d0d4da");
+    ctx.fillStyle="#5a6a80";for(let a=0;a<8;a++){const ang=a*Math.PI/4;const gx=Math.cos(ang)*6.5,gy=Math.sin(ang)*6.5;ctx.fillRect(cx+(gx-1.3)*u,cy+(gy-1.3)*u,2.6*u,2.6*u);}
+    ctx.fillStyle="#7a7a86";ctx.beginPath();ctx.arc(cx,cy,4.5*u,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#3a4658";ctx.beginPath();ctx.arc(cx,cy,1.8*u,0,Math.PI*2);ctx.fill();
+  } else if(type==="forest"){ // bosco fitto: 3 conifere a strati + terreno
+    rect(-8,-8,16,16,"#dff0d8");rect(-8,5,16,3,"#8a6a3a");
+    const tx=[-5,0,5];for(let k=0;k<3;k++){rect(tx[k]-0.5,2,1,4,"#5a3418");ctx.fillStyle="#1f7a34";
+      for(let s=0;s<2;s++){ctx.beginPath();ctx.moveTo(cx+tx[k]*u,cy+(-6+s*3)*u);ctx.lineTo(cx+(tx[k]-3)*u,cy+(-1+s*3)*u);ctx.lineTo(cx+(tx[k]+3)*u,cy+(-1+s*3)*u);ctx.closePath();ctx.fill();}}
+  } else if(type==="lighthouse"){ // faro: corpo a strisce, lanterna, fasci di luce, scogli
+    rect(-8,-8,16,8,"#bfe0ff");rect(-8,0,16,8,"#1b6ec2");
+    ctx.fillStyle="#f0f0f0";ctx.beginPath();ctx.moveTo(cx-3*u,cy+6*u);ctx.lineTo(cx-2*u,cy-4*u);ctx.lineTo(cx+2*u,cy-4*u);ctx.lineTo(cx+3*u,cy+6*u);ctx.closePath();ctx.fill();
+    rect(-2.5,-1,5,2,"#d81e2c");rect(-3,3,6,2,"#d81e2c");
+    rect(-2,-6,4,2,"#5a6a80");rect(-1.5,-8,3,2,"#ffe23a");
+    ctx.fillStyle="rgba(255,226,58,0.5)";ctx.beginPath();ctx.moveTo(cx,cy-7*u);ctx.lineTo(cx-7*u,cy-4*u);ctx.lineTo(cx-7*u,cy-9*u);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(cx,cy-7*u);ctx.lineTo(cx+7*u,cy-4*u);ctx.lineTo(cx+7*u,cy-9*u);ctx.closePath();ctx.fill();
+  } else if(type==="anchor"){ // ancora: anello, fusto, marre, traversa, corda
+    rect(-8,-8,16,16,"#bfe0ff");
+    ctx.strokeStyle="#48586a";ctx.lineWidth=1.6*u;ctx.beginPath();ctx.arc(cx,cy-4*u,2*u,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle="#5a6a80";rect(-0.8,-4,1.6,9,"#5a6a80");rect(-3,-2.5,6,1.6,"#5a6a80");
+    ctx.beginPath();ctx.arc(cx,cy+3*u,5*u,0.15*Math.PI,0.85*Math.PI);ctx.lineWidth=1.6*u;ctx.strokeStyle="#5a6a80";ctx.stroke();
+    rect(-6,-1,1.5,1.5,"#48586a");rect(4.5,-1,1.5,1.5,"#48586a");
+  } else if(type==="wheat"){ // spighe: stelo, chicchi alternati, foglia
+    rect(-8,-8,16,16,"#f2e2b0");rect(-0.8,-1,1.6,8,"#b07a1a");
+    ctx.fillStyle="#e0b030";for(let i=0;i<5;i++){const yy=-6+i*2;ctx.beginPath();ctx.ellipse(cx-2*u,cy+yy*u,1.4*u,1*u,-0.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(cx+2*u,cy+yy*u,1.4*u,1*u,0.5,0,Math.PI*2);ctx.fill();}
+    rect(-0.8,-8,1.6,2,"#e0b030");rect(2,4,3,1,"#2fa845");
+  } else if(type==="wave"){ // mare: onde a cresta + spruzzi
+    rect(-8,-8,16,6,"#bfe0ff");rect(-8,-2,16,10,"#1b6ec2");
+    ctx.strokeStyle="#8ecbff";ctx.lineWidth=1.4*u;for(let i=0;i<3;i++){const yy=(-1+i*3)*u;ctx.beginPath();ctx.moveTo(cx-7*u,cy+yy);ctx.quadraticCurveTo(cx-3*u,cy+yy-2*u,cx+1*u,cy+yy);ctx.quadraticCurveTo(cx+5*u,cy+yy+2*u,cx+7*u,cy+yy);ctx.stroke();}
+    rect(-2,-7,1,1,"#ffffff");rect(3,-6,1,1,"#ffffff");
+  } else if(type==="mountain"){ // montagna: due cime, neve, sole
+    rect(-8,-8,16,16,"#cfe6f5");ctx.fillStyle="#f2c11e";ctx.beginPath();ctx.arc(cx+5*u,cy-5*u,1.6*u,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#6a7a88";ctx.beginPath();ctx.moveTo(cx-7*u,cy+6*u);ctx.lineTo(cx-2*u,cy-4*u);ctx.lineTo(cx+3*u,cy+6*u);ctx.closePath();ctx.fill();
+    ctx.fillStyle="#5a6a78";ctx.beginPath();ctx.moveTo(cx+0*u,cy+6*u);ctx.lineTo(cx+4*u,cy-1*u);ctx.lineTo(cx+7*u,cy+6*u);ctx.closePath();ctx.fill();
+    ctx.fillStyle="#ffffff";ctx.beginPath();ctx.moveTo(cx-3.2*u,cy-1.5*u);ctx.lineTo(cx-2*u,cy-4*u);ctx.lineTo(cx-0.6*u,cy-1.5*u);ctx.closePath();ctx.fill();
+  } else if(type==="lake"){ // lago: rive verdi, acqua, riflesso, montagnetta
+    rect(-8,-8,16,16,"#cfe6f5");rect(-8,3,16,5,"#2fa845");
+    ctx.fillStyle="#6a7a88";ctx.beginPath();ctx.moveTo(cx-5*u,cy+1*u);ctx.lineTo(cx-2*u,cy-4*u);ctx.lineTo(cx+1*u,cy+1*u);ctx.closePath();ctx.fill();
+    ctx.fillStyle="#1b6ec2";ctx.beginPath();ctx.ellipse(cx,cy+3*u,6*u,2.4*u,0,0,Math.PI*2);ctx.fill();
+    rect(-4,3,2,1,"#8ecbff");rect(1,4,3,1,"#8ecbff");
+  } else if(type==="brook"){ // ruscello sinuoso tra sassi
+    rect(-8,-8,16,16,"#dff0d8");
+    ctx.strokeStyle="#1b6ec2";ctx.lineWidth=2*u;ctx.beginPath();ctx.moveTo(cx-6*u,cy-6*u);ctx.quadraticCurveTo(cx+4*u,cy-2*u,cx-3*u,cy+2*u);ctx.quadraticCurveTo(cx-8*u,cy+5*u,cx+6*u,cy+6*u);ctx.stroke();
+    rect(-5,2,2,2,"#9a9a86");rect(3,-3,2,2,"#9a9a86");rect(-2,5,2,2,"#9a9a86");
+  } else if(type==="tower"){ // torre civica: merlature, finestre, porta, bandiera
+    rect(-8,-8,16,16,"#cfe0f0");
+    rect(-3.5,-5,7,11,"#8fa0b8");rect(-3.5,-5,7,1.5,"#6a7a88");
+    rect(-3.5,-7,1.5,2,"#6a7a88");rect(-0.7,-7,1.5,2,"#6a7a88");rect(2,-7,1.5,2,"#6a7a88");
+    rect(-2,-3,1.6,1.6,"#ffe28a");rect(0.6,-3,1.6,1.6,"#ffe28a");rect(-2,0,1.6,1.6,"#ffe28a");rect(0.6,0,1.6,1.6,"#ffe28a");
+    rect(-1,3,2,3,"#4a2c14");rect(2.5,-9,3,2,"#d81e2c");rect(2.3,-9,0.5,4,"#5a6a80");
+  } else if(type==="sun"){ // sole su baia
+    rect(-8,-8,16,5,"#bfe0ff");rect(-8,-3,16,11,"#1b6ec2");
+    ctx.strokeStyle="#f2c11e";ctx.lineWidth=1.2*u;for(let a=0;a<8;a++){const ang=a*Math.PI/4;ctx.beginPath();ctx.moveTo(cx+Math.cos(ang)*4*u,cy-2*u+Math.sin(ang)*4*u);ctx.lineTo(cx+Math.cos(ang)*6.5*u,cy-2*u+Math.sin(ang)*6.5*u);ctx.stroke();}
+    ctx.fillStyle="#f2c11e";ctx.beginPath();ctx.arc(cx,cy-2*u,3.2*u,0,Math.PI*2);ctx.fill();
+    rect(-6,4,3,1,"#8ecbff");rect(1,5,3,1,"#8ecbff");
+  } else if(type==="crown"){ // corona con gemme
+    rect(-8,-8,16,16,"#3a2f5a");
+    ctx.fillStyle="#f2c11e";ctx.beginPath();ctx.moveTo(cx-6*u,cy+4*u);ctx.lineTo(cx-6*u,cy-1*u);ctx.lineTo(cx-3*u,cy+1*u);ctx.lineTo(cx,cy-4*u);ctx.lineTo(cx+3*u,cy+1*u);ctx.lineTo(cx+6*u,cy-1*u);ctx.lineTo(cx+6*u,cy+4*u);ctx.closePath();ctx.fill();
+    rect(-6,3,12,2,"#c8961e");
+    rect(-4.5,2.5,1.4,1.4,"#d81e2c");rect(-0.7,2.5,1.4,1.4,"#1b6ec2");rect(3,2.5,1.4,1.4,"#2fa845");rect(-0.7,-4.5,1.4,1.4,"#ffffff");
+  } else if(type==="city"){ // grattacieli con finestre
+    rect(-8,-8,16,16,"#cfe0f0");rect(-8,6,16,2,"#5a6a80");
+    rect(-6.5,-1,3.5,7,"#6a7a88");rect(-2,-6,4,12,"#8fa0b8");rect(3,1,3.5,5,"#6a7a88");
+    ctx.fillStyle="#ffe28a";for(let r2=0;r2<3;r2++){rect(-5.5,0+r2*2,1,1,"#ffe28a");rect(-4,0+r2*2,1,1,"#ffe28a");}
+    for(let r2=0;r2<4;r2++){rect(-1,-5+r2*2,1,1,"#ffe28a");rect(0.5,-5+r2*2,1,1,"#ffe28a");}
+    rect(4,2,1,1,"#ffe28a");rect(5.2,2,1,1,"#ffe28a");
+  } else if(type==="tree"){ // albero frondoso con tronco e ombra
+    rect(-8,-8,16,16,"#dff0d8");rect(-8,6,16,2,"#8a6a3a");
+    rect(-1,1,2,6,"#7a4a24");
+    ctx.fillStyle="#1f7a34";ctx.beginPath();ctx.arc(cx,cy-2*u,4.5*u,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx-3*u,cy,3*u,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+3*u,cy,3*u,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#2fa845";ctx.beginPath();ctx.arc(cx-1*u,cy-3*u,2*u,0,Math.PI*2);ctx.fill();
+  } else if(type==="valley"){ // valle: due versanti a V, fiume nel mezzo, sole
+    rect(-8,-8,16,16,"#cfe6f5");ctx.fillStyle="#f2c11e";ctx.beginPath();ctx.arc(cx,cy-5*u,1.6*u,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#2fa845";ctx.beginPath();ctx.moveTo(cx-8*u,cy-6*u);ctx.lineTo(cx-1*u,cy+6*u);ctx.lineTo(cx-8*u,cy+6*u);ctx.closePath();ctx.fill();
+    ctx.fillStyle="#1f7a34";ctx.beginPath();ctx.moveTo(cx+8*u,cy-6*u);ctx.lineTo(cx+1*u,cy+6*u);ctx.lineTo(cx+8*u,cy+6*u);ctx.closePath();ctx.fill();
+    ctx.fillStyle="#1b6ec2";ctx.beginPath();ctx.moveTo(cx-1*u,cy+6*u);ctx.lineTo(cx+1*u,cy+6*u);ctx.lineTo(cx+0.3*u,cy+1*u);ctx.lineTo(cx-0.3*u,cy+1*u);ctx.closePath();ctx.fill();
+  } else if(type==="dirE"||type==="dirW"||type==="dirN"||type==="dirS"){ // stemma direzionale: lettera (lingua) + bussola
     rect(-8,-8,16,16,"#1b3a5a");
+    ctx.fillStyle="#2a4a6a";ctx.beginPath();ctx.arc(cx,cy,6.5*u,0,Math.PI*2);ctx.fill();
     const letters=(lang==="it")?{dirE:"E",dirW:"O",dirN:"N",dirS:"S"}:{dirE:"E",dirW:"W",dirN:"N",dirS:"S"};
     const letter=letters[type];
-    ctx.fillStyle="#ffe23a";ctx.textAlign="center";ctx.textBaseline="middle";ctx.font="bold "+Math.round(r*1.1)+"px monospace";ctx.fillText(letter,cx,cy+1);ctx.textBaseline="alphabetic";ctx.textAlign="left";
+    ctx.fillStyle="#ffe23a";ctx.textAlign="center";ctx.textBaseline="middle";ctx.font="bold "+Math.round(r*1.05)+"px monospace";ctx.fillText(letter,cx,cy+0.5*u);ctx.textBaseline="alphabetic";ctx.textAlign="left";
   }
   ctx.restore();
 }
@@ -237,7 +293,7 @@ function drawMyCrestCorner(){
   if(matchMode!=="career"||!career)return;
   const type=crestTypeForUid(career.playerUid);if(!type)return;
   const shape=crestShapeForUid(career.playerUid);
-  drawCrest(type,300,300,14,shape);
+  drawCrest(type,296,296,22,shape);
 }
 // 8 livelli stadio in 3 famiglie. minLeague = lega minima per acquistarlo.
 // incomeBonus = quota aggiuntiva (+15% per livello, cumulativo con l'indice).
@@ -1609,7 +1665,7 @@ function drawRules(){
   ctx.textAlign="left";
 }
 function drawLeagueSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(leagueSelForOpp?t("chooseOppLeague"):t("chooseLeague"),160,40);const n=LEAGUE_DEFS.length;const sel=((menuIndex%n)+n)%n;const levels=["lvlBase","lvlInter","lvlElite"];for(let i=0;i<n;i++){const y=110+i*46;const def=LEAGUE_DEFS[i];ctx.textAlign="center";if(i===sel){ctx.fillStyle="#00e5ff";ctx.font="bold 15px monospace";ctx.fillText("> "+t(def.key)+" <",160,y);}else{ctx.fillStyle="#aaa";ctx.font="bold 14px monospace";ctx.fillText(t(def.key),160,y);}ctx.fillStyle=(i===sel)?"#ffe23a":"#8ecdff";ctx.font="bold 9px monospace";ctx.fillText(t(levels[i]),160,y+16);}ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.fillText(t("navTeamHint"),160,300);ctx.textAlign="left";}
-function drawTeamSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("chooseLeagueTeam"),160,16);ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";if(matchMode==="career"){ctx.fillText(t("league1")+" - "+t("lvlBase"),160,28);}else{ctx.fillText(t(LEAGUE_DEFS[selLeagueIdx].key),160,28);}const list=teamSelectList();const total=list.length;const sel=((menuIndex%total)+total)%total;const maxRows=17;let startI=0;if(total>maxRows){startI=Math.max(0,Math.min(sel-Math.floor(maxRows/2),total-maxRows));}ctx.font="bold 10px monospace";for(let r=0;r<maxRows&&startI+r<total;r++){const i=startI+r;const tm=list[i];const cy=44+r*15;const ct=crestTypeForUid(tm.uid);if(ct){drawCrest(ct,20,cy-3,6,crestShapeForUid(tm.uid));}ctx.textAlign="left";ctx.fillStyle=(i===sel)?"#ffe23a":"#ffffff";ctx.fillText((i===sel?"> ":"  ")+teamName(tm),(ct?30:14),cy);}ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.textAlign="center";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";}
+function drawTeamSelect(){ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 12px monospace";ctx.fillText(t("chooseLeagueTeam"),160,16);ctx.fillStyle="#00e5ff";ctx.font="bold 9px monospace";if(matchMode==="career"){ctx.fillText(t("league1")+" - "+t("lvlBase"),160,28);}else{ctx.fillText(t(LEAGUE_DEFS[selLeagueIdx].key),160,28);}const list=teamSelectList();const total=list.length;const sel=((menuIndex%total)+total)%total;const maxRows=17;let startI=0;if(total>maxRows){startI=Math.max(0,Math.min(sel-Math.floor(maxRows/2),total-maxRows));}ctx.font="bold 10px monospace";for(let r=0;r<maxRows&&startI+r<total;r++){const i=startI+r;const tm=list[i];const cy=44+r*15;const ct=crestTypeForUid(tm.uid);if(ct){drawCrest(ct,22,cy-3,8,crestShapeForUid(tm.uid));}ctx.textAlign="left";ctx.fillStyle=(i===sel)?"#ffe23a":"#ffffff";ctx.fillText((i===sel?"> ":"  ")+teamName(tm),(ct?34:14),cy);}ctx.fillStyle="#666";ctx.font="bold 9px monospace";ctx.textAlign="center";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";}
 function drawKitSelect(){
   if(matchMode==="career"){ drawKitSelectCareer(); return; }
   ctx.fillStyle="#0d2038";ctx.fillRect(0,0,320,320);ctx.textAlign="center";ctx.fillStyle="#f8d820";ctx.font="bold 14px monospace";ctx.fillText(t("chooseKit"),160,24);const cols=2,colX=[70,190];const sel=((menuIndex%KIT_COLORS.length)+KIT_COLORS.length)%KIT_COLORS.length;KIT_COLORS.forEach(function(kc,i){const col=i%cols,row=Math.floor(i/cols),x=colX[col],cy=56+row*38;px(x,cy-10,18,16,kc.c);ctx.strokeStyle=(i===sel)?"#ffe23a":"#000";ctx.lineWidth=(i===sel)?2:1;ctx.strokeRect(x,cy-10,18,16);ctx.textAlign="left";ctx.font="bold 9px monospace";ctx.fillStyle=(i===sel)?"#ffe23a":"#ddd";ctx.fillText(colorName(kc),x+24,cy+2);});ctx.textAlign="center";ctx.fillStyle="#666";ctx.font="bold 8px monospace";ctx.fillText(t("navTeamHint"),160,314);ctx.textAlign="left";
