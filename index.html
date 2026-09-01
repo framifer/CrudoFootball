@@ -543,6 +543,19 @@ function oppStrengthMult(){
   const lvl=(matchMode==="career"&&career)?career.leagueLevel:selLeagueIdx;
   return OPP_MULT_BY_LEAGUE[Math.max(0,Math.min(2,lvl))]||OPP_AI_MULT;
 }
+// livello portiere avversario: cresce con la lega e ancora di piu' in International Cup
+// reattivita' (moltiplicatore velocita' intervento): Regional 1.15, Inter 1.25, National 1.35, Cup 1.45
+function oppGkReactMult(){
+  if(cupMatch)return 1.45;
+  const lvl=(matchMode==="career"&&career)?career.leagueLevel:selLeagueIdx;
+  return [1.15,1.25,1.35][Math.max(0,Math.min(2,lvl))]||1.15;
+}
+// probabilita' che il portiere avversario vinca l'1v1 a contatto: Regional 0.70 ... National 0.78, Cup 0.82
+function oppGkContestChance(){
+  if(cupMatch)return 0.82;
+  const lvl=(matchMode==="career"&&career)?career.leagueLevel:selLeagueIdx;
+  return [0.70,0.74,0.78][Math.max(0,Math.min(2,lvl))]||0.70;
+}
 function resetFormation(kickTeam){
   players.forEach(function(p){p.x=homeX(p.team,p.fy);p.y=homeY(p.team,p.fx);p.vx=0;p.vy=0;p.kickCooldown=0;});
   ball.x=FIELD_W/2; ball.y=FIELD_H/2; ball.vx=0; ball.vy=0; ball.z=0; ball.vz=0; ball.high=false;
@@ -832,13 +845,13 @@ function updateGoalkeeper(p){
   const goalY=ownGoalY(p.team);const targetY=goalY+(goalY===0?14:-14);let targetX=FIELD_W/2;const movingTowardGoal=(goalY===0)?(ball.vy<-0.5):(ball.vy>0.5);
   if(ball.owner<0&&movingTowardGoal){const dyToLine=(targetY-ball.y);const tHit=(Math.abs(ball.vy)>0.1)?(dyToLine/ball.vy):999;if(tHit>0&&tHit<120){const predX=ball.x+ball.vx*tHit;targetX=Math.max(FIELD_W/2-GOAL_W/2-10,Math.min(FIELD_W/2+GOAL_W/2+10,predX));}else{targetX=Math.max(FIELD_W/2-GOAL_W/2,Math.min(FIELD_W/2+GOAL_W/2,ball.x));}}
   else{const inOwnHalf=(goalY===0)?(ball.y<FIELD_H*0.4):(ball.y>FIELD_H*0.6);if(inOwnHalf){targetX=Math.max(FIELD_W/2-GOAL_W/2,Math.min(FIELD_W/2+GOAL_W/2,ball.x));}}
-  const gkSpd=movingTowardGoal?GK_SPEED*2.0:GK_SPEED;moveToward(p,targetX,targetY,gkSpd);
+  const gkSpd=(movingTowardGoal?GK_SPEED*2.0:GK_SPEED)*((p.team===1)?oppGkReactMult():1.0);moveToward(p,targetX,targetY,gkSpd);
   // PUNTO 1: se un avversario col pallone e' a contatto col portiere, il portiere
   // vince il contrasto nel 70% dei casi e prende la palla.
   if(ball.owner>=0&&players[ball.owner]&&players[ball.owner].team!==p.team){
     const carrier=players[ball.owner];
     if(Math.hypot(carrier.x-p.x,carrier.y-p.y)<CATCH_RADIUS+9&&p.kickCooldown===0){
-      const gkChance=(p.team===0&&career&&career.squad)?Math.max(0.5,Math.min(0.9,0.70+((career.squad.gk||SQUAD_START)-58)*0.005)):0.70;
+      const gkChance=(p.team===0&&career&&career.squad)?Math.max(0.45,Math.min(0.85,0.62+((career.squad.gk||SQUAD_START)-58)*0.005)):oppGkContestChance();
       if(rng()<gkChance){ let gi=-1;for(let k=0;k<players.length;k++){if(players[k]===p){gi=k;break;}} if(gi>=0){ball.owner=gi;ball.vx=0;ball.vy=0;ball.z=0;ball.vz=0;ball.high=false;ball.lastTouch=p.team;carrier.kickCooldown=22;playSound(300,"square",0.08);return;} }
     }
   }
