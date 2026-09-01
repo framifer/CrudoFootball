@@ -232,7 +232,13 @@ function drawCrest(type,cx,cy,r,shape){
   }
   ctx.restore();
 }
-// ---- FASE 3: STADIO / ECONOMIA / ROSA ----
+// disegna lo stemma della MIA squadra (carriera) nell'angolo in basso a destra
+function drawMyCrestCorner(){
+  if(matchMode!=="career"||!career)return;
+  const type=crestTypeForUid(career.playerUid);if(!type)return;
+  const shape=crestShapeForUid(career.playerUid);
+  drawCrest(type,300,300,14,shape);
+}
 // 8 livelli stadio in 3 famiglie. minLeague = lega minima per acquistarlo.
 // incomeBonus = quota aggiuntiva (+15% per livello, cumulativo con l'indice).
 const STADIUM_TIERS=[
@@ -1491,14 +1497,14 @@ function draw(){
     case "OPPONENT_SELECT": return drawOpponentSelect();
     case "FORMATION_SELECT": return drawFormationSelect();
     case "STANDINGS": return drawStandings();
-    case "CALENDAR": return drawCalendar();
-    case "HISTORY": return drawHistory();
-    case "TRAINING": return drawTraining();
-    case "MANAGEMENT": return drawManagement();
-    case "STADIUM": return drawStadium();
-    case "SQUAD": return drawSquad();
-    case "MARKET": return drawMarket();
-    case "CUP": return drawCup();
+    case "CALENDAR": drawCalendar();drawMyCrestCorner();return;
+    case "HISTORY": drawHistory();drawMyCrestCorner();return;
+    case "TRAINING": drawTraining();drawMyCrestCorner();return;
+    case "MANAGEMENT": drawManagement();drawMyCrestCorner();return;
+    case "STADIUM": drawStadium();drawMyCrestCorner();return;
+    case "SQUAD": drawSquad();drawMyCrestCorner();return;
+    case "MARKET": drawMarket();drawMyCrestCorner();return;
+    case "CUP": drawCup();drawMyCrestCorner();return;
     case "PROMO": return drawPromo();
     case "CAREERWIN": return drawCareerWin();
     case "PENALTY": return drawPenalty();
