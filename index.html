@@ -673,7 +673,7 @@ function squadMult(role){
 }
 // forza base degli avversari per lega: Regional < Interregional < National.
 // In coppa (partite piu' prestigiose) uso il livello top. Sostituisce la vecchia OPP_AI_MULT fissa.
-const OPP_MULT_BY_LEAGUE=[0.82,0.90,0.98]; // Regional, Interregional, National
+const OPP_MULT_BY_LEAGUE=[0.88,0.96,1.04]; // Regional, Interregional, National
 function oppStrengthMult(){
   if(cupMatch)return OPP_MULT_BY_LEAGUE[2]+0.02; // coppa internazionale: avversari toste
   const lvl=(matchMode==="career"&&career)?career.leagueLevel:selLeagueIdx;
