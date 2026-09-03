@@ -14,22 +14,22 @@ body { background-color:#111; margin:0; padding:0; display:flex; justify-content
 canvas { display:block; width:100%; height:100%; image-rendering:pixelated; border-radius:4px; }
 #controller { flex:1; background-color:var(--gb-body); display:flex; flex-direction:column; justify-content:space-between; padding:30px 18px 40px; border-top:4px solid #555; }
 .controls-top { display:flex; justify-content:space-between; align-items:flex-start; width:100%; padding:0 4px; }
-.dpad { position:relative; width:190px; height:190px; flex-shrink:0; border-radius:50%; background:radial-gradient(circle at 42% 38%, #2c2c2c, #0c0c0c 78%); box-shadow:0 6px 10px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(255,255,255,0.08), inset -3px -3px 8px rgba(0,0,0,0.9); touch-action:none; cursor:pointer; }
-.dpad::before, .dpad::after { content:""; position:absolute; background:linear-gradient(145deg, #3a3a3a, #161616); box-shadow:inset 1px 1px 2px rgba(255,255,255,0.15), inset -1px -1px 3px rgba(0,0,0,0.8); border-radius:10px; }
-.dpad::before { top:26px; bottom:26px; left:50%; width:52px; transform:translateX(-50%); }
-.dpad::after { left:26px; right:26px; top:50%; height:52px; transform:translateY(-50%); }
+.dpad { position:relative; width:230px; height:230px; flex-shrink:0; border-radius:50%; background:radial-gradient(circle at 42% 38%, #2c2c2c, #0c0c0c 78%); box-shadow:0 6px 10px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(255,255,255,0.08), inset -3px -3px 8px rgba(0,0,0,0.9); touch-action:none; -webkit-tap-highlight-color:transparent; cursor:pointer; }
+.dpad::before, .dpad::after { content:""; position:absolute; background:linear-gradient(145deg, #3a3a3a, #161616); box-shadow:inset 1px 1px 2px rgba(255,255,255,0.15), inset -1px -1px 3px rgba(0,0,0,0.8); border-radius:12px; }
+.dpad::before { top:30px; bottom:30px; left:50%; width:64px; transform:translateX(-50%); }
+.dpad::after { left:30px; right:30px; top:50%; height:64px; transform:translateY(-50%); }
 .dpad-btn { display:none; }
 .dpad.active { box-shadow:0 4px 6px rgba(0,0,0,0.5), inset 3px 3px 6px rgba(0,0,0,0.9); }
-.dpad-glow { position:absolute; width:60px; height:60px; left:50%; top:50%; margin-left:-30px; margin-top:-30px; border-radius:50%; background:radial-gradient(circle, rgba(120,205,255,0.55) 0%, rgba(90,150,220,0.28) 45%, rgba(0,0,0,0) 72%); box-shadow:0 0 14px rgba(120,205,255,0.5), inset 0 0 8px rgba(0,0,0,0.6); pointer-events:none; opacity:0; transition:opacity 0.08s ease, transform 0.06s ease; z-index:5; }
+.dpad-glow { position:absolute; width:72px; height:72px; left:50%; top:50%; margin-left:-36px; margin-top:-36px; border-radius:50%; background:radial-gradient(circle, rgba(120,205,255,0.55) 0%, rgba(90,150,220,0.28) 45%, rgba(0,0,0,0) 72%); box-shadow:0 0 14px rgba(120,205,255,0.5), inset 0 0 8px rgba(0,0,0,0.6); pointer-events:none; opacity:0; transition:opacity 0.08s ease, transform 0.06s ease; z-index:5; }
 .dpad.active .dpad-glow { opacity:1; }
 .action-buttons { display:flex; align-items:flex-start; gap:20px; transform:rotate(-15deg); filter:drop-shadow(3px 6px 5px rgba(0,0,0,0.3)); }
 .btn-round-container { text-align:center; }
 .btn-b-container { margin-top:80px; }
-.btn-round { width:66px; height:66px; background:linear-gradient(145deg, #a72352, #6e1333); border-radius:50%; border:none; color:white; font-weight:bold; font-size:22px; cursor:pointer; box-shadow:inset 1px 2px 3px rgba(255,255,255,0.3), inset -2px -2px 5px rgba(0,0,0,0.6); transition:transform 0.05s ease; touch-action:none; }
+.btn-round { width:82px; height:82px; background:linear-gradient(145deg, #a72352, #6e1333); border-radius:50%; border:none; color:white; font-weight:bold; font-size:28px; cursor:pointer; box-shadow:inset 1px 2px 3px rgba(255,255,255,0.3), inset -2px -2px 5px rgba(0,0,0,0.6); transition:transform 0.05s ease; touch-action:none; -webkit-tap-highlight-color:transparent; }
 .btn-round:active, .btn-round.active { transform:translate(2px,3px); box-shadow:inset 2px 2px 7px rgba(0,0,0,0.8); background:#5b0f2a; }
 .controls-bottom { display:flex; justify-content:center; gap:45px; margin-top:0; margin-bottom:40px; }
 .btn-pill-container { text-align:center; transform:rotate(-25deg); filter:drop-shadow(2px 4px 3px rgba(0,0,0,0.3)); }
-.btn-pill { width:80px; height:20px; background:linear-gradient(145deg, #6e6e6e, #333); border-radius:10px; border:none; cursor:pointer; box-shadow:inset 1px 1px 2px rgba(255,255,255,0.2), inset -1px -1px 3px rgba(0,0,0,0.7); touch-action:none; }
+.btn-pill { width:96px; height:26px; background:linear-gradient(145deg, #6e6e6e, #333); border-radius:13px; border:none; cursor:pointer; box-shadow:inset 1px 1px 2px rgba(255,255,255,0.2), inset -1px -1px 3px rgba(0,0,0,0.7); touch-action:none; -webkit-tap-highlight-color:transparent; }
 .btn-pill:active, .btn-pill.active { transform:translate(1px,2px); background:#222; box-shadow:inset 1px 1px 4px rgba(0,0,0,0.9); }
 .btn-pill-label { font-size:12px; color:#306230; text-align:center; margin-top:6px; font-weight:bold; letter-spacing:1px; }
 </style>
@@ -1600,7 +1600,7 @@ bindButton("btn-a",{action:"a"});bindButton("btn-b",{action:"b"});bindButton("bt
   const dpad=document.getElementById("dpad");if(!dpad)return;const glow=document.getElementById("dpad-glow");let activeDir={up:false,down:false,left:false,right:false};
   function clearDirs(){move.up=move.down=move.left=move.right=false;activeDir={up:false,down:false,left:false,right:false};}
   function moveGlow(d){if(!glow)return;let gx=0,gy=0;if(d.left)gx-=1;if(d.right)gx+=1;if(d.up)gy-=1;if(d.down)gy+=1;const len=Math.hypot(gx,gy);if(len>0){gx/=len;gy/=len;const R=52;glow.style.transform="translate("+(gx*R)+"px,"+(gy*R)+"px)";}else{glow.style.transform="translate(0,0)";}}
-  function computeDir(cX,cY){const rect=dpad.getBoundingClientRect();const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;const dx=cX-cx,dy=cY-cy;const dist=Math.hypot(dx,dy);const res={up:false,down:false,left:false,right:false};if(dist<rect.width*0.14)return res;let ang=Math.atan2(dy,dx)*180/Math.PI;if(ang<0)ang+=360;const sector=Math.round(ang/45)%8;switch(sector){case 0:res.right=true;break;case 1:res.right=true;res.down=true;break;case 2:res.down=true;break;case 3:res.down=true;res.left=true;break;case 4:res.left=true;break;case 5:res.left=true;res.up=true;break;case 6:res.up=true;break;case 7:res.up=true;res.right=true;break;}return res;}
+  function computeDir(cX,cY){const rect=dpad.getBoundingClientRect();const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;const dx=cX-cx,dy=cY-cy;const dist=Math.hypot(dx,dy);const res={up:false,down:false,left:false,right:false};if(dist<rect.width*0.10)return res;let ang=Math.atan2(dy,dx)*180/Math.PI;if(ang<0)ang+=360;const sector=Math.round(ang/45)%8;switch(sector){case 0:res.right=true;break;case 1:res.right=true;res.down=true;break;case 2:res.down=true;break;case 3:res.down=true;res.left=true;break;case 4:res.left=true;break;case 5:res.left=true;res.up=true;break;case 6:res.up=true;break;case 7:res.up=true;res.right=true;break;}return res;}
   function applyDir(cX,cY){const d=computeDir(cX,cY);move.up=d.up;move.down=d.down;move.left=d.left;move.right=d.right;moveGlow(d);["up","down","left","right"].forEach(function(k){if(d[k]&&!activeDir[k])pressAction(k);});activeDir=d;}
   function onDown(e){if(e&&e.cancelable)e.preventDefault();initAudio();dpad.classList.add("active");const pt=(e.touches&&e.touches[0])||e;applyDir(pt.clientX,pt.clientY);}
   function onMove(e){if(!dpad.classList.contains("active"))return;if(e&&e.cancelable)e.preventDefault();const pt=(e.touches&&e.touches[0])||e;applyDir(pt.clientX,pt.clientY);}
