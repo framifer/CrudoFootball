@@ -22,9 +22,10 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 .dpad.active { box-shadow:0 4px 6px rgba(0,0,0,0.5), inset 3px 3px 6px rgba(0,0,0,0.9); }
 .dpad-glow { position:absolute; width:66px; height:66px; left:50%; top:50%; margin-left:-33px; margin-top:-33px; border-radius:50%; background:radial-gradient(circle, rgba(120,205,255,0.55) 0%, rgba(90,150,220,0.28) 45%, rgba(0,0,0,0) 72%); box-shadow:0 0 14px rgba(120,205,255,0.5), inset 0 0 8px rgba(0,0,0,0.6); pointer-events:none; opacity:0; transition:opacity 0.08s ease, transform 0.06s ease; z-index:5; }
 .dpad.active .dpad-glow { opacity:1; }
-.action-buttons { display:flex; align-items:flex-start; gap:20px; transform:rotate(-15deg); filter:drop-shadow(3px 6px 5px rgba(0,0,0,0.3)); }
+.action-buttons { display:flex; align-items:flex-start; gap:20px; filter:drop-shadow(3px 6px 5px rgba(0,0,0,0.3)); }
 .btn-round-container { text-align:center; }
-.btn-b-container { margin-top:80px; }
+.btn-b-container { margin-top:150px; }
+.btn-a-container { margin-top:70px; margin-right:28px; }
 .btn-round { width:74px; height:74px; background:linear-gradient(145deg, #a72352, #6e1333); border-radius:50%; border:none; color:white; font-weight:bold; font-size:25px; cursor:pointer; box-shadow:inset 1px 2px 3px rgba(255,255,255,0.3), inset -2px -2px 5px rgba(0,0,0,0.6); transition:transform 0.05s ease; touch-action:none; -webkit-tap-highlight-color:transparent; }
 .btn-round:active, .btn-round.active { transform:translate(2px,3px); box-shadow:inset 2px 2px 7px rgba(0,0,0,0.8); background:#5b0f2a; }
 .controls-bottom { display:flex; justify-content:center; gap:45px; margin-top:0; margin-bottom:40px; }
@@ -48,7 +49,7 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 </div>
 <div class="action-buttons">
 <div class="btn-round-container btn-b-container"><button class="btn-round" id="btn-b">B</button></div>
-<div class="btn-round-container"><button class="btn-round" id="btn-a">A</button></div>
+<div class="btn-round-container btn-a-container"><button class="btn-round" id="btn-a">A</button></div>
 </div>
 </div>
 <div class="controls-bottom">
