@@ -938,7 +938,16 @@ function updateAI(){
         const lineY=oppDefenceLineY(p.team);            // Y della linea difensiva avversaria
         const midY=(carrier.y+lineY)/2;                 // meta' strada tra me e la linea
         const wingY=midY-dir2*(FIELD_H*0.03);           // appena prima dei difensori (dietro la linea)
-        if(rankToCarrier===1){tx=carrier.x+(p.x<carrier.x?-70:70);ty=carrier.y+dir2*40;goingUp=true;}
+        if(rankToCarrier===1){
+          const goalYatk=targetGoalY(p.team);const distCarrierGoal=Math.abs(goalYatk-carrier.y);
+          if(distCarrierGoal<FIELD_H*0.11*1.3){
+            // il portatore e' appena fuori/dentro l'area avversaria: arretro e mi sposto di lato
+            // per NON restare tra portatore e porta (libero la linea di tiro)
+            tx=carrier.x+(p.x<carrier.x?-60:60);ty=carrier.y-dir2*35;goingUp=false;
+          } else {
+            tx=carrier.x+(p.x<carrier.x?-70:70);ty=carrier.y+dir2*40;goingUp=true;
+          }
+        }
         else if(i===wingR){tx=FIELD_W*0.88;ty=wingY;goingUp=true;}
         else if(i===wingL){tx=FIELD_W*0.12;ty=wingY;goingUp=true;}
         else{const wingBias=(p.fy<0.5)?-1:1;tx=homeX(p.team,p.fy)+FIELD_W*0.06*wingBias;ty=homeY(p.team,p.fx)+dir2*70;}
