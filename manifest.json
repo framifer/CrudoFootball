@@ -1,14 +1,18 @@
 {
+  "id": "./",
   "name": "Crudo Football",
   "short_name": "Crudo Football",
-  "description": "A retro Game Boy style football career game. Playable offline.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "description": "A retro Game Boy style football career game with leagues, career mode and an international cup. Fully playable offline.",
+  "start_url": ".",
+  "scope": ".",
+  "dir": "ltr",
+  "lang": "en",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
   "orientation": "any",
   "background_color": "#111111",
   "theme_color": "#c4cfa1",
-  "lang": "en",
+  "categories": ["games", "sports", "entertainment"],
   "icons": [
     {
       "src": "icons/icon-192.png",
