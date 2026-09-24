@@ -45,61 +45,71 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 .btn-pill-label { font-size:12px; color:#306230; text-align:center; margin-top:6px; font-weight:bold; letter-spacing:1px; }
 
 /* ===================== LANDSCAPE LAYOUT (mobile horizontal) ===================== */
+/* Screen centered; LEFT of screen = D-pad + SELECT; RIGHT of screen = A/B + START */
 @media (orientation: landscape) and (max-height: 560px) {
   body { align-items:stretch; }
   #phone-screen {
     width:100vw; max-width:none; height:100vh; max-height:none;
-    flex-direction:row; align-items:stretch;
-    border-radius:20px; padding:0;
+    max-height:100vh; padding:0;
+    border-radius:20px; overflow:hidden;
+    /* 3 columns (left controls | screen | right controls), 2 rows (main | pills) */
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    grid-template-rows:auto 1fr;
+    grid-template-areas:
+      "select screen  start"
+      "dpad   screen  action";
+    align-items:center; justify-items:center;
+    gap:4px;
+    padding-top:10px;
   }
-  /* Game screen on the left */
+
+  /* Center: game screen spans both rows */
   #screen-container {
-    flex:0 0 auto; width:auto; height:100%;
-    padding:10px 8px; border-top:none;
+    grid-area:screen;
+    width:auto; height:100%;
+    padding:8px; border-top:none;
     align-items:center; justify-content:center;
   }
   #game-wrapper {
     width:auto; height:100%;
-    max-height:calc(100vh - 20px);
+    max-height:calc(100vh - 16px);
     aspect-ratio:1/1; max-width:none;
   }
-  /* Controller on the right, fills remaining width */
-  #controller {
-    flex:1; min-width:0; height:100%;
-    border-top:none; border-left:4px solid #555;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr auto;
-    grid-template-areas:
-      "dpadarea actionarea"
-      "startsel startsel";
-    align-items:center; justify-items:center;
-    padding:12px 16px 14px;
-    gap:6px;
+
+  /* Flatten the controller wrappers so each control is a direct grid item */
+  #controller { display:contents; }
+  .controls-top { display:contents; }
+  .controls-bottom { display:contents; }
+
+  /* LEFT of screen: SELECT (top) + D-pad (below) */
+  .pill-select {
+    grid-area:select; align-self:end;
+    margin:0 0 6px 0; transform:rotate(-25deg);
   }
-  .controls-top {
-    display:contents; /* let d-pad and actions place themselves on the grid */
+  .dpad {
+    grid-area:dpad; align-self:start;
+    width:150px; height:150px; margin:0;
   }
-  .dpad { grid-area:dpadarea; width:150px; height:150px; }
+
+  /* RIGHT of screen: START (top) + A/B (below) */
+  .pill-start {
+    grid-area:start; align-self:end;
+    margin:0 0 6px 0; transform:rotate(25deg);
+  }
   .action-buttons {
-    grid-area:actionarea;
-    width:150px; height:170px; margin-right:0;
-    justify-self:center;
-  }
-  .controls-bottom {
-    grid-area:startsel;
-    margin:0; gap:36px; align-self:end;
+    grid-area:action; align-self:start;
+    width:150px; height:180px; margin:0;
   }
 }
 
 /* Very short landscape (small phones): shrink d-pad/buttons a touch more */
 @media (orientation: landscape) and (max-height: 400px) {
-  .dpad { width:124px; height:124px; }
-  .action-buttons { width:130px; height:150px; }
-  .btn-round { width:62px; height:62px; font-size:21px; }
-  .btn-a-container { left:56px; top:34px; }
-  .btn-b-container { left:2px; top:100px; }
-  .controls-bottom { gap:26px; }
+  .dpad { width:120px; height:120px; }
+  .action-buttons { width:130px; height:156px; }
+  .btn-round { width:60px; height:60px; font-size:20px; }
+  .btn-a-container { left:56px; top:30px; }
+  .btn-b-container { left:2px; top:90px; }
   .btn-pill { width:74px; height:20px; }
 }
 </style>
@@ -122,8 +132,8 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 </div>
 </div>
 <div class="controls-bottom">
-<div class="btn-pill-container"><button class="btn-pill" id="btn-select"></button><div class="btn-pill-label">SELECT</div></div>
-<div class="btn-pill-container"><button class="btn-pill" id="btn-start"></button><div class="btn-pill-label">START</div></div>
+<div class="btn-pill-container pill-select"><button class="btn-pill" id="btn-select"></button><div class="btn-pill-label">SELECT</div></div>
+<div class="btn-pill-container pill-start"><button class="btn-pill" id="btn-start"></button><div class="btn-pill-label">START</div></div>
 </div>
 </div>
 </div>
