@@ -2,8 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Crudo Football</title>
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#c4cfa1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Crudo Football">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
 * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
 :root { --gb-body: #c4cfa1; }
@@ -33,6 +43,65 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 .btn-pill { width:88px; height:23px; background:linear-gradient(145deg, #6e6e6e, #333); border-radius:12px; border:none; cursor:pointer; box-shadow:inset 1px 1px 2px rgba(255,255,255,0.2), inset -1px -1px 3px rgba(0,0,0,0.7); touch-action:none; -webkit-tap-highlight-color:transparent; }
 .btn-pill:active, .btn-pill.active { transform:translate(1px,2px); background:#222; box-shadow:inset 1px 1px 4px rgba(0,0,0,0.9); }
 .btn-pill-label { font-size:12px; color:#306230; text-align:center; margin-top:6px; font-weight:bold; letter-spacing:1px; }
+
+/* ===================== LANDSCAPE LAYOUT (mobile horizontal) ===================== */
+@media (orientation: landscape) and (max-height: 560px) {
+  body { align-items:stretch; }
+  #phone-screen {
+    width:100vw; max-width:none; height:100vh; max-height:none;
+    flex-direction:row; align-items:stretch;
+    border-radius:20px; padding:0;
+  }
+  /* Game screen on the left */
+  #screen-container {
+    flex:0 0 auto; width:auto; height:100%;
+    padding:10px 8px; border-top:none;
+    align-items:center; justify-content:center;
+  }
+  #game-wrapper {
+    width:auto; height:100%;
+    max-height:calc(100vh - 20px);
+    aspect-ratio:1/1; max-width:none;
+  }
+  /* Controller on the right, fills remaining width */
+  #controller {
+    flex:1; min-width:0; height:100%;
+    border-top:none; border-left:4px solid #555;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr auto;
+    grid-template-areas:
+      "dpadarea actionarea"
+      "startsel startsel";
+    align-items:center; justify-items:center;
+    padding:12px 16px 14px;
+    gap:6px;
+  }
+  .controls-top {
+    display:contents; /* let d-pad and actions place themselves on the grid */
+  }
+  .dpad { grid-area:dpadarea; width:150px; height:150px; }
+  .action-buttons {
+    grid-area:actionarea;
+    width:150px; height:170px; margin-right:0;
+    justify-self:center;
+  }
+  .controls-bottom {
+    grid-area:startsel;
+    margin:0; gap:36px; align-self:end;
+  }
+}
+
+/* Very short landscape (small phones): shrink d-pad/buttons a touch more */
+@media (orientation: landscape) and (max-height: 400px) {
+  .dpad { width:124px; height:124px; }
+  .action-buttons { width:130px; height:150px; }
+  .btn-round { width:62px; height:62px; font-size:21px; }
+  .btn-a-container { left:56px; top:34px; }
+  .btn-b-container { left:2px; top:100px; }
+  .controls-bottom { gap:26px; }
+  .btn-pill { width:74px; height:20px; }
+}
 </style>
 </head>
 <body>
@@ -2094,6 +2163,16 @@ function drawCareerWin(){const t2=splashTime;ctx.fillStyle="#1a2a5a";ctx.fillRec
 let lastTime=performance.now();
 function gameLoop(now){let dt=now-lastTime;lastTime=now;if(dt>100)dt=100;try{update(dt);draw();}catch(err){console.error(err);}requestAnimationFrame(gameLoop);}
 requestAnimationFrame(gameLoop);
+</script>
+<script>
+/* PWA: register service worker for offline play */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function (err) {
+      console.warn("Service worker registration failed:", err);
+    });
+  });
+}
 </script>
 </body>
 </html>
