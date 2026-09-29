@@ -46,7 +46,7 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
 
 /* ===================== LANDSCAPE LAYOUT (mobile horizontal) ===================== */
 /* LEFT col:  top empty | center SELECT | bottom D-pad
-   RIGHT col: top empty | center A      | bottom B
+   RIGHT col: top START | center A      | bottom B
    CENTER:    game screen (spans all rows) */
 @media (orientation: landscape) and (max-height: 560px) {
   body { align-items:stretch; }
@@ -103,8 +103,11 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
     position:static; left:auto; top:auto; margin:0;
   }
 
-  /* START pill is not part of this layout request: hide it in landscape */
-  .pill-start { display:none; }
+  /* START pill goes in the top-right slot */
+  .pill-start {
+    grid-area:rtop; align-self:center; justify-self:center;
+    margin:0; transform:rotate(25deg);
+  }
 }
 
 /* Very short landscape (small phones): shrink d-pad/buttons a touch more */
