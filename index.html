@@ -61,7 +61,7 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
       "dpad   screen  action";
     align-items:center; justify-items:center;
     gap:4px;
-    padding-top:10px;
+    padding-top:40px;
   }
 
   /* Center: game screen spans both rows */
@@ -85,21 +85,21 @@ canvas { display:block; width:100%; height:100%; image-rendering:pixelated; bord
   /* LEFT of screen: SELECT (top) + D-pad (below) */
   .pill-select {
     grid-area:select; align-self:end;
-    margin:0 0 6px 0; transform:rotate(-25deg);
+    margin:0 0 10px 0; transform:rotate(-25deg);
   }
   .dpad {
-    grid-area:dpad; align-self:start;
-    width:150px; height:150px; margin:0;
+    grid-area:dpad; align-self:center;
+    width:150px; height:150px; margin:24px 0 0 0;
   }
 
   /* RIGHT of screen: START (top) + A/B (below) */
   .pill-start {
     grid-area:start; align-self:end;
-    margin:0 0 6px 0; transform:rotate(25deg);
+    margin:0 0 10px 0; transform:rotate(25deg);
   }
   .action-buttons {
-    grid-area:action; align-self:start;
-    width:150px; height:180px; margin:0;
+    grid-area:action; align-self:center;
+    width:150px; height:180px; margin:24px 0 0 0;
   }
 }
 
@@ -1343,7 +1343,13 @@ function startCupMatch(){
   oppKit=kitFromSpec(opp.kitSpec||{pattern:"solid",c1:"red",c2:"red"});
   openFormationSelect();
 }
+function vibrateButton(action){
+  // Vibrate on A/B press. No-op on devices/browsers without support (e.g. iOS Safari).
+  if(action!=="a"&&action!=="b")return;
+  try{ if(navigator&&typeof navigator.vibrate==="function")navigator.vibrate(20); }catch(e){}
+}
 function pressAction(action){
+  vibrateButton(action);
   switch(state){
     case "SPLASH": if(action==="start"||action==="a"){playSound(660,"square",0.1);state="MODE_SELECT";menuIndex=0;} break;
     case "MODE_SELECT": navModeSelect(action); break;
